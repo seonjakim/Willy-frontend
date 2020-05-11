@@ -4,52 +4,43 @@ import reset from "styled-reset";
 //글로벌 스타일
 export const GlobalStyle = createGlobalStyle`
 ${reset};
-*{
+* {
 	box-sizing: border-box;
-	
-}
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
 	font-style: "Noto Sans KR", sans-serif;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+	text-decoration: none;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+
+html, body, root {
+	height: 100%;
 }
+
 body {
-	line-height: 1;
+	line-height: 1.2;
+	font-size: 14px;
 }
-ol, ul {
-	list-style: none;
+
+[onClick] {
+	cursor: pointer;
 }
-blockquote, q {
-	quotes: none;
+
+a {
+	color: inherit;
+	text-decoration: none;
+	background-color: transparent;
+	cursor: pointer;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+input {
+	box-shadow: none;
+	border: 1px solid #d7d7d7;
+	border-radius: 4px;
+	outline: none;
 }
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+
+button {
+	border: 0;
+	outline: 0;
+	background-color: inherit;
+	cursor: pointer;
 }
 `;
