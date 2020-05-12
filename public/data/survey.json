@@ -1,0 +1,462 @@
+{
+  "survey": [
+    {
+      "section": "기본정보",
+      "title": "필리가 고객님을 어떻게 부르면 좋을까요?",
+      "content": "",
+      "list": [{ "input": "text", "placeholder": "이름" }]
+    },
+    {
+      "section": "기본정보",
+      "title": "name님의 성별을 알려주세요.",
+      "content": "",
+      "list": [
+        { "label": "여성", "input": "radio" },
+        { "label": "남성", "input": "radio" }
+      ]
+    },
+    {
+      "section": "기본정보",
+      "title": "name님은 몇살인가요?",
+      "content": "나이에 따라 필요한 영양성분이 달라질 수 있어요.",
+      "list": [
+        { "input": "number", "placeholder": "나이", "min": 10, "max": 110 }
+      ]
+    },
+    {
+      "section": "증상/불편",
+      "title": "name님이 불편하시거나 걱정되는 3가지를 선택하세요.",
+      "content": "우선적으로 관리가 필요한 것을 선택하세요.",
+      "list": [
+        { "label": "혈관/혈액순환", "input": "checkbox" },
+        { "label": "소화/장", "input": "checkbox" },
+        { "label": "피부", "input": "checkbox" },
+        { "label": "눈", "input": "checkbox" },
+        { "label": "두뇌활동", "input": "checkbox" },
+        { "label": "피로감", "input": "checkbox" },
+        { "label": "뼈와 관절", "input": "checkbox" },
+        { "label": "면역", "input": "checkbox" },
+        { "label": "모발", "input": "checkbox" },
+        { "label": "선택할 것이 없어요.", "input": "checkbox" }
+      ]
+    },
+    {
+      "section": "증상/불편",
+      "problem": "혈관/혈액순환",
+      "title": "해당하는 증상을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        { "label": "상처가 생기면 잘 아물지 않아요.", "input": "checkbox" },
+        { "label": "손끝 또는 발끝이 자주 저려요.", "input": "checkbox" },
+        { "label": "혈압이 높아요. (140/90 이상)", "input": "checkbox" },
+        {
+          "label": "충치가 생기고 잇몸이 자주 붓고 피가 나요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "위와 같은 증상이 없지만 혈관/혈액순환이 걱정돼요.",
+          "input": "checkbox"
+        }
+      ]
+    },
+    {
+      "section": "증상/불편",
+      "problem": "소화/장",
+      "title": "해당하는 증상을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        { "label": "복통이나 속 쓰림이 자주 발생해요.", "input": "checkbox" },
+        { "label": "변비가 있어요.", "input": "checkbox" },
+        {
+          "label": "설사와 같은 묽은 변을 자주 보는 편이에요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "술을 마실 때 얼굴이나 몸이 붉어지고 소화가 안돼요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "위와 같은 증상은 없지만 소화력 개선이 필요해요.",
+          "input": "checkbox"
+        }
+      ]
+    },
+    {
+      "section": "증상/불편",
+      "problem": "피부",
+      "title": "해당하는 증상을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        {
+          "label": "피부가 건조하여 벗겨지거나 머리에 비듬이 많이 생겨요.",
+          "input": "checkbox"
+        },
+        { "label": "여드름이 많아서 걱정이에요.", "input": "checkbox" },
+        {
+          "label": "피부에 염증이 자주 생겨요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "입안이 헐고 입술이 자주 갈라져요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "위와 같은 증상은 없지만 피부 건강이 걱정돼요",
+          "input": "checkbox"
+        }
+      ]
+    },
+    {
+      "section": "증상/불편",
+      "problem": "눈",
+      "title": "해당하는 증상을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        {
+          "label": "눈이 건조하여 뻑뻑하고 가려움을 느껴요.",
+          "input": "checkbox"
+        },
+        { "label": "눈 주변이 떨리는 현상이 있어요.", "input": "checkbox" },
+        {
+          "label": "핸드폰이나 컴퓨터를 본 후에 시야가 흐릿하게 느껴져요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "어두워지면 시력이 저하돼요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "위와 같은 증상은 없지만 눈 건강이 걱정돼요.",
+          "input": "checkbox"
+        }
+      ]
+    },
+    {
+      "section": "증상/불편",
+      "problem": "두뇌활동",
+      "title": "해당하는 증상을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        {
+          "label": "기억력이 떨어진다고 느껴져요.",
+          "input": "checkbox"
+        },
+        { "label": "두통이 자주 생겨요.", "input": "checkbox" },
+        {
+          "label": "불안 혹은 긴장감을 자주 느껴요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "우울한 감정을 자주 느껴요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "위와 같은 증상은 없지만 두뇌활동 건강이 걱정돼요.",
+          "input": "checkbox"
+        }
+      ]
+    },
+    {
+      "section": "증상/불편",
+      "problem": "피로감",
+      "title": "해당하는 증상을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        {
+          "label": "무기력하고 식욕이 없어요.",
+          "input": "checkbox"
+        },
+        { "label": "자고 일어나도 아침부터 피곤해요.", "input": "checkbox" },
+        {
+          "label": "신경이 예민하고 잠을 이루기 힘들어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "잠을 매우 잘 자요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "위와 같은 증상이 없지만 피로감이 있어요.",
+          "input": "checkbox"
+        }
+      ]
+    },
+    {
+      "section": "증상/불편",
+      "problem": "뼈와 관절",
+      "title": "해당하는 증상을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        {
+          "label": "뼈가 부러져 본 경험이 있어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "평소 뼈가 약한 느낌 또는 증상이 있어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "스테로이드를 3개월 이상 섭취한 경험이 있어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "위와 같은 증상이 없지만 뼈와 관절이 걱정돼요.",
+          "input": "checkbox"
+        }
+      ]
+    },
+    {
+      "section": "증상/불편",
+      "problem": "면역",
+      "title": "해당하는 증상을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        {
+          "label": "스트레스가 매우 많아요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "아토피 또는 비염 등 알레르기 질환이 있어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "감기와 같은 감염성 질환에 자주 걸려요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "위와 같은 증상은 없지만 면역이 걱정돼요.",
+          "input": "checkbox"
+        }
+      ]
+    },
+    {
+      "section": "증상/불편",
+      "problem": "모발",
+      "title": "해당하는 증상을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        {
+          "label": "탈모가 진행되고 있거나 탈모가 걱정돼요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "머리카락이 갈라지고 끊어지는 등 모발 상태가 나빠요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "같은 또래보다 새치가 많이 나요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "위와 같은 증상이 없지만 모발 건강이 걱정돼요.",
+          "input": "checkbox"
+        }
+      ]
+    },
+    {
+      "section": "생활 습관",
+      "title": "name님의 키를 적어주세요.",
+      "content": "영양성분 추천에 체질량지수(BMI)를 활용합니다.",
+      "list": [
+        {
+          "input": "number",
+          "placeholder": "키",
+          "span": "cm",
+          "min": 100,
+          "max": 250
+        }
+      ]
+    },
+    {
+      "section": "생활 습관",
+      "title": "name님 몸무게를 적어주세요.",
+      "content": "영양성분 추천에 체질량지수(BMI)를 활용합니다.",
+      "list": [
+        {
+          "input": "number",
+          "placeholder": "몸무게",
+          "span": "kg",
+          "min": 30,
+          "max": 190
+        }
+      ]
+    },
+    {
+      "section": "생활 습관",
+      "title": "일주일에 운동을 얼마나 하시나요?",
+      "content": "운동 강도는 땀이 날 정도로 30분 이상 이예요.",
+      "list": [
+        { "label": "운동을 많이 해요. (주 4회 이상)", "input": "radio" },
+        { "label": "운동을 적당히 해요. (주 2~3회 정도)", "input": "radio" },
+        { "label": "운동을 거의 하지 않아요. (주 1회 이하)", "input": "radio" }
+      ]
+    },
+    {
+      "section": "생활 습관",
+      "title": "운동 후 나타나는 증상을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        { "label": "근육 운동을 많이 해요.", "input": "checkbox" },
+        { "label": "근육통이 자주 발생해요.", "input": "checkbox" },
+        { "label": "근육 경련이나 쥐가 자주 나요.", "input": "checkbox" },
+        {
+          "label": "가벼운 운동 후에도 피로감을 많이 느껴요.",
+          "input": "checkbox"
+        },
+        { "label": "선택할 것이 없어요.", "input": "checkbox" }
+      ]
+    },
+    {
+      "section": "생활 습관",
+      "title": "하루에 햇빛을 받으며 야외활동을 얼마나 하나요?",
+      "content": "",
+      "list": [
+        { "label": "4시간 이상 야외활동을 해요.", "input": "radio" },
+        {
+          "label": "1시간에서 4시간 이내로 야외활동을 해요.",
+          "input": "radio"
+        },
+        { "label": "1시간 이내로 야외활동을 해요.", "input": "radio" }
+      ]
+    },
+    {
+      "section": "생활 습관",
+      "title": "name님의 식습관을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        { "label": "생선을 일주일에 3번 이상 먹어요.", "input": "checkbox" },
+        {
+          "label": "녹황색 채소(시금치, 브로콜리 등)를 거의 매일 먹어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "과일(사과 1개 또는 귤 3개 정도)을 일주일에 4일 이상 먹어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "일주일에 4일 이상 고기(삼겹살 등 메인 요리)를 먹어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "단 음식(빵/과자, 초콜릿, 탄산음료 등)을 자주 먹어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "일주일에 식사를 5회 이상 거르고 있어요.",
+          "input": "checkbox"
+        },
+        { "label": "선택할 것이 없어요.", "input": "checkbox" }
+      ]
+    },
+    {
+      "section": "생활 습관",
+      "title": "name님의 기호식품 섭취 습관을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        { "label": "하루에 담배를 반 갑 이상 피워요.", "input": "checkbox" },
+        {
+          "label": "하루에 커피를 3잔 이상 마셔요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "일주일에 인스턴트 음식(라면, 편의점 도시락 등)으로 3번 이상 식사를 해요.",
+          "input": "checkbox"
+        },
+        { "label": "선택할 것이 없어요.", "input": "checkbox" }
+      ]
+    },
+    {
+      "section": "생활 습관",
+      "title": "본인에게 해당하는 것을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        {
+          "label": "하루 12시간 이상의 업무 또는 학업을 일주일에 3일 이상해요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "하루에 6시간 이상 핸드폰 또는 모니터 화면을 집중해서 봐요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "시험을 준비하거나 승진 등으로 집중력이 필요한 시기예요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "식사량을 줄이는 다이어트를 하고 있어요.",
+          "input": "checkbox"
+        },
+        { "label": "선택할 것이 없어요.", "input": "checkbox" }
+      ]
+    },
+    {
+      "section": "생활 습관",
+      "title": "가족이 갖고 있는 질환을 모두 선택하세요.",
+      "content": "",
+      "list": [
+        {
+          "label": "간 질환을 가지고 있어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "혈관(심근경색, 뇌출혈 등) 질환을 가지고 있어요.",
+          "input": "checkbox"
+        },
+        {
+          "label": "뼈/관절 질환(골다공증, 골감소증 등)을 가지고 있어요.",
+          "input": "checkbox"
+        },
+        { "label": "선택할 것이 없어요.", "input": "checkbox" }
+      ]
+    },
+    {
+      "section": "생활 습관",
+      "title": "건강검진을 하신지 얼마나 되셨나요?",
+      "content": "",
+      "list": [
+        { "label": "1년 이내에 건강검진을 했어요.", "input": "radio" },
+        {
+          "label": "1년 ~ 2년 이내에 건강 검진을 했어요.",
+          "input": "radio"
+        },
+        { "label": "2년 이상 건강검진을 안 했어요.", "input": "radio" },
+        { "label": "건강검진을 해본 적이 없어요.", "input": "radio" }
+      ]
+    },
+    {
+      "section": "기타",
+      "title": "필리를 처음에 어떻게 알게 되셨나요?",
+      "content": "",
+      "list": [
+        {
+          "label": "지인의 추천으로",
+          "input": "checkbox"
+        },
+        {
+          "label": "인플루언서의 추천으로",
+          "input": "checkbox"
+        },
+        {
+          "label": "SNS(페북/인스타그램 등)을 보고",
+          "input": "checkbox"
+        },
+        {
+          "label": "네이버/다음(블로그/기사 등)을 보고",
+          "input": "checkbox"
+        },
+        {
+          "label": "TV/유튜브 광고를 보고",
+          "input": "checkbox"
+        },
+        { "label": "직접 검색을 해서", "input": "checkbox" },
+        { "label": "", "input": "text", "placeholder": "기타" }
+      ]
+    },
+    {
+      "section": "기타",
+      "title": "name님의 문진 결과를 받아보세요.",
+      "content": "이메일 주소를 적어주세요.",
+      "list": [{ "input": "email", "placeholder": "이메일" }]
+    }
+  ]
+}

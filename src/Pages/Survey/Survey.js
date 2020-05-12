@@ -1,17 +1,20 @@
 import React from "react";
-import styled from "styled-components"
+import styled from "styled-components";
+import { Route } from "react-router-dom";
 
 import SurveySection from "./SurveySection/SurveySection";
+import SurveyStart from "./SurveySection/SurveyStart/SurveyStart";
+import SurveyTest from "./SurveySection/SurveyTest/SurveyTest";
 
-function Survey() {
+function Survey({ match, history }) {
+  const goBack = () => history.goBack();
+
   return (
     <SurveyWrapper>
       <ContentsWrapper>
         <Contents>
-          <CloseButton>
-            X
-          </CloseButton>
-          <SurveySection />
+          <CloseButton onClick={goBack}>X</CloseButton>
+          <Route path={match.path} component={SurveySection} />
         </Contents>
       </ContentsWrapper>
     </SurveyWrapper>
@@ -26,12 +29,12 @@ const SurveyWrapper = styled.div`
   background-color: #fafafa;
   width: 100%;
   height: 100%;
-`
+`;
 
 const ContentsWrapper = styled.div`
   padding: 40px 0 142px;
   vertical-align: top;
-`
+`;
 
 const Contents = styled.div`
   position: relative;
@@ -39,8 +42,8 @@ const Contents = styled.div`
   padding-bottom: 30px;
   width: 940px;
   background-color: #fff;
-  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.08);
-`
+  box-shadow: 3px 5px 5px 0 rgba(0, 0, 0, 0.08);
+`;
 
 const CloseButton = styled.button`
   position: absolute;
@@ -52,6 +55,6 @@ const CloseButton = styled.button`
   text-align: center;
   border-radius: 50%;
   background-color: #fff;
-  box-shadow: 0px 2px 3px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.08);
   z-index: 5;
-`
+`;

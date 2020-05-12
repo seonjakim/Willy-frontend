@@ -1,9 +1,11 @@
 import React from "react";
-import styled from "styled-components"
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import logo_pilly from "../../../../Images/logo_pilly.png";
 
-function SurveyStart() {
+function SurveyStart(props) {
+    const { handleClickPlus } = props;
     return (
         <SurveyStartWrapper>
             <StartHeader>
@@ -24,7 +26,7 @@ function SurveyStart() {
                         <span>약 3분정도 소요됩니다.</span>
                     </p>
                 </Description>
-                <ButtonStart>시작하기</ButtonStart>
+                <ButtonStart onClick={handleClickPlus}>시작하기</ButtonStart>
                 <Warning>※ 질병의 진단 및 치료는 전문적인 의료기관을 이용하세요.</Warning>
             </StartIntro>
         </SurveyStartWrapper>
@@ -87,7 +89,7 @@ const Description = styled.div`
     }
 `;
 
-const ButtonStart = styled.a`
+const ButtonStart = styled.button`
     display: inline-block;
     margin-top: 120px;
     padding: 0 36px;
