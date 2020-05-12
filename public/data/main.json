@@ -1,0 +1,142 @@
+{
+  "home_list": [
+    {
+      "id": 1,
+      "image_url": "https://img.pilly.kr/main/v201911/cover-pc.jpg",
+      "title": "내 몸에 필요한\n영양성분 궁금하세요?",
+      "content": "나만을 위한 맞춤영양제를 찾아보세요!"
+    },
+    {
+      "id": 2,
+      "image_url": "https://img.pilly.kr/main/v201911/worry-icon-fridge.png",
+      "title": "냉장고 구석, 다 먹지도 못한 영양제가 자리만 차지하고 있어요.",
+      "content": "경기도 성남시 분당구 이**님, 34세, 직장인 "
+    },
+    {
+      "id": 3,
+      "image_url": "https://img.pilly.kr/main/v201911/worry-icon-watch.png",
+      "title": "유통기한은 이미 다 지나버렸고, 다시 구매하려니 어떤 걸 사야 할지 고민돼요.",
+      "content": "인천시 연수구 송도동 김**님, 26세, 대학원생 "
+    },
+    {
+      "id": 4,
+      "image_url": "https://img.pilly.kr/main/v201911/worry-icon-question.png",
+      "title": "세상 다양한 영양제들. 서로 자기가 최고라고만 말하고 있어요.",
+      "content": "서울시 강남구 삼성동 지**님, 31세, 디자이너 "
+    },
+    {
+      "id": 5,
+      "image_url": "https://img.pilly.kr/main/v201911/worry-icon-chemical.png",
+      "title": "화장품처럼 영양제도 같이 섭취하면 안 좋은 성분이 있을까요? 궁금해요.",
+      "content": "부산시 해운대구 우동 정**님, 45세, 자영업자 "
+    },
+    {
+      "id": 6,
+      "image_url": "https://img.pilly.kr/main/v201911/easy-icon-survey.png",
+      "title": "[‘01’,‘건강설문’]",
+      "content": "딱 3분! 간단하게 체크하고 내 몸에 맞는 영양성분 찾기"
+    },
+    {
+      "id": 7,
+      "image_url": "https://img.pilly.kr/main/v201911/easy-icon-monthly.png",
+      "title": "[‘02’,‘정기구독’]",
+      "content": "30일분 필리 영양제를 평생 무료로 배송받기"
+    },
+    {
+      "id": 8,
+      "image_url": "https://img.pilly.kr/main/v201911/easy-icon-pillycare.png",
+      "title": "[‘03’,‘섭취관리’]",
+      "content": "필리케어로 관리하고 매일매일 섭취 습관 만들기"
+    },
+    {
+      "id": 9,
+      "image_url": "https://img.pilly.kr/main/v201911/effect01-pc@3x.jpg",
+      "title": "null",
+      "content": "국내 연구진의 전문적인 연구결과를 기반으로 한국인의 생활 습관을 고려한 건강 설문 시스템을 만들었어요. 우리 몸에 꼭 맞는 영양성분을 추천해요. "
+    },
+    {
+      "id": 10,
+      "image_url": "https://img.pilly.kr/main/v201911/effect02-pc@3x.jpg",
+      "title": "null",
+      "content": "필리 영양제는 우수한 품질의 원료를 직접 선택하여, 엄격한 기준의 품질관리를 통해 만들었어요. 믿고 섭취할 수 있는 영양제를 만나보세요. "
+    },
+    {
+      "id": 11,
+      "image_url": "null",
+      "title": "건강 설문으로 영양성분을 찾으세요.",
+      "content": "null"
+    },
+    {
+      "id": 12,
+      "image_url": "https://img.pilly.kr/main/v201911/qna2-pc@3x.jpg",
+      "title": "영양제의 가격이 14,000원이 넘지 않아요. 성분이 부족하진 않나요? ",
+      "content": "필리 영양제는 한국인 식습관과 각 영양성분의 섭취 용량을 계산해 충분한 용량을 담았어요. 단, 유통마진을 최소화해 거품없는 가격으로 제공해요. "
+    },
+    {
+      "id": 13,
+      "image_url": "null",
+      "title": "정기구독을 시작하면 약정기간이 있거나 해지가 어렵진 않나요? ",
+      "content": "필리 정기구독은 별도의 약정기간이 없어요. 원할때는 홈페이지에 로그인해 언제든 직접 관리할 수 있어요. "
+    },
+    {
+      "id": 14,
+      "image_url": "null",
+      "title": "잊고있다가 자동으로 결제가 되버릴까봐 걱정돼요. ",
+      "content": "필리는 정기결제 2일 전에 미리 결제 알림을 카카오 알림톡으로 보내드려요. 가격과 주소 등 확인하고 관리할 수 있으니 안심하세요. "
+    },
+    {
+      "id": 15,
+      "image_url": "null",
+      "title": "이번 달 영양제를 다 먹지 못하면 어떡하죠? ",
+      "content": "이런 저런 이유로 영양제를 다 드시지 못하셨군요. 걱정하지 마세요. 홈페이지에서 정기결제일을 언제든 직접 변경할 수 있어요. 언제든 내맘대로 관리하는 정기구독 시작하세요. "
+    },
+    {
+      "id": 16,
+      "image_url": "null",
+      "title": "매 달 배송료가 발생하나요? ",
+      "content": "필리 정기구독을 이용하면 배송비가 무료예요. 배송비는 필리가 책임질께요. 꾸준히 섭취하고 건강을 지키세요. "
+    },
+    {
+      "id": 17,
+      "image_url": "https://img.pilly.kr/main/v201911/reallife01-pc@3x.jpg",
+      "title": "건강을 위한 가장 쉬운 방법 같아요.",
+      "content": "이**님, 32세, 영상제작자 / 정기구독 7회차"
+    },
+    {
+      "id": 18,
+      "image_url": "https://img.pilly.kr/main/v201911/reallife02-pc@3x.jpg",
+      "title": "필리가 매일 챙겨주는 느낌이 좋아요.",
+      "content": "홍**님, 30세, 승무원 / 정기구독 3회차"
+    },
+    {
+      "id": 19,
+      "image_url": "https://img.pilly.kr/main/v201911/reallife03-pc@3x.jpg",
+      "title": "내 몸에 딱 필요한 영양소만 알려줘요.",
+      "content": "박**님, 40세, 퍼블리셔 / 정기구독 5회차"
+    },
+    {
+      "id": 20,
+      "image_url": "https://img.pilly.kr/main/v201911/benefit-title-pc.png",
+      "title": "null",
+      "content": "건강을 위한 가장 똑똑하고 쉬운 방법"
+    },
+    {
+      "id": 21,
+      "image_url": "[‘https://img.pilly.kr/main/v201911/benefit-bg01.png','https://img.pilly.kr/main/v201911/benefit-icon-discount.png’]",
+      "title": "필리 할인혜택",
+      "content": "건강 설문, 장기 유지, 친구 초대 등 최대 45%의 할인 혜택"
+    },
+    {
+      "id": 22,
+      "image_url": "[‘https://img.pilly.kr/main/v201911/benefit-bg02.png','https://img.pilly.kr/main/v201911/benefit-icon-delivery.png’]",
+      "title": "평생 무료배송",
+      "content": "정기구독 기간 내내 평생 무료배송"
+    },
+    {
+      "id": 23,
+      "image_url": "null",
+      "title": "필리의 혜택! 지금 받으세요.",
+      "content": "null"
+    }
+  ]
+}

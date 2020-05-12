@@ -1,37 +1,35 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect, useCallback } from "react";
+import styled from "styled-components";
 
 function NavBar() {
-  const  [datas, setDatas] = useState([]);
-  const [state, setState] = useState({y:0});
+  const [datas, setDatas] = useState([]);
+  const [state, setState] = useState({ y: 0 });
   //console.log(state);
 
   const onScroll = useCallback(() => {
-    setState({y: window.scrollY})
-  }, [])
+    setState({ y: window.scrollY });
+  }, []);
 
-  useEffect(()=>{
-    fetch('http://localhost:3000/data/menu.json')
-    .then( res => res.json())
-    .then( res => {
-      setDatas(res.menu)
-    })
+  useEffect(() => {
+    fetch("http://localhost:3000/data/menu.json")
+      .then((res) => res.json())
+      .then((res) => {
+        setDatas(res.menu);
+      });
 
-    window.addEventListener('scroll', onScroll);
-  }, [onScroll])
+    window.addEventListener("scroll", onScroll);
+  }, [onScroll]);
 
-  return(
-    <Nav style={{backgroundColor: state.y > 0 ? 'white':''}}>
-      <Img src='https://pilly.kr/images/logo-colored.png' alt=""/>
+  return (
+    <Nav style={{ backgroundColor: state.y > 0 ? "white" : "" }}>
+      <Img src="https://pilly.kr/images/logo-colored.png" alt="" />
       <MenuUl>
-        {datas.map( (data, index) => {
-          return(
-            <MenuLi key={index}>{data}</MenuLi>
-          )}
-        )}
+        {datas.map((data, index) => {
+          return <MenuLi key={index}>{data}</MenuLi>;
+        })}
       </MenuUl>
     </Nav>
-  )
+  );
 }
 
 export default NavBar;
@@ -56,7 +54,7 @@ const Img = styled.img`
   height: 35px;
 `;
 
-const MenuUl =  styled.ul`
+const MenuUl = styled.ul`
   display: flex;
   margin: 0 72px 0 0;
 `;
@@ -67,4 +65,4 @@ const MenuLi = styled.li`
   line-height: 90px;
   list-style: none;
   margin: 0 0 0 40px;
-`
+`;

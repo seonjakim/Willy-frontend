@@ -44,3 +44,5 @@ button {
 	cursor: pointer;
 }
 `;
+
+export default GlobalStyle;
