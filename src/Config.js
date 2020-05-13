@@ -10,7 +10,7 @@ ${reset};
 	text-decoration: none;
 }
 
-html, body, root {
+html, body, #root {
 	height: 100%;
 }
 
