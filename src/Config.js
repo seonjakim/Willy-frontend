@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
 ${reset};
 * {
 	box-sizing: border-box;
-	font-style: "Noto Sans KR", sans-serif;
+	font-family: "Noto Sans KR", sans-serif;
 	text-decoration: none;
 }
 
