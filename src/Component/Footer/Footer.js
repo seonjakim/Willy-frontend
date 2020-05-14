@@ -9,7 +9,7 @@ export default Footer;
 
 //style
 const FooterBody = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
