@@ -4,7 +4,6 @@ import styled from "styled-components";
 function NavBar() {
   const [datas, setDatas] = useState([]);
   const [state, setState] = useState({ y: 0 });
-  //console.log(state);
 
   const onScroll = useCallback(() => {
     setState({ y: window.scrollY });
@@ -18,6 +17,9 @@ function NavBar() {
       });
 
     window.addEventListener("scroll", onScroll);
+    return () => {
+      window.addEventListener("scroll", onScroll);
+    };
   }, [onScroll]);
 
   return (
