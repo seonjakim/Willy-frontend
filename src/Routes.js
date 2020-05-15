@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { GlobalStyle } from "./Config";
+import Main from "./Pages/Main/Main";
 import Survey from "./Pages/Survey/Survey";
 import Result from "./Pages/Survey/Result/Result";
-import Main from "./Pages/Main/Main";
-//import SignIn from "./Pages/SignIn/SignIn";
-//import SignUp from "./Pages/SignUp/SignUp";
+import ProductView from "./Pages/ProductView/ProductView";
 
 class Routes extends React.Component {
   render() {
@@ -18,6 +17,7 @@ class Routes extends React.Component {
             <Route exact path="/signup" component={SignUp} /> */}
           <Route exact path="/survey" component={Survey} />
           <Route path="/result" component={Result} />
+          <Route path="/product" component={ProductView} />
         </Switch>
       </Router>
     );
