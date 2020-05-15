@@ -11,7 +11,6 @@ function SurveyForm(props) {
 
   useEffect(() => {
     //list input에 checkbox 포함 시 checkboxClicked 초기화
-    // console.log("Effect...");
     if (list.map((e) => e.input).includes("checkbox")) {
       const initCheckboxClicked = () => {
         const checkboxClicked = Array.from(

@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { Route } from "react-router-dom";
 
 import SurveySection from "./SurveySection/SurveySection";
-import SurveyStart from "./SurveySection/SurveyStart/SurveyStart";
-import SurveyTest from "./SurveySection/SurveyTest/SurveyTest";
 
 function Survey({ match, history }) {
   const goBack = () => history.goBack();
