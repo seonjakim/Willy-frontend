@@ -14,7 +14,6 @@ function NavBar(props) {
     "story",
     "cs",
   ]);
-  //console.log(state);
 
   const onScroll = useCallback(() => {
     setState({ y: window.scrollY });
@@ -28,24 +27,63 @@ function NavBar(props) {
       });
 
     window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, [onScroll]);
 
   const goToPage = (idx) => {
     props.history.push(`/${address[idx]}`);
+
+    if (props.match.url === `/${address[idx]}`) {
+      console.log(true);
+    }
   };
+
   return (
     <Nav style={{ backgroundColor: state.y > 0 ? "white" : "" }}>
-      <Link to="/">
-        <Img src="https://pilly.kr/images/logo-colored.png" alt="" />
-      </Link>
+      {props.match.url === "/product" && window.scrollY === 0 ? (
+        <Link to="/">
+          <Img src="https://pilly.kr/images/logo-white.png" alt="" />
+        </Link>
+      ) : (
+        <Link to="/">
+          <Img src="https://pilly.kr/images/logo-colored.png" alt="" />
+        </Link>
+      )}
       <MenuUl>
-        {datas.map((data, index) => {
-          return (
-            <MenuLi onClick={() => goToPage(index)} key={index}>
-              {data}
-            </MenuLi>
-          );
-        })}
+        {props.match.url === "/product" && window.scrollY === 0
+          ? datas.map((data, index) => {
+              return (
+                <li
+                  style={{
+                    color: "white",
+                    borderBottom: `${
+                      props.match.url === `/${address[index]}`
+                        ? "1px solid white"
+                        : ""
+                    }`,
+                  }}
+                  onClick={() => goToPage(index)}
+                  key={index}
+                >
+                  {data}
+                </li>
+              );
+            })
+          : datas.map((data, index) => {
+              return (
+                <li
+                  style={
+                    props.match.url === `/${address[index]}`
+                      ? { borderBottom: "1px solid black" }
+                      : {}
+                  }
+                  onClick={() => goToPage(index)}
+                  key={index}
+                >
+                  {data}
+                </li>
+              );
+            })}
       </MenuUl>
     </Nav>
   );
@@ -76,13 +114,11 @@ const Img = styled.img`
 const MenuUl = styled.ul`
   display: flex;
   margin: 0 72px 0 0;
-  cursor: pointer;
-`;
-
-const MenuLi = styled.li`
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 90px;
-  list-style: none;
-  margin: 0 0 0 40px;
+  li {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 0 40px;
+    color: black;
+    cursor: pointer;
+  }
 `;

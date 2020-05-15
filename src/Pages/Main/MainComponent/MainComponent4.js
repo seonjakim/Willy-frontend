@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import MainButton from "../../../Component/MainButtonComponent";
+import MainButton from "../../../Component/MainButtonComponent/MainButtonComponent";
 
 function MainPage4(props) {
   const [datas, setData] = useState([]);

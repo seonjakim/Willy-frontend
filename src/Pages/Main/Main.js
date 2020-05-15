@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import NavBar from "../../Component/NavBar/NavBar";
 import MainComponent1 from "./MainComponent/MainComponent1";
 import MainComponent2 from "./MainComponent/MainComponent2";
 import MainComponent3 from "./MainComponent/MainComponent3";
@@ -8,7 +10,6 @@ import MainComponent6 from "./MainComponent/MainComponent6";
 import MainComponent7 from "./MainComponent/MainComponent7";
 import MainComponent8 from "./MainComponent/MainComponent8";
 import MainComponent9 from "./MainComponent/MainComponent9";
-import styled from "styled-components";
 
 function MainPage() {
   const [mainDatas, setMainDatas] = useState([]);
@@ -21,7 +22,7 @@ function MainPage() {
   const [benefit, setBenefit] = useState([]);
 
   useEffect(() => {
-    fetch("http://10.58.3.188:8000/information/home")
+    fetch("http://localhost:3000/data/main.json")
       .then((res) => res.json())
       .then((res) => {
         setMainDatas(res.home_list.slice(0, 1));
@@ -37,6 +38,7 @@ function MainPage() {
 
   return (
     <Main>
+      <NavBar />
       <MainComponent1 datas={mainDatas} />
       <MainComponent2 datas={slides} />
       <MainComponent3 datas={boxes} />
