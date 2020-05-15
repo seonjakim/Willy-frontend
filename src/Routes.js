@@ -5,6 +5,7 @@ import Main from "./Pages/Main/Main";
 import Survey from "./Pages/Survey/Survey";
 import Result from "./Pages/Survey/Result/Result";
 import ProductView from "./Pages/ProductView/ProductView";
+import Review from "./Pages/Review/Review";
 
 class Routes extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class Routes extends React.Component {
           <Route exact path="/survey" component={Survey} />
           <Route path="/result" component={Result} />
           <Route path="/product" component={ProductView} />
+          <Route path="/review" component={Review} />
         </Switch>
       </Router>
     );
