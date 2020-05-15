@@ -7,15 +7,20 @@ import Footer from "../../Component/Footer/Footer";
 function ProductView() {
   const [main, setMain] = useState([]);
   const [products, setProduct] = useState([]);
+  const [state, setState] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/data/productView.json")
       .then((res) => res.json())
       .then((res) => {
-        setMain(res.productView);
-        setProduct(res.card);
+        setMain(res.products[0].product_header);
+        setProduct(res.products.slice(1, res.products.length));
       });
   }, []);
+
+  const buttonChange = (idx) => {
+    setState(state.concat(idx + 1));
+  };
 
   return (
     <Body>
@@ -44,29 +49,29 @@ function ProductView() {
         {products.length > 1
           ? products.slice(0, 7).map((product, idx) => {
               return (
-                <Card key={idx}>
+                <Card key={idx} style={{ backgroundColor: `${product.color}` }}>
                   <CardTop>
                     <div>
                       <SubName>{product.sub_name}</SubName>
                       <Name>{product.name}</Name>
-                      <Img3 src={product.pill_sub_image_url} alt="" />
-                      <Img4 src="" alt="" />
+                      <Img3 src={product.category_image[0]} alt="" />
+                      <Img4 src={product.category_image[1]} alt="" />
                     </div>
-                    <Img2 src={product.pill_image_url} alt="" />
+                    <Img2 src={product.image_url} alt="" />
                   </CardTop>
                   <CardBottom>
                     <ul>
                       <Li>
                         <Dot />
-                        {product.pill_description[0]}
+                        {product.description[0].content}
                       </Li>
                       <Li>
                         <Dot />
-                        {product.pill_description[1]}
+                        {product.description[0].sub_content}
                       </Li>
                       <Li>
                         <Dot />
-                        {product.pill_description[2]}
+                        {product.description[0].product_content}
                       </Li>
                     </ul>
                     <DayAndPrice>
@@ -76,7 +81,10 @@ function ProductView() {
                   </CardBottom>
                   <Div>
                     <ViewMore>더보기</ViewMore>
-                    <BascketButton />
+                    <BascketButton
+                      state={state.indexOf(product.id) !== -1 ? state : ""}
+                      onClick={() => buttonChange(idx)}
+                    />
                   </Div>
                 </Card>
               );
@@ -92,29 +100,29 @@ function ProductView() {
         {products.length > 1
           ? products.slice(7, products.length).map((product, idx) => {
               return (
-                <Card key={idx}>
+                <Card key={idx} style={{ backgroundColor: `${product.color}` }}>
                   <CardTop>
                     <div>
                       <SubName>{product.sub_name}</SubName>
                       <Name>{product.name}</Name>
-                      <Img3 src={product.pill_sub_image_url} alt="" />
-                      <Img4 src="" alt="" />
+                      <Img3 src={product.category_image[0]} alt="" />
+                      <Img4 src={product.category_image[1]} alt="" />
                     </div>
-                    <Img2 src={product.pill_image_url} alt="" />
+                    <Img2 src={product.image_url} alt="" />
                   </CardTop>
                   <CardBottom>
                     <ul>
                       <Li>
                         <Dot />
-                        {product.pill_description[0]}
+                        {product.description[0].content}
                       </Li>
                       <Li>
                         <Dot />
-                        {product.pill_description[1]}
+                        {product.description[0].sub_content}
                       </Li>
                       <Li>
                         <Dot />
-                        {product.pill_description[2]}
+                        {product.description[0].product_content}
                       </Li>
                     </ul>
                     <DayAndPrice>
@@ -124,7 +132,10 @@ function ProductView() {
                   </CardBottom>
                   <Div>
                     <ViewMore>더보기</ViewMore>
-                    <BascketButton />
+                    <BascketButton
+                      state={state.indexOf(product.id) !== -1 ? state : ""}
+                      onClick={() => buttonChange(idx + 7, product.id)}
+                    />
                   </Div>
                 </Card>
               );
@@ -152,14 +163,13 @@ const Top = styled.div`
 const List = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 944px;
+  width: 1024px;
   margin: 0 auto;
 `;
 
 const Card = styled.div`
   padding: 30px 30px 30px 30px;
   border-radius: 8px;
-  background-color: #efe9d9;
   top: 0;
   width: 452px;
   height: 393px;
@@ -212,6 +222,7 @@ const SubName = styled.p`
 const Name = styled.p`
   font-size: 20px;
   font-weight: bold;
+  margin-top: 3px;
 `;
 
 const Img2 = styled.img`

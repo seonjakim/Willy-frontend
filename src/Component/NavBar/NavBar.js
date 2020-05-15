@@ -119,6 +119,7 @@ const MenuUl = styled.ul`
     font-weight: 700;
     margin: 0 0 0 40px;
     color: black;
+    padding-bottom: 4px;
     cursor: pointer;
   }
 `;

@@ -33,19 +33,19 @@
     {
       "id": 6,
       "image_url": "https://img.pilly.kr/main/v201911/easy-icon-survey.png",
-      "title": "[‘01’,‘건강설문’]",
+      "title": "01,건강설문",
       "content": "딱 3분! 간단하게 체크하고 내 몸에 맞는 영양성분 찾기"
     },
     {
       "id": 7,
       "image_url": "https://img.pilly.kr/main/v201911/easy-icon-monthly.png",
-      "title": "[‘02’,‘정기구독’]",
+      "title": "02,정기구독",
       "content": "30일분 필리 영양제를 평생 무료로 배송받기"
     },
     {
       "id": 8,
       "image_url": "https://img.pilly.kr/main/v201911/easy-icon-pillycare.png",
-      "title": "[‘03’,‘섭취관리’]",
+      "title": "03,섭취관리",
       "content": "필리케어로 관리하고 매일매일 섭취 습관 만들기"
     },
     {
@@ -122,13 +122,13 @@
     },
     {
       "id": 21,
-      "image_url": "[‘https://img.pilly.kr/main/v201911/benefit-bg01.png','https://img.pilly.kr/main/v201911/benefit-icon-discount.png’]",
+      "image_url": "https://img.pilly.kr/main/v201911/benefit-bg01.png,https://img.pilly.kr/main/v201911/benefit-icon-discount.png",
       "title": "필리 할인혜택",
       "content": "건강 설문, 장기 유지, 친구 초대 등 최대 45%의 할인 혜택"
     },
     {
       "id": 22,
-      "image_url": "[‘https://img.pilly.kr/main/v201911/benefit-bg02.png','https://img.pilly.kr/main/v201911/benefit-icon-delivery.png’]",
+      "image_url": "https://img.pilly.kr/main/v201911/benefit-bg02.png,https://img.pilly.kr/main/v201911/benefit-icon-delivery.png",
       "title": "평생 무료배송",
       "content": "정기구독 기간 내내 평생 무료배송"
     },
