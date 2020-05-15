@@ -53,4 +53,7 @@ function MainPage() {
 export default MainPage;
 
 //style
-const Main = styled.div``;
+const Main = styled.div`
+  width: 100%;
+  height: 100%;
+`;
