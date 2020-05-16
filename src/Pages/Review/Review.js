@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../../Component/NavBar/NavBar";
 
 function Review() {
   const [datas, setData] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:3000/data/review.json")
       .then((res) => res.json())
@@ -11,6 +12,7 @@ function Review() {
         setData(res.review);
       });
   }, []);
+
   return (
     <Body>
       <NavBar />
@@ -24,9 +26,9 @@ function Review() {
       </Header>
       <ContentWrap>
         {datas.length > 1
-          ? datas.map((data) => {
+          ? datas.map((data, idx) => {
               return (
-                <Content>
+                <Content key={idx}>
                   <div>
                     <Title>
                       <p>{data.name}</p>

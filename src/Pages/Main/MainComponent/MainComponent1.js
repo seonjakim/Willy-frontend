@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import MainButton from "../../../Component/MainButtonComponent";
+import MainButton from "../../../Component/MainButtonComponent/MainButtonComponent";
 
 function MainPage1(props) {
   const [count, setCount] = useState(285039);

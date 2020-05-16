@@ -163,7 +163,7 @@ const Card = styled.div`
   top: 0;
   width: 452px;
   height: 393px;
-  margin: 60px 7.5px 0 7.5px;
+  margin: 60px 8px 0 8px;
 `;
 
 const CardTop = styled.div`
