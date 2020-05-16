@@ -1,0 +1,63 @@
+{
+    "total": 2.0,
+    "items": [
+        {
+            "id": 397362.0,
+            "uuid": "46fe1444-b9a0-4f8b-9224-ef205059369c",
+            "type": null,
+            "attr": null,
+            "products": [
+                {
+                    "code": "PDX5OMRMKQNS",
+                    "iconText": "calmgd",
+                    "slogan": "뼈/근육/신경을 위한",
+                    "title": "칼슘 마그네슘 비타민D",
+                    "nick": "calcium-magnesium-vitamind",
+                    "content": null,
+                    "description": null,
+                    "color": "#eae9e9",
+                    "price": 12400.0,
+                    "surveySummary": "<li>북대서양 해저에서 수확한 해조칼슘 사용</li>\n<li>칼슘과 마그네슘을 2:1 비율로 제공</li>\n<li>식약처의 섭취량과 한국인 영양섭취량을 고려한 용량</li>",
+                    "type": "PILLS",
+                    "tags": null,
+                    "answers": null,
+                    "addInfos": null,
+                    "recIngredients": null
+                }
+            ],
+            "ingredients": null,
+            "recommends": null,
+            "completeTsp": "2020-05-12 20:20:03",
+            "completeCnt": null
+        },
+        {
+            "id": 397341.0,
+            "uuid": "4c6a8ec4-bc3b-47fc-8ee4-cc14f0f66acf",
+            "type": null,
+            "attr": null,
+            "products": [
+                {
+                    "code": "PDX5OMRMKQNS",
+                    "iconText": "calmgd",
+                    "slogan": "뼈/근육/신경을 위한",
+                    "title": "칼슘 마그네슘 비타민D",
+                    "nick": "calcium-magnesium-vitamind",
+                    "content": null,
+                    "description": null,
+                    "color": "#eae9e9",
+                    "price": 12400.0,
+                    "surveySummary": "<li>북대서양 해저에서 수확한 해조칼슘 사용</li>\n<li>칼슘과 마그네슘을 2:1 비율로 제공</li>\n<li>식약처의 섭취량과 한국인 영양섭취량을 고려한 용량</li>",
+                    "type": "PILLS",
+                    "tags": null,
+                    "answers": null,
+                    "addInfos": null,
+                    "recIngredients": null
+                }
+            ],
+            "ingredients": null,
+            "recommends": null,
+            "completeTsp": "2020-05-12 20:08:56",
+            "completeCnt": null
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    “detail”: [
+        {
+            “id”: 1,
+            “brand”: “필리",
+            “hashtag”: “#휴대용 #살균99% #프로럴향“,
+            “name”: “오삭 핸드겔“,
+            “point”: “4,
+            500 P”,
+            “image_url”: “https: //img.pilly.kr/gift/pilly/osakgel/thumbnail.jpg”,
+            “description”: “:arrow_forward:이용안내\n- 포인트 교환을 하면, 다음 정기배송에 같이 배송합니다.\n- 정기구독 고객만 포인트 교환이 가능합니다.\n- 포인트 교환 후 취소는 불가합니다.“,
+            “images”: [
+                “https: //img.pilly.kr/gift/pilly/osakgel/detail01.jpg”,
+                “https: //img.pilly.kr/gift/pilly/osakgel/detail02.jpg”,
+                “https: //img.pilly.kr/gift/pilly/osakgel/detail03.jpg”
+            ]
+        }
+    ]
+}
+{
+    “detail”: [
+        {
+            “id”: 4,
+            “brand”: “pilly”,
+            “hashtag”: “#피부에 #양보하세요“,
+            “name”: “필리 내츄럴 비타민 시트 마스크“,
+            “point”: “2,
+            500 P”,
+            “image_url”: “https: //img.pilly.kr/gift/pilly/vitamask5-mb.jpg”,
+            “description”: “:arrow_forward:이용안내\n- 포인트 교환을 하면, 다음 정기배송에 같이 배송합니다.\n- 정기구독 고객만 포인트 교환이 가능합니다.\n- 포인트 교환 후 취소는 불가합니다.“,
+            “images”: [
+                “https: //img.pilly.kr/gift/pilly/vitamask-mb.jpg”
+            ]
+        }
+    ]
+}

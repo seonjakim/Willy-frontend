@@ -1,0 +1,252 @@
+{
+    "point_products": [
+        {
+            "id": 1,
+            "brand": "필리",
+            "hashtag": "#휴대용 #살균99% #프로럴향",
+            "name": "오삭 핸드겔",
+            "point": "4,500 P",
+            "image_url": "https://img.pilly.kr/gift/pilly/osakgel/thumbnail.jpg"
+        },
+        {
+            "id": 2,
+            "brand": "에잇샐러드",
+            "hashtag": "#신선함 #셰프샐러드 #당일조리",
+            "name": "에잇샐러드 5,000원 쿠폰",
+            "point": "5,000 P",
+            "image_url": "https://img.pilly.kr/gift/8salade/G5000/thumbnail.png"
+        },
+        {
+            "id": 3,
+            "brand": "pilly",
+            "hashtag": "#필리 #일요일엔소분해요",
+            "name": "필리 매일 챙기는 소분통",
+            "point": "2,000 P",
+            "image_url": "https://img.pilly.kr/product/tablet/v2/pillcase.png"
+        },
+        {
+            "id": 4,
+            "brand": "pilly",
+            "hashtag": "#피부에 #양보하세요",
+            "name": "필리 내츄럴 비타민 시트 마스크",
+            "point": "2,500 P",
+            "image_url": "https://img.pilly.kr/gift/pilly/vitamask5-mb.jpg"
+        },
+        {
+            "id": 5,
+            "brand": "GS25 매장",
+            "hashtag": "#사랑한다면 #하루세번",
+            "name": "서울)우유200ML",
+            "point": "1,000 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000261961/G00000261961_250.jpg"
+        },
+        {
+            "id": 6,
+            "brand": "GS25 매장",
+            "hashtag": "#사랑해도 #하루한번",
+            "name": "서울)우유1L",
+            "point": "2,900 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000281038/G00000281038_250.jpg"
+        },
+        {
+            "id": 7,
+            "brand": "GS25 매장",
+            "hashtag": "#울할머니처럼 #포근해",
+            "name": "CJ)맛밤80G",
+            "point": "3,800 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000182361/G00000182361_250.jpg"
+        },
+        {
+            "id": 8,
+            "brand": "GS25 매장",
+            "hashtag": "#오늘하루 #촉촉하게",
+            "name": "코카)토레타500ML",
+            "point": "1,900 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000220765/G00000220765_250.jpg"
+        },
+        {
+            "id": 9,
+            "brand": "GS25 매장",
+            "hashtag": "#라라라라라라라라",
+            "name": "동아)포카리스웨트620ML",
+            "point": "2,500 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000251075/G00000251075_250.jpg"
+        },
+        {
+            "id": 10,
+            "brand": "파리바게뜨 매장",
+            "hashtag": "#단풍놀이후 #커피한잔",
+            "name": "아메리카노 (오리지널)",
+            "point": "2,800 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000183405/G00000183405_250.jpg"
+        },
+        {
+            "id": 11,
+            "brand": "투썸플레이스",
+            "hashtag": "#우리둘이썸타면 #투썸",
+            "name": "아메리카노(R)",
+            "point": "4,600 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000240640/G00000240640_250.jpg"
+        },
+        {
+            "id": 12,
+            "brand": "탐앤탐스",
+            "hashtag": "#고생한 #나를위해",
+            "name": "(Hot) 아메리카노 Tall",
+            "point": "4,600 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000184502/G00000184502_250.jpg"
+        },
+        {
+            "id": 13,
+            "brand": "투썸플레이스",
+            "hashtag": "#분위기에취해 #환경보호",
+            "name": "투썸NEW그레이머그",
+            "point": "9,000 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000230666/G00000230666_250.jpg"
+        },
+        {
+            "id": 14,
+            "brand": "잠바주스 매장",
+            "hashtag": "#홈트 #근육아힘내줘 #연두",
+            "name": "덤벨 그린",
+            "point": "4,200 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000183968/G00000183968_250.jpg"
+        },
+        {
+            "id": 15,
+            "brand": "잠바주스 매장",
+            "hashtag": "#홈트 #근육아힘내줘 #주황",
+            "name": "덤벨 오렌지",
+            "point": "4,200 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000183969/G00000183969_250.jpg"
+        },
+        {
+            "id": 16,
+            "brand": "GS25 매장",
+            "hashtag": "#밀크씨슬도함께! #슈퍼파워",
+            "name": "CJ)컨디션파워100ML",
+            "point": "5,200 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000241115/G00000241115_250.jpg"
+        },
+        {
+            "id": 17,
+            "brand": "GS25 매장",
+            "hashtag": "#당떨어질때 #에너지봐",
+            "name": "오리온)닥터유에너지바1200",
+            "point": "1,350 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000190541/G00000190541_250.jpg"
+        },
+        {
+            "id": 18,
+            "brand": "배스킨라빈스 매장",
+            "hashtag": "#달콤하게 #시원하게",
+            "name": "블록팩 (110ml) 1개 (8종 중 택1)",
+            "point": "3,700 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000261805/G00000261805_250.jpg"
+        },
+        {
+            "id": 19,
+            "brand": "스타벅스",
+            "hashtag": "#커피향처럼 #좋은하루",
+            "name": "카페아메리카노 Tall",
+            "point": "4,600 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000008066/G00000008066_250.jpg"
+        },
+        {
+            "id": 20,
+            "brand": "스타벅스",
+            "hashtag": "#카페인 #오늘은안녕",
+            "name": "(디카페인) 카페아메리카노",
+            "point": "4,900 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000261049/G00000261049_250.jpg"
+        },
+        {
+            "id": 21,
+            "brand": "이디야커피",
+            "hashtag": "#가을인데 #아이스좋아",
+            "name": "카페아메리카노(ICE)",
+            "point": "3,600 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000263947/G00000263947_250.jpg"
+        },
+        {
+            "id": 22,
+            "brand": "이디야커피",
+            "hashtag": "#쓰지않아 #부드러워",
+            "name": "어린잎 녹차(HOT)",
+            "point": "3,000 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000231522/G00000231522_250.jpg"
+        },
+        {
+            "id": 23,
+            "brand": "스타벅스",
+            "hashtag": "#커피대신 #녹차도좋아",
+            "name": "(풀 리프 티) 제주 유기 녹차 Tall",
+            "point": "5,300 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000151038/G00000151038_250.jpg"
+        },
+        {
+            "id": 24,
+            "brand": "메가박스",
+            "hashtag": "#소확행 #팝콘 #오징어",
+            "name": "메가박스 일반관람권(2D)",
+            "point": "11,000 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000261835/G00000261835_250.jpg"
+        },
+        {
+            "id": 25,
+            "brand": "폴바셋",
+            "hashtag": "#좋아하는당신과 #커피",
+            "name": "아메리카노(Standard)",
+            "point": "4,800 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000265733/G00000265733_250.jpg"
+        },
+        {
+            "id": 26,
+            "brand": "GS25 매장",
+            "hashtag": "#갈증해소",
+            "name": "동아)포카리스웨트캔245ML",
+            "point": "1,400 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000190552/G00000190552_250.jpg"
+        },
+        {
+            "id": 27,
+            "brand": "GS25 매장",
+            "hashtag": "#콩과함께",
+            "name": "정식품)베지밀스위트병190ML",
+            "point": "1,400 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000320847/G00000320847_250.jpg"
+        },
+        {
+            "id": 28,
+            "brand": "GS25 매장",
+            "hashtag": "#갈증해소",
+            "name": "코카)마운틴블러스트600ML",
+            "point": "2,100 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000320843/G00000320843_250.jpg"
+        },
+        {
+            "id": 29,
+            "brand": "롯데시네마",
+            "hashtag": "#영화보러.. #같이갈래?",
+            "name": "롯데시네마 2D 영화관람권",
+            "point": "11,000 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000265778/G00000265778_250.jpg"
+        },
+        {
+            "id": 30,
+            "brand": "에뛰드하우스 매장",
+            "hashtag": "#갓성비 #최고쟈나",
+            "name": "에뛰드 1만원권",
+            "point": "11,000 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000017221/G00000017221_250.jpg"
+        },
+        {
+            "id": 31,
+            "brand": "디초콜릿커피앤드",
+            "hashtag": "#가을향 #커피향 #좋아",
+            "name": "아메리카노",
+            "point": "3,600 P",
+            "image_url": "http://imgs.giftishow.co.kr/Resource/goods/G00000266171/G00000266171_250.jpg"
+        }
+    ]
+}
