@@ -9,6 +9,7 @@ import Review from "./Pages/Review/Review";
 import SignIn from "./Pages/SignIn/SignIn";
 import SignUp from "./Pages/SignUp/SignUp";
 import Story from "./Pages/Story/Story";
+import ProductLists1 from "./Pages/ProductView/ProductLists1";
 
 class Routes extends React.Component {
   render() {
@@ -20,10 +21,11 @@ class Routes extends React.Component {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/survey" component={Survey} />
-          <Route path="/result" component={Result} />
-          <Route path="/product" component={ProductView} />
-          <Route path="/review" component={Review} />
-          <Route path="/story" component={Story} />
+          <Route exact path="/result" component={Result} />
+          <Route exact path="/product" component={ProductView} />
+          <Route exact path="/review" component={Review} />
+          <Route exact path="/story" component={Story} />
+          <Route exact path="/product/:id" component={ProductLists1} />
         </Switch>
       </Router>
     );

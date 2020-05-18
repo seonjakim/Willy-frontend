@@ -6,34 +6,44 @@ function MainPage5(props) {
   const [answerIdx, setAnswerIdx] = useState("");
   const [answer, setAnswer] = useState(false);
 
-  useEffect(()=>{
-    setQandA(props.datas)
-  }, [props.datas])
+  useEffect(() => {
+    setQandA(props.datas);
+  }, [props.datas]);
 
   const createAnswer = (idx) => {
     setAnswerIdx(idx);
-    (answer === true) ? setAnswer(false):setAnswer(true);
-  }
+    answer === true ? setAnswer(false) : setAnswer(true);
+  };
 
-  return(
+  return (
     <Main>
       <Span>무엇이든 답해드려요.</Span>
       <QNAwrapper>
         <QNAlist>
           {QandA.map((data, idx) => {
-            return(
-              <QNAbox key={idx} onClick={()=>createAnswer(idx)}>
+            return (
+              <QNAbox key={idx} onClick={() => createAnswer(idx)}>
                 <BoldText>{data.title}</BoldText>
-                {(answerIdx === idx && answer === true) ? 
-                <Img src="https://pilly.kr/images/icons/common/icon-arrow-up.png" alt=""/>:<Img src="https://pilly.kr/images/icons/common/icon-arrow-down.png" alt=""/>}
-                {(answerIdx === idx) ? <SubText>{data.content}</SubText>:""}
+                {answerIdx === idx && answer === true ? (
+                  <Img
+                    src="https://pilly.kr/images/icons/common/icon-arrow-up.png"
+                    alt=""
+                  />
+                ) : (
+                  <Img
+                    src="https://pilly.kr/images/icons/common/icon-arrow-down.png"
+                    alt=""
+                  />
+                )}
+                {answerIdx === idx ? <SubText>{data.content}</SubText> : ""}
               </QNAbox>
-            )})}
+            );
+          })}
         </QNAlist>
-        <Img2 src="https://img.pilly.kr/main/v201911/qna2-pc@3x.jpg" alt=""/>
+        <Img2 src="https://img.pilly.kr/main/v201911/qna2-pc@3x.jpg" alt="" />
       </QNAwrapper>
     </Main>
-  )
+  );
 }
 
 export default MainPage5;
@@ -60,13 +70,12 @@ const QNAwrapper = styled.div`
   width: 100%;
 `;
 
-const QNAlist = styled.div`
-`;
+const QNAlist = styled.div``;
 
 const QNAbox = styled.div`
   position: relative;
   background-color: white;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.06);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.06);
   width: 512px;
   padding: 28px 20px;
   margin-top: 20px;
