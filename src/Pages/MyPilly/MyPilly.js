@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TheFirstPage from "./Components/TheFirstPage";
 import MyPoint from "./Components/MyPoint";
@@ -8,78 +8,91 @@ import Payment from "./Components/Payment";
 import PointMall from "./Components/PointMall";
 import MemberInfo from "./Components/MemberInfo";
 import PointMallDetail from "./Components/PointMallDetail";
+import { HO_URL } from "../../Constants";
+import NavBar from "../../Component/NavBar/NavBar";
 
-function MyPilly() {
+function MyPilly(props) {
   const [diffCom, setDiffcom] = useState(0);
+  const [user, setUser] = useState([]);
+  const accessToken = localStorage.getItem("token");
+
+  useEffect(() => {
+    fetch(`$${HO_URL}/user/user-profile`, {
+      method: "GET",
+      headers: {
+        Authorization: accessToken,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setUser(res.user_profile[0]));
+  }, [accessToken]);
 
   const obj = {
-    0: <TheFirstPage setDiffcom={setDiffcom} />,
+    0: <TheFirstPage setDiffcom={setDiffcom} user={user} />,
     1: <MyPoint />,
     2: <Prescription />,
     3: <Subscription />,
     4: <Payment />,
-    5: <MemberInfo />,
+    5: <MemberInfo user={user} />,
     6: <PointMall />,
   };
 
   return (
-    <MyPillyWrapper>
-      <InnerWrapper>
-        <LeftSideBar>
-          <TopTitle
-            onClick={() => {
-              setDiffcom(0);
-            }}
-          >
-            MY 필리
-          </TopTitle>
-          <List
-            style={diffCom === 1 ? { color: "#e26d59" } : { color: "" }}
-            onClick={() => {
-              setDiffcom(1);
-            }}
-          >
-            내포인트
-          </List>
-          <List
-            style={diffCom === 2 ? { color: "#e26d59" } : { color: "" }}
-            onClick={() => setDiffcom(2)}
-          >
-            문진관리
-          </List>
-          <List
-            style={diffCom === 3 ? { color: "#e26d59" } : { color: "" }}
-            onClick={() => setDiffcom(3)}
-          >
-            정기구독
-          </List>
-          <List
-            style={diffCom === 4 ? { color: "#e26d59" } : { color: "" }}
-            onClick={() => setDiffcom(4)}
-          >
-            결제관리
-          </List>
-          <List
-            style={diffCom === 6 ? { color: "#e26d59" } : { color: "" }}
-            onClick={() => setDiffcom(6)}
-          >
-            포인트몰
-          </List>
-          <List
-            style={diffCom === 5 ? { color: "#e26d59" } : { color: "" }}
-            onClick={() => setDiffcom(5)}
-          >
-            회원관리
-          </List>
-        </LeftSideBar>
-        <MainDiv>
-          {/* {obj[diffCom]} */}
-          {/* <MemberInfo></MemberInfo> */}
-          <PointMall></PointMall>
-          {/* <PointMallDetail></PointMallDetail> */}
-        </MainDiv>
-      </InnerWrapper>
-    </MyPillyWrapper>
+    <>
+      <NavBar props={props} />
+      <MyPillyWrapper>
+        <InnerWrapper>
+          <LeftSideBar>
+            <TopTitle
+              onClick={() => {
+                setDiffcom(0);
+              }}
+            >
+              MY 필리
+            </TopTitle>
+            <List
+              style={diffCom === 1 ? { color: "#e26d59" } : { color: "" }}
+              onClick={() => {
+                setDiffcom(1);
+              }}
+            >
+              내포인트
+            </List>
+            <List
+              style={diffCom === 2 ? { color: "#e26d59" } : { color: "" }}
+              onClick={() => setDiffcom(2)}
+            >
+              문진관리
+            </List>
+            <List
+              style={diffCom === 3 ? { color: "#e26d59" } : { color: "" }}
+              onClick={() => setDiffcom(3)}
+            >
+              정기구독
+            </List>
+            <List
+              style={diffCom === 4 ? { color: "#e26d59" } : { color: "" }}
+              onClick={() => setDiffcom(4)}
+            >
+              결제관리
+            </List>
+            <List
+              style={diffCom === 6 ? { color: "#e26d59" } : { color: "" }}
+              onClick={() => setDiffcom(6)}
+            >
+              포인트몰
+            </List>
+            <List
+              style={diffCom === 5 ? { color: "#e26d59" } : { color: "" }}
+              onClick={() => setDiffcom(5)}
+            >
+              회원관리
+            </List>
+          </LeftSideBar>
+          <MainDiv>{obj[diffCom]}</MainDiv>
+        </InnerWrapper>
+      </MyPillyWrapper>
+    </>
   );
 }
 

@@ -6,9 +6,10 @@ import { SmallGray, TagTitle, MainTitle, Price } from "./PointMall";
 
 function PointMallDetail(props) {
   const [data, setData] = useState([]);
+  const Hee_API_URL = "http://10.58.5.47:8000";
 
   useEffect(() => {
-    fetch(`http://10.58.4.9:8000/account/gift/${props.id}`)
+    fetch(`${Hee_API_URL}/user/gift/${props.id}`)
       .then((res) => res.json())
       .then((res) => setData(res.detail));
   }, [props.id]);

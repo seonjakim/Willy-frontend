@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 function TheFirstPage(props) {
@@ -7,9 +7,9 @@ function TheFirstPage(props) {
       <FirstNameDiv>
         <NameDiv>
           {" "}
-          <ActualName>김지희</ActualName> 님의 필리
+          <ActualName>{props.user.name}</ActualName> 님의 필리
         </NameDiv>
-        <Email>a@gmail.com</Email>
+        <Email>{props.user.email}</Email>
         <PointDiv>
           <Ptag>
             P
@@ -19,7 +19,7 @@ function TheFirstPage(props) {
       </FirstNameDiv>
       <Height70>
         <BoldLetter>내 초대코드</BoldLetter>
-        <MyCode>FBUSCM</MyCode>
+        <MyCode>{props.user.invitation_code}</MyCode>
       </Height70>
       <MidDiv>
         <TopInMidDiv>
