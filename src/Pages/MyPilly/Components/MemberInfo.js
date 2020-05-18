@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { WordAboveInput, SmallBtn } from "../../SignUp/SignUp";
 import { AgreeBox } from "../../SignUp/SignUp";
 
-function MemberInfo() {
+function MemberInfo(props) {
   const [show, hide] = useState(false);
   const [personalInfo, setPersonal] = useState(false);
   const [marketingshow, marketinghide] = useState(false);
@@ -17,7 +17,7 @@ function MemberInfo() {
         <InnerTitle>계정정보</InnerTitle>
         {show === true ? (
           <HiddenDiv>
-            <HiddenUserInfo>a@gmail.com</HiddenUserInfo>
+            <HiddenUserInfo>{props.user.email}</HiddenUserInfo>
             <WordAboveInput>현재 비밀번호</WordAboveInput>
             <HiddenInput placeholder="현재 비밀번호를 입력하세요." />
             <WordAboveInput>새 비밀번호</WordAboveInput>
@@ -31,14 +31,14 @@ function MemberInfo() {
           </HiddenDiv>
         ) : (
           <>
-            <UserInfo>a@gmail.com</UserInfo>
+            <UserInfo>{props.user.email}</UserInfo>
             <GrayBtn onClick={() => hide(!show)}>비밀번호 변경</GrayBtn>
           </>
         )}
       </InfoWrapper>
       <InfoWrapper>
         <InnerTitle>전화번호</InnerTitle>
-        <UserInfo>01012341234</UserInfo>
+        <UserInfo>{props.user.mobile_number}</UserInfo>
         <GrayBtn>전화번호 변경</GrayBtn>
       </InfoWrapper>
       <InfoWrapper>
@@ -46,7 +46,9 @@ function MemberInfo() {
         {personalInfo === true ? (
           <HiddenDiv>
             <WordAboveInput>이름</WordAboveInput>
-            <HiddenInput></HiddenInput>
+            <HiddenInput
+              placeholder={props.user ? props.user.name : "이름"}
+            ></HiddenInput>
             <WordAboveInput>우편번호 (선택)</WordAboveInput>
             <SmallInputGray placeholder="우편번호를 입력하세요." />
             <WiderSmallBtn>우편번호 검색</WiderSmallBtn>
@@ -63,7 +65,7 @@ function MemberInfo() {
           </HiddenDiv>
         ) : (
           <>
-            <UserInfo>김지희</UserInfo>
+            <UserInfo>{props.user.name}</UserInfo>
             <GrayBtn onClick={() => setPersonal(!personalInfo)}>
               개인정보 변경
             </GrayBtn>

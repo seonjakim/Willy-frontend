@@ -7,9 +7,10 @@ function PointMall() {
   const [data, setData] = useState([]);
   const [show, hide] = useState(false);
   const [index, setIndex] = useState(1);
+  const Hee_API_URL = "http://10.58.5.47:8000";
 
   useEffect(() => {
-    fetch("http://10.58.4.9:8000/account/gift")
+    fetch(`${Hee_API_URL}/user/gift`)
       .then((res) => res.json())
       .then((res) => setData(res.point_products));
   }, []);

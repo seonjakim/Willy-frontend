@@ -30,6 +30,13 @@ function ProductView(props) {
   const buttonChange = (id) => {
     setState(state.concat(id));
     props.addNavCart(id);
+    fetch(`${HO_URL}/order/cart`, {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({ product_id: id }),
+    });
   };
 
   const goToProductLists = (id) => {
