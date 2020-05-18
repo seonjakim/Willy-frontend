@@ -4,6 +4,7 @@ import axios from "axios";
 
 import color from "../../Styles/color";
 
+
 function SignIn({ history }) {
   const [mobile_number, setMobile_number] = useState("");
   const [email, setEmail] = useState("");
@@ -34,6 +35,7 @@ function SignIn({ history }) {
         <LogoWrapper>
           <Logo src="https://pilly.kr/images/logo-colored.png" />
         </LogoWrapper>
+
         <Input
           placeholder="이메일 또는 전화번호를 입력하세요."
           onChange={(e) =>
