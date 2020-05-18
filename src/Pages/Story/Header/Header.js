@@ -15,7 +15,7 @@ const Header = () => {
 export default Header;
 
 const HeaderWrapper = styled.div`
-  height: 590px;
+  height: 670px;
   background-image: url(https://img.pilly.kr/story/v1/cover2-pc@2x.jpg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -24,15 +24,15 @@ const HeaderWrapper = styled.div`
 
 const Contents = styled.div`
   position: relative;
-  padding: 236px 50px 0 50px;
-  width: 1024px;
+  padding: 265px 52px 0 52px;
+  width: 1150px;
   margin: 0 auto;
   color: #000;
 `;
 
 const Title = styled.p`
-  font-size: 36px;
-  line-height: 42px;
+  font-size: 41px;
+  line-height: 46px;
   letter-spacing: -0.4px;
   font-weight: 700;
 `;

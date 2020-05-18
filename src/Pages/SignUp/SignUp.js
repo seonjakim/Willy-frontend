@@ -37,7 +37,7 @@ const SignUp = ({ history }) => {
     if (password === passwordCheck) {
       try {
         const response = await axios.post(
-          "http://10.58.4.59:8000/account/sign-up",
+          "http://10.58.6.197:8000/account/sign-up",
           {
             name,
             mobile_number: mobileNumber,
@@ -63,7 +63,7 @@ const SignUp = ({ history }) => {
   // 인증번호 발송
   const verifyMobile = async () => {
     try {
-      const response = await axios.post("http://10.58.4.59:8000/account/sms", {
+      const response = await axios.post("http://10.58.6.197:8000/account/sms", {
         mobile_number: mobileNumber,
       });
       console.log(response);
@@ -79,7 +79,7 @@ const SignUp = ({ history }) => {
   const verifySMS = async () => {
     try {
       const response = await axios.post(
-        "http://10.58.4.59:8000/account/sms/verification",
+        "http://10.58.6.197:8000/account/sms/verification",
         {
           mobile_number: mobileNumber,
           auth_number: Number(authNumber),
