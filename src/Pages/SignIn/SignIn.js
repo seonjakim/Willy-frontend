@@ -1,31 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+
 import color from "../../Styles/color";
 
-function SignIn() {
+
+function SignIn({ history }) {
+  const [mobile_number, setMobile_number] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignIn = async () => {
+    try {
+      const response = await axios.post(
+        "http://10.58.4.59:8000/account/sign-in",
+        {
+          mobile_number,
+          email,
+          password,
+        }
+      );
+      // console.log("signIn..", response);
+      localStorage.setItem("access_token", response.data.token);
+      history.push("/");
+    } catch (e) {
+      // console.log("bad request...", e.response);
+      alert(e.response.data.message);
+    }
+  };
+
   return (
     <SignInWrapper>
       <BoxSize>
         <LogoWrapper>
           <Logo src="https://pilly.kr/images/logo-colored.png" />
         </LogoWrapper>
-        <Input placeholder="이메일 또는 전화번호를 입력하세요." />
-        <Input placeholder="비밀번호를 입력하세요." />
-        <LoginBtn>로그인</LoginBtn>
+
+        <Input
+          placeholder="이메일 또는 전화번호를 입력하세요."
+          onChange={(e) =>
+            e.target.value.includes("@")
+              ? setEmail(e.target.value)
+              : setMobile_number(e.target.value)
+          }
+          onKeyUp={() => (window.event.keyCode === 13 ? handleSignIn() : "")} // 엔터로 로그인
+        />
+        <Input
+          placeholder="비밀번호를 입력하세요."
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          onKeyUp={() => (window.event.keyCode === 13 ? handleSignIn() : "")}
+        />
+        <LoginBtn onClick={handleSignIn}>로그인</LoginBtn>
         <Find>
           <PwJoin>비밀번호 찾기</PwJoin>
           <PwJoin>회원가입</PwJoin>
         </Find>
         <KakaoBtn>
-          <Sns src="https://pilly.kr/images/icons/auth/icon-auth-kakaotalk.png" />{" "}
+          <Sns src="https://pilly.kr/images/icons/auth/icon-auth-kakaotalk.png" />
           KAKAO 로그인
         </KakaoBtn>
         <FbBtn>
-          <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />{" "}
+          <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />
           FACEBOOK
         </FbBtn>
         <NaverBtn>
-          <Sns src="https://pilly.kr/images/icons/auth/icon-auth-naver.png" />{" "}
+          <Sns src="https://pilly.kr/images/icons/auth/icon-auth-naver.png" />
           NAVER 로그인
         </NaverBtn>
       </BoxSize>
@@ -93,12 +133,11 @@ export const Buttons = styled.button`
 `;
 
 export const LoginBtn = styled(Buttons)`
-  background-color: ${(props) => {
-    return color.pillyColor;
-  }};
+  background-color: ${color.pillyColor};
   justify-content: center;
   margin-top: 35px;
 `;
+
 export const KakaoBtn = styled(Buttons)`
   background-color: #ffcc00;
   color: rgba(51, 51, 51, 0.7);

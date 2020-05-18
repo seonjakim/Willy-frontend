@@ -1,51 +1,190 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  Buttons,
-  LoginBtn,
-  KakaoBtn,
-  FbBtn,
-  NaverBtn,
-  Sns,
-} from "../SignIn/SignIn";
+import axios from "axios";
+import { LoginBtn, KakaoBtn, FbBtn, NaverBtn, Sns } from "../SignIn/SignIn";
 
-function SignUp() {
+const SignUp = ({ history }) => {
+  const [name, setName] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [authNumber, setAuthNumber] = useState("");
+  const [authTimer, setAuthTimer] = useState(false);
+  const [mobileAgreement, setMobileAgreement] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+  // 약관 동의
+  const [agreeAll, setAgreeAll] = useState(false);
+  const [agreeTerms, setAgreeTerms] = useState([false, false]);
+  const [agreeSMS, setAgreeSMS] = useState(false);
+
+  //인증 end초 타이머
+  const setTimer = (end) => {
+    let time = 0;
+    const timer = setInterval(() => {
+      time += 1;
+      console.log(time);
+
+      if (time >= end) {
+        clearInterval(timer);
+        setAuthTimer(false);
+      }
+    }, 1000);
+    setAuthTimer(true);
+  };
+
+  //회원가입 API
+  const register = async () => {
+    if (password === passwordCheck) {
+      try {
+        const response = await axios.post(
+          "http://10.58.4.59:8000/account/sign-up",
+          {
+            name,
+            mobile_number: mobileNumber,
+            email,
+            password,
+            mobile_agreement: mobileAgreement, //연락처 인증시 1
+            terms: agreeTerms.every((term) => term === true) ? "1" : "0", //모두 true 일 경우 1 반환
+            agreement: agreeSMS ? "1" : "0",
+          }
+        );
+        console.log("reponse..", response);
+        alert(response.data.message);
+        history.push("/signin");
+      } catch (e) {
+        console.log("bad request..", e.response);
+        e.response && alert(e.response.data.message);
+      }
+    } else {
+      alert("비밀번호가 일치하지 않습니다.");
+    }
+  };
+
+  // 인증번호 발송
+  const verifyMobile = async () => {
+    try {
+      const response = await axios.post("http://10.58.4.59:8000/account/sms", {
+        mobile_number: mobileNumber,
+      });
+      console.log(response);
+      setTimer(10);
+      alert(response.data.message);
+    } catch (e) {
+      console.log(e.response);
+      e.response && alert(e.response.data.message); //undefined
+    }
+  };
+
+  // 인증번호 입력 확인
+  const verifySMS = async () => {
+    try {
+      const response = await axios.post(
+        "http://10.58.4.59:8000/account/sms/verification",
+        {
+          mobile_number: mobileNumber,
+          auth_number: Number(authNumber),
+        }
+      );
+      if (response.status === 200) {
+        alert(response.data.message);
+        setMobileAgreement("1");
+      }
+      console.log(response.data.message);
+      alert(response.data.message);
+    } catch (e) {
+      console.log("bad request..", e.response);
+      console.log(authNumber);
+      alert(e.response.data.message);
+    }
+  };
+
+  // 모두 동의
+  const agreeAllClick = () => {
+    if (!agreeAll) {
+      setAgreeTerms([true, true]);
+      setAgreeSMS(true);
+    } else {
+      setAgreeTerms([false, false]);
+      setAgreeSMS(false);
+    }
+    setAgreeAll((agreeAll) => !agreeAll);
+  };
+
+  //약관 체크 버튼
+  const checkedOff = "https://pilly.kr/images/icons/icon-checkbox-off@2x.png";
+  const checkedOn = "https://pilly.kr/images/icons/icon-checkbox-on@2x.png";
+
   return (
     <SignUpWrapper>
       <SignUpWord>회원가입</SignUpWord>
       <WordAboveInput>이름</WordAboveInput>
-      <SignUpInput placeholder="이름을 입력해 주세요."></SignUpInput>
+      <SignUpInput
+        placeholder="이름을 입력해 주세요."
+        onChange={(e) => setName(e.target.value)}
+        미
+      ></SignUpInput>
       <WordAboveInput>연락처</WordAboveInput>
-      <SmallerInput placeholder="연락처('-'제외)를 입력해 주세요."></SmallerInput>
-      <SmallBtn>인증번호 발송</SmallBtn>
-      <SmallerInput placeholder="인증번호를 입력해 주세요."></SmallerInput>
-      <SmallBtn>확인</SmallBtn>
+      <SmallerInput
+        placeholder="연락처('-'제외)를 입력해 주세요."
+        onChange={(e) => setMobileNumber(e.target.value)}
+      ></SmallerInput>
+      <SmallBtn onClick={verifyMobile} style={{ backgroundColor: "#333333" }}>
+        인증번호 발송
+      </SmallBtn>
+      <SmallerInput
+        placeholder="인증번호를 입력해 주세요."
+        onChange={(e) => setAuthNumber(e.target.value)}
+      ></SmallerInput>
+      <SmallBtn onClick={verifySMS} timer={authTimer}>
+        확인
+      </SmallBtn>
       <GrayBorderLine></GrayBorderLine>
       <WordAboveInput>아이디(이메일)</WordAboveInput>
-      <SignUpInput placeholder="아이디(이메일)을 입력해 주세요."></SignUpInput>
+      <SignUpInput
+        placeholder="아이디(이메일)을 입력해 주세요."
+        onChange={(e) => setEmail(e.target.value)}
+      ></SignUpInput>
       <WordAboveInput>비밀번호</WordAboveInput>
-      <SignUpInput placeholder="비밀번호를 입력해 주세요."></SignUpInput>
+      <PasswordInput
+        placeholder="비밀번호를 입력해 주세요."
+        type="password"
+        style={{ borderColor: "#d7d7d7" }}
+        onChange={(e) => setPassword(e.target.value)}
+      ></PasswordInput>
       <WordAboveInput>비밀번호 확인</WordAboveInput>
-      <SignUpInput placeholder="비밀번호를 다시 입력해 주세요."></SignUpInput>
-      <ThickLetter>
-        <AgreeBox /> 모두 동의하기
+      <PasswordInput
+        placeholder="비밀번호를 다시 입력해 주세요."
+        type="password"
+        equal={password === passwordCheck ? true : false} //비밀번호 다르면 false => border-color: red
+        onChange={(e) => setPasswordCheck(e.target.value)}
+      ></PasswordInput>
+      {/* -- 약관 -- */}
+      <ThickLetter onClick={agreeAllClick}>
+        <AgreeBox checked={agreeAll ? checkedOn : checkedOff} /> 모두 동의하기
       </ThickLetter>
       <GrayBorderLine></GrayBorderLine>
-      <DeleteMargin>
-        <AgreeBox /> 이용 약관 동의
+      <DeleteMargin
+        onClick={() => setAgreeTerms((terms) => [!terms[0], terms[1]])}
+      >
+        <AgreeBox checked={agreeTerms[0] ? checkedOn : checkedOff} />
+        이용 약관 동의
         <Contract>전문보기</Contract>
       </DeleteMargin>
-      <AgreeBoxWrapper>
-        <AgreeBox /> 개인정보처리방침 동의
+      <AgreeBoxWrapper
+        onClick={() => setAgreeTerms((terms) => [terms[0], !terms[1]])}
+      >
+        <AgreeBox checked={agreeTerms[1] ? checkedOn : checkedOff} />
+        개인정보처리방침 동의
         <Contract>전문보기</Contract>
       </AgreeBoxWrapper>
-      <AgreeBoxWrapper>
-        <AgreeBox /> 마케팅 수신 동의
+      <AgreeBoxWrapper onClick={() => setAgreeSMS((agree) => !agree)}>
+        <AgreeBox checked={agreeSMS ? checkedOn : checkedOff} />
+        마케팅 수신 동의
         <SelectGrey>(선택)</SelectGrey>
         <Contract>전문보기</Contract>
       </AgreeBoxWrapper>
       <BtnWrapper>
-        <LoginBtn>회원가입</LoginBtn>
+        <LoginBtn onClick={register}>회원가입</LoginBtn>
         <KakaoModify>
           <Sns src="https://pilly.kr/images/icons/auth/icon-auth-kakaotalk.png" />{" "}
           KAKAO 회원가입
@@ -61,7 +200,7 @@ function SignUp() {
       </BtnWrapper>
     </SignUpWrapper>
   );
-}
+};
 
 export default SignUp;
 
@@ -77,7 +216,7 @@ const SignUpWord = styled.div`
   color: #333333;
 `;
 
-export const WordAboveInput = styled.div`
+const WordAboveInput = styled.div`
   margin: 30px 0 10px;
   color: #999999;
   font-size: 14px;
@@ -85,7 +224,7 @@ export const WordAboveInput = styled.div`
   letter-spacing: -1px;
 `;
 
-export const SignUpInput = styled.input`
+const SignUpInput = styled.input`
   border: 1px solid #d7d7d7;
   border-radius: 4px;
   width: 100%;
@@ -95,7 +234,11 @@ export const SignUpInput = styled.input`
   cursor: text;
 `;
 
-export const SmallerInput = styled(SignUpInput)`
+const PasswordInput = styled(SignUpInput)`
+  border-color: ${(props) => (props.equal ? "#d7d7d7" : "red")};
+`;
+
+const SmallerInput = styled(SignUpInput)`
   width: 492px;
   padding: 0 30px;
   margin: 5px 0;
@@ -107,11 +250,11 @@ const GrayBorderLine = styled.div`
   margin-bottom: 32px;
 `;
 
-export const SmallBtn = styled.button`
+const SmallBtn = styled.button`
   width: 156px;
   height: 50px;
   color: white;
-  background-color: #333333;
+  background-color: ${(props) => (props.timer ? "#333333" : "#999999")};
   padding: 0 4px;
   border: none;
   border-radius: 25px;
@@ -150,12 +293,15 @@ const SelectGrey = styled.span`
   margin-left: 9px;
 `;
 
-export const AgreeBox = styled.button`
+const AgreeBox = styled.span`
   width: 24px;
   height: 24px;
   margin-right: 10px;
-  border: 1.5px solid #d7d7d7;
-  border-radius: 4px;
+  /* background-image: url("https://pilly.kr/images/icons/icon-checkbox-off@2x.png"); */
+  background-image: url(${(props) => props.checked});
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 24px;
 `;
 
 const BtnWrapper = styled.div`

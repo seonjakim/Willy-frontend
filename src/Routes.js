@@ -10,6 +10,7 @@ import SignIn from "./Pages/SignIn/SignIn";
 import SignUp from "./Pages/SignUp/SignUp";
 import MyPilly from "./Pages/MyPilly/MyPilly";
 import PointMallDetail from "./Pages/MyPilly/Components/PointMallDetail";
+import Story from "./Pages/Story/Story";
 
 class Routes extends React.Component {
   render() {
@@ -26,6 +27,7 @@ class Routes extends React.Component {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/mypilly" component={MyPilly} />
           <Route exact path="/mypilly/:id" component={PointMallDetail} />
+          <Route path="/story" component={Story} />
         </Switch>
       </Router>
     );

@@ -17,8 +17,10 @@ function MainPage3(props) {
                 return (
                   <Box key={idx}>
                     <Img src={data.image_url} alt="" />
-                    <Num>{data.title.slice(2, 4)}</Num>
-                    <BoldText>{data.title.slice(7, 11)}</BoldText>
+                    <Num>{data.title.slice(0, 2)}</Num>
+                    <BoldText>
+                      {data.title.slice(3, data.title.length)}
+                    </BoldText>
                     <SubText>{data.content}</SubText>
                   </Box>
                 );
