@@ -1,0 +1,132 @@
+{
+  "product_detail": [
+    {
+      "explanation_list": [
+        {
+          "id": 1,
+          "image_url": "https://img.pilly.kr/product/detail/why/v20190711/img-why-01.jpg",
+          "title": "전문가들이 참여한 제품",
+          "content": "나에게 꼭 필요한 영양성분을 섭취할 수 있도록 몸에 대해 가장 잘 알고 있는 국내 약학 박사들이 만들었습니다."
+        },
+        {
+          "id": 2,
+          "image_url": "https://img.pilly.kr/product/detail/why/v20190711/img-why-02.jpg",
+          "title": "맞춤 영양 성분 추천",
+          "content": "축적된 데이터와 검증된 전문적인 질문으로 우리에게 필요한 영양성분을 찾아 추천합니다."
+        },
+        {
+          "id": 3,
+          "image_url": "https://img.pilly.kr/product/detail/why/v20190711/img-why-03.jpg",
+          "title": "30일 정기배송",
+          "content": "영양성분을 꾸준하게 섭취할 수 있도록 나에게 맞는 영양제를 30일마다 배송해 드립니다."
+        },
+        {
+          "id": 4,
+          "image_url": "https://img.pilly.kr/product/detail/why/v20190711/img-why-04.jpg",
+          "title": "개인별 섭취관리",
+          "content": "영양제는 구매한다고 끝이 아닙니다. 영양제를 꾸준히 섭취할 수 있도록 필리가 도와드립니다."
+        },
+        {
+          "id": 5,
+          "image_url": "https://img.pilly.kr/product/detailv2/common/img-delivery-01@2x.png",
+          "title": "02.6203.9810",
+          "content": "<p> 상담시간 (평일) <br>AM 10:00 ~ 12:00 <br>PM 14:00 ~ 17:00 </p>"
+        },
+        {
+          "id": 6,
+          "image_url": "https://img.pilly.kr/product/detailv2/common/img-delivery-02@2x.png",
+          "title": "교환/반품",
+          "content": "<p>\"필리\"는 좋은 제품을 제공하기 위해 노력하며 소비자 보호 규정을 준수합니다.</p>"
+        },
+        {
+          "id": 7,
+          "image_url": "https://img.pilly.kr/product/detailv2/common/img-delivery-03@2x.png",
+          "title": "당일출고",
+          "content": "<p>평일 오전 결제완료 시 당일 출고 가능합니다.</p>"
+        }
+      ]
+    },
+    {
+      "product_cateogry": [
+        {
+          "image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
+          "name": "장건강"
+        }
+      ]
+    },
+    {
+      "section_list": [
+        {
+          "id": 1,
+          "product_id": 1,
+          "bottle": "<section class=\"product-bottle\"><div class=\"wrapper\"><img src=\"https://img.pilly.kr/product/v20200103/probiotics/bottle.png\" alt=\"필리 프로바이오틱스 보틀\" srcset=\"https://img.pilly.kr/product/v20200103/probiotics/bottle.png 1x, https://img.pilly.kr/product/v20200103/probiotics/bottle@2x.png 2x, https://img.pilly.kr/product/v20200103/probiotics/bottle@3x.png 3x\"></div></section>",
+          "title": "<section class=\"product-title\"><div class=\"wrapper\"><h2><em>유산균 증식 및 <br>유해균 억제· 배변활동 원활에 도움을 주는</em><br>필리 프로바이오틱스 </h2></div></section>",
+          "effects": "<section class=\"product-effects\"><div class=\"wrapper\"><ul class=\"product-effects-list-wrap clearfix type2\"><li><img src=\"https://img.pilly.kr/product/detailv2/probiotics/effect01.png\" alt=\"\" srcset=\"https://img.pilly.kr/product/detailv2/probiotics/effect01.png 1x, https://img.pilly.kr/product/detailv2/probiotics/effect01@2x.png 2x, https://img.pilly.kr/product/detailv2/probiotics/effect01@3x.png 3x\"><h3> 유산균 증식 및 <br>유해균을 억제 </h3><p> 장 내에 서식하는 유해균은 비만, 당뇨병 등 대사 증후군을 발생시킬 수 있습니다. 유산균은 유해균의 증식을 억제하여 장 건강에 도움을 줄 수 있습니다. </p></li><li><img src=\"https://img.pilly.kr/product/detailv2/probiotics/effect02.png\" alt=\"\" srcset=\"https://img.pilly.kr/product/detailv2/probiotics/effect02.png 1x, https://img.pilly.kr/product/detailv2/probiotics/effect02@2x.png 2x, https://img.pilly.kr/product/detailv2/probiotics/effect02@3x.png 3x\"><h3> 배변활동 원활에 <br>도움을 줄 수 있음 </h3><p> 유산균은 과민성 대장 증후군, 염증성 장 질환 등 다양한 질병의 개선에도 도움을 준다고 알려져 있습니다. </p></li></ul></div></section>",
+          "point": "<section class=\"product-point\"><div class=\"wrapper\"><div class=\"cover\"><img class=\"only-pc\" src=\"https://img.pilly.kr/product/v20200103/probiotics/point.jpg\" alt=\"필리 프로바이오틱스 포인트\" srcset=\"https://img.pilly.kr/product/v20200103/probiotics/point.jpg 1x, https://img.pilly.kr/product/v20200103/probiotics/point@2x.jpg 2x, https://img.pilly.kr/product/v20200103/probiotics/point3x.jpg 3x\"></div><h2> 필리 프로바이오틱스 포인트 </h2><ul><li><span>01</span><h3><strong>비피도박테리움 &amp; 락토바실러스</strong> 유산균</h3><p> 모유를 수유하는 아이들의 장에 풍부하게 발견되는 비피도박테리움과 예로부터 내려온 발효식품에 존재한 락토바실러스균이 11종 함유되어 있습니다. <img src=\"https://img.pilly.kr/product/v20200103/probiotics/point01.jpg\" alt=\"\" srcset=\"https://img.pilly.kr/product/v20200103/probiotics/point01.jpg 1x, https://img.pilly.kr/product/v20200103/probiotics/point01@2x.jpg 2x, https://img.pilly.kr/product/v20200103/probiotics/point01@3x.jpg 3x\"></p></li><li><span>02</span><h3>검증된 효능의&nbsp;<strong>11종 프로바이오틱스</strong></h3><p> 식약처에서 인정한 원료를 기반으로 캐나다와 미국에서 생산한 우수한 유산균으로 필리 프로바이오틱스를 만들었습니다. <img src=\"https://img.pilly.kr/product/v20200103/probiotics/point02.jpg\" alt=\"\" srcset=\"https://img.pilly.kr/product/v20200103/probiotics/point02.jpg 1x, https://img.pilly.kr/product/v20200103/probiotics/point02@2x.jpg 2x, https://img.pilly.kr/product/v20200103/probiotics/point02@3x.jpg 3x\"></p></li><li><span>03</span><h3>유산균의 먹이&nbsp;<strong>프리바이오틱스(부원료) 함유</strong></h3><p> 장내 유익균의 증식과 성장을 도와주는 프리바이오틱스(프락토올리고당) 를 제공합니다. <img src=\"https://img.pilly.kr/product/v20200103/probiotics/point03.jpg\" alt=\"\" srcset=\"https://img.pilly.kr/product/v20200103/probiotics/point03.jpg 1x, https://img.pilly.kr/product/v20200103/probiotics/point03@2x.jpg 2x, https://img.pilly.kr/product/v20200103/probiotics/point03@3x.jpg 3x\"></p></li><li><span>04</span><h3><strong>캐나다 로셀의 특허 기술</strong>을 이용한 원료</h3><p> 위산, 열, 습도, 물리적 압력 등 다양한 스트레스 환경에서 유산균을 보호하는 캡슐 특허를 이용하여 장까지 안전하게 이동합니다. <img src=\"https://img.pilly.kr/product/v20200103/probiotics/point04.jpg\" alt=\"\" srcset=\"https://img.pilly.kr/product/v20200103/probiotics/point04.jpg 1x, https://img.pilly.kr/product/v20200103/probiotics/point04@2x.jpg 2x, https://img.pilly.kr/product/v20200103/probiotics/point04@3x.jpg 3x\"></p></li></ul></div></section>",
+          "video_url": ""
+        }
+      ]
+    },
+    {
+      "frequent_question_list": [
+        {
+          "id": 1,
+          "product_id": 1,
+          "question": "타제품은 100억 마리도 있던데, 10억 마리로 효과가 있나요?",
+          "answer": "식약처에서 프로바이오틱스를 기능성으로 인정하는 기준은 1억~100억 CFU입니다. 필리 프로바이오틱스는 개체 수가 많은 것에만 집중하지 않고, 좋은 유산균 종을 다양하게 제공하고 있습니다.",
+          "image_url": "https://img.pilly.kr/product/v20200103/probiotics/qna2@3x.jpg?v=v202004161230"
+        },
+        {
+          "id": 2,
+          "product_id": 1,
+          "question": "유산균이 장까지 도달하려면 가루보다 캡슐이 좋나요?",
+          "answer": "위에서 분해되는 것을 막아주는 장용성 코팅이 되어있지 않은 가루라면 캡슐 형태를 추천드립니다.(요즘 나오는 가루 제품은 장용성 코팅이 되어있는 경우가 많습니다.) 필리의 프로바이오틱스는 장용성 코팅이 되어있는 가루를 캡슐에 담아 장까지 안전하게 이동합니다.",
+          "image_url": "https://img.pilly.kr/product/v20200103/probiotics/qna2@3x.jpg?v=v202004161230"
+        },
+        {
+          "id": 3,
+          "product_id": 1,
+          "question": "프로바이오틱스 섭취 후 변비가 생겼어요. 괜찮은 건가요?",
+          "answer": "장내 환경이 변하면서 균주가 유익균들로 교체되는 과정에서 설사, 변비가 종종 발생합니다. 한 달 정도 꾸준하게 섭취하시는 것을 추천드리며, 증상이 심한 경우는 섭취를 중단하시는 것이 좋습니다.",
+          "image_url": "https://img.pilly.kr/product/v20200103/probiotics/qna2@3x.jpg?v=v202004161230"
+        },
+        {
+          "id": 4,
+          "product_id": 1,
+          "question": "과민성 대장 증후군이 있는데 프로바이오틱스 섭취가 도움이 될까요?",
+          "answer": "과민성 대장 증후군은 복합적인 원인으로 발생하는 질환으로 병원에 방문하시어 치료받아야 하는 질병입니다. 일부의 경우 장내 균주 밸런스가 무너질 때 과민성 대장 증후군이 발생하기도 하기 때문에 이러한 경우 프로바이오틱스 섭취가 도움이 될 수도 있습니다.",
+          "image_url": "https://img.pilly.kr/product/v20200103/probiotics/qna2@3x.jpg?v=v202004161230"
+        }
+      ]
+    },
+    {
+      "material_list": [
+        {
+          "id": 1,
+          "product_id": 1,
+          "nutrial": "프로바이오틱스",
+          "image_url": "https://img.pilly.kr/product/v20200103/probiotics/graph01.png",
+          "precautions": "- 특이체질, 알레르기 체질이신 분은 성분을 확인한 후 섭취하십시오.,- 알레르기반응이 나타나는 경우에는 섭취를 중단하십시오.,- 이상 사례 발생 시 섭취를 중단하고 전문가와 상담하십시오.,- 상세한 주의사항은 제품설명서를 참고하세요."
+        }
+      ]
+    },
+    {
+      "product_list": [
+        {
+          "id": 1,
+          "header_image_url": "https://img.pilly.kr/product/v20200103/probiotics/cover@3x.jpg?v=v202004161230",
+          "sub_name": "장과 원활한 배변활동을 위한",
+          "name": "프로바이오틱스",
+          "header_description": "필리 프로바이오틱스는 캐나다 로셀의 PROBIOCAPⓇ 특허원료와 미국 다니스코 원료를 포함한 11종의 유산균을 사용하여 우수한 품질관리를 통해 만들었습니다.",
+          "day": "30일분",
+          "price": 13800,
+          "pill_image_url": "https://img.pilly.kr/product/v20200103/probiotics/shape.png",
+          "pill_description": "1일 1회 1캡슐씩 충분한 물과 함께 드세요.",
+          "pill_sub_description": "15 g (500 mg x 30캡슐), 30일분",
+          "pill_sub_image_url": "https://img.pilly.kr/product/v20200103/probiotics/intake.png",
+          "manual_url": "http://img.pilly.kr/product/paper/probiotics.jpg"
+        }
+      ]
+    }
+  ]
+}
