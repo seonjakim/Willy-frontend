@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -13,7 +14,7 @@ function SignIn({ history }) {
   const handleSignIn = async () => {
     try {
       const response = await axios.post(
-        "http://10.58.4.59:8000/account/sign-in",
+        "http://10.58.6.197:8000/account/sign-in",
         {
           mobile_number,
           email,
@@ -22,10 +23,27 @@ function SignIn({ history }) {
       );
       // console.log("signIn..", response);
       localStorage.setItem("access_token", response.data.token);
+
+      // try {
+      //   const res = await axios.get(
+      //     "http://10.58.6.197:8000/account/user-profile",
+      //     {
+      //       headers: {
+      //         Authorization: localStorage.getItem("access_token"),
+      //       },
+      //     }
+      //   );
+      //   console.log(res);
+      //   console.log(localStorage.getItem("access_token"));
+      // } catch (e) {
+      //   console.log(e);
+      //   console.log(localStorage.getItem("access_token"));
+      // }
+
       history.push("/");
     } catch (e) {
       // console.log("bad request...", e.response);
-      alert(e.response.data.message);
+      e.response && alert(e.response.data.message);
     }
   };
 
@@ -54,7 +72,9 @@ function SignIn({ history }) {
         <LoginBtn onClick={handleSignIn}>로그인</LoginBtn>
         <Find>
           <PwJoin>비밀번호 찾기</PwJoin>
-          <PwJoin>회원가입</PwJoin>
+          <Link to={"/signup"}>
+            <PwJoin>회원가입</PwJoin>
+          </Link>
         </Find>
         <KakaoBtn>
           <Sns src="https://pilly.kr/images/icons/auth/icon-auth-kakaotalk.png" />

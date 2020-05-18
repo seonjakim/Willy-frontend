@@ -37,7 +37,7 @@ const SignUp = ({ history }) => {
     if (password === passwordCheck) {
       try {
         const response = await axios.post(
-          "http://10.58.4.59:8000/account/sign-up",
+          "http://10.58.6.197:8000/account/sign-up",
           {
             name,
             mobile_number: mobileNumber,
@@ -63,7 +63,7 @@ const SignUp = ({ history }) => {
   // 인증번호 발송
   const verifyMobile = async () => {
     try {
-      const response = await axios.post("http://10.58.4.59:8000/account/sms", {
+      const response = await axios.post("http://10.58.6.197:8000/account/sms", {
         mobile_number: mobileNumber,
       });
       console.log(response);
@@ -79,7 +79,7 @@ const SignUp = ({ history }) => {
   const verifySMS = async () => {
     try {
       const response = await axios.post(
-        "http://10.58.4.59:8000/account/sms/verification",
+        "http://10.58.6.197:8000/account/sms/verification",
         {
           mobile_number: mobileNumber,
           auth_number: Number(authNumber),
@@ -216,7 +216,7 @@ const SignUpWord = styled.div`
   color: #333333;
 `;
 
-const WordAboveInput = styled.div`
+export const WordAboveInput = styled.div`
   margin: 30px 0 10px;
   color: #999999;
   font-size: 14px;
@@ -250,7 +250,7 @@ const GrayBorderLine = styled.div`
   margin-bottom: 32px;
 `;
 
-const SmallBtn = styled.button`
+export const SmallBtn = styled.button`
   width: 156px;
   height: 50px;
   color: white;
@@ -293,7 +293,7 @@ const SelectGrey = styled.span`
   margin-left: 9px;
 `;
 
-const AgreeBox = styled.span`
+export const AgreeBox = styled.span`
   width: 24px;
   height: 24px;
   margin-right: 10px;
