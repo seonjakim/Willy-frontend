@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import NavBar from "../../Component/NavBar/NavBar";
 import BascketButton from "../../Component/BascketButton/BascketButton";
 import Footer from "../../Component/Footer/Footer";
 
-function ProductView() {
+function ProductView(props) {
   const [main, setMain] = useState([]);
   const [products, setProduct] = useState([]);
   const [state, setState] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/data/productView.json")
+    fetch("http://10.58.6.120:8000/product")
       .then((res) => res.json())
       .then((res) => {
-        setMain(res.products[0].product_header);
-        setProduct(res.products.slice(1, res.products.length));
+        setMain(res.products);
+        setProduct(res.products);
       });
   }, []);
 
@@ -22,16 +23,23 @@ function ProductView() {
     setState(state.concat(idx + 1));
   };
 
+  const goToProductLists = (id) => {
+    props.history.push(`/product/${id}`);
+  };
+
   return (
     <Body>
       <NavBar />
       {main.length >= 1 ? (
         <Top>
-          <MainImg src={main[0].image_url} alt="" />
+          <MainImg src={main[0].product_header[0].image_url} alt="" />
           <Title>
-            {main[0].title.slice(0, 10)}
+            {main[0].product_header[0].title.slice(0, 10)}
             <br />
-            {main[0].title.slice(10, main[0].title.length)}
+            {main[0].product_header[0].title.slice(
+              10,
+              main[0].product_header[0].title.length
+            )}
           </Title>
           <MainIcon1
             src="https://pilly.kr/images/icons/common/icon-certification-health-white.png"
@@ -47,9 +55,13 @@ function ProductView() {
       )}
       <List>
         {products.length > 1
-          ? products.slice(0, 7).map((product, idx) => {
+          ? products.slice(1, 8).map((product, idx) => {
               return (
-                <Card key={idx} style={{ backgroundColor: `${product.color}` }}>
+                <Card
+                  style={{ backgroundColor: `${product.color}` }}
+                  key={idx}
+                  onClick={() => goToProductLists(idx + 1)}
+                >
                   <CardTop>
                     <div>
                       <SubName>{product.sub_name}</SubName>
@@ -98,9 +110,13 @@ function ProductView() {
           </P>
         </OneTime>
         {products.length > 1
-          ? products.slice(7, products.length).map((product, idx) => {
+          ? products.slice(8, products.length).map((product, idx) => {
               return (
-                <Card key={idx} style={{ backgroundColor: `${product.color}` }}>
+                <Card
+                  style={{ backgroundColor: `${product.color}` }}
+                  key={idx}
+                  onClick={() => goToProductLists(idx + 8)}
+                >
                   <CardTop>
                     <div>
                       <SubName>{product.sub_name}</SubName>
@@ -147,7 +163,7 @@ function ProductView() {
   );
 }
 
-export default ProductView;
+export default withRouter(ProductView);
 
 //style
 const Body = styled.div`
