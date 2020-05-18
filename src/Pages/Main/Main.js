@@ -22,7 +22,7 @@ function MainPage() {
   const [benefit, setBenefit] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/data/main.json")
+    fetch("http://10.58.6.120:8000/information/home")
       .then((res) => res.json())
       .then((res) => {
         setMainDatas(res.home_list.slice(0, 1));

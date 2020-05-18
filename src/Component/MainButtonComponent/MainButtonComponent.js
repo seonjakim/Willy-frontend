@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function MainButton() {
-  return <Button>지금 시작하기</Button>;
+  return (
+    <Link to="/survey">
+      <Button>지금 시작하기</Button>
+    </Link>
+  );
 }
 
 export default MainButton;

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import NavBar from "../../Component/NavBar/NavBar";
-import BascketButoon from "../../Component/BascketButton/BascketButton";
+import DeatilButton from "../../Component/BascketButton/DetailButton";
 import ProductLists2 from "./ProductLists2";
 import ProductLists3 from "./ProductLists3";
+import ProductLists4 from "./ProductLists4";
+import ProductLists5 from "./ProductLists5";
+import ProductLists6 from "./ProductLists6";
 
 function ProductLists(props) {
   const [datas, setData] = useState([]);
-  //const [state, setState] = useState([]);
 
   useEffect(() => {
     fetch(`http://10.58.6.120:8000/product/${props.match.params.id}`)
@@ -16,6 +18,8 @@ function ProductLists(props) {
         setData(res.product_detail);
       });
   }, [props.match.params.id]);
+
+  const intoCart = () => {};
 
   return (
     <Body>
@@ -47,7 +51,7 @@ function ProductLists(props) {
                 <Img2 />
               </ImgWarapper>
               <BascketWrapper>
-                <BascketButoon />
+                <DeatilButton onClick={() => intoCart()} />
               </BascketWrapper>
             </ContentWrapper>
           </Header>
@@ -137,7 +141,10 @@ function ProductLists(props) {
             <button>제품설명서 보기</button>
           </Main>
           <ProductLists2 datas={datas} />
-          <ProductLists3 datas={datas} />
+          <ProductLists3 />
+          <ProductLists4 datas={datas} />
+          <ProductLists5 datas={datas} />
+          <ProductLists6 datas={datas} />
         </>
       ) : (
         ""

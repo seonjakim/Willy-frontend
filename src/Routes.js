@@ -21,14 +21,10 @@ class Routes extends React.Component {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/survey" component={Survey} />
-          <Route path="/result" component={Result} />
-          <Route path="/product" component={ProductView} />
-          <Route path="/review" component={Review} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/mypilly" component={MyPilly} />
           <Route exact path="/mypilly/:id" component={PointMallDetail} />
-          <Route path="/story" component={Story} />
           <Route exact path="/result" component={Result} />
           <Route exact path="/product" component={ProductView} />
           <Route exact path="/review" component={Review} />
