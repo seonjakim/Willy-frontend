@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { HO_URL } from "../../Constants"; // 석호님 IP
-
 import NavBar from "../../Component/NavBar/NavBar";
 import DeatilButton from "../../Component/BascketButton/DetailButton";
 import ProductLists2 from "./ProductLists2";
