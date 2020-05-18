@@ -1,137 +1,180 @@
 {
-  "productView": [
+  "products": [
     {
-      "image_url": "https://img.pilly.kr/product/v20200103/common/cover.jpg",
-      "title": "필리의 모든 제품은 전문적인 연구의 결과물입니다."
-    }
-  ],
-  "card": [
+      "product_header": [
+        {
+          "image_url": "https://img.pilly.kr/product/v20200103/common/cover.jpg",
+          "title": "필리의 모든 제품은 전문적인 연구의 결과물입니다."
+        }
+      ]
+    },
     {
+      "id": 1,
       "sub_name": "장과 원활한 배변활동을 위한",
       "name": "프로바이오틱스",
-      "pill_image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
-      "pill_sub_image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
-      "pill_description": [
-        "유산균 증식 및 유해균 억제",
-        "캐나다/미국 등 11종 유산균 사용",
-        "프리바이오틱스 부원료 함유"
+      "color": "#efe9d9",
+      "image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
+      "category_image": "https://pilly.kr/images/icons/product/icon-intestine.png",
+      "description": [
+        {
+          "content": "유산균 증식 및 유해균 억제",
+          "sub_content": "캐나다/미국 등 11종 유산균 사용",
+          "product_content": "프리바이오틱스 부원료 함유"
+        }
       ],
       "day": "30일분",
       "price": 13800
     },
     {
+      "id": 2,
       "sub_name": "장과 원활한 배변활동을 위한",
       "name": "프로바이오틱스",
-      "pill_image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
-      "pill_sub_image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
-      "pill_description": [
-        "유산균 증식 및 유해균 억제",
-        "캐나다/미국 등 11종 유산균 사용",
-        " 프리바이오틱스 부원료 함유"
+      "color": "#efe9d9",
+      "image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
+      "category_image": "https://pilly.kr/images/icons/product/icon-intestine.png",
+      "description": [
+        {
+          "content": "유산균 증식 및 유해균 억제",
+          "sub_content": "캐나다/미국 등 11종 유산균 사용",
+          "product_content": "프리바이오틱스 부원료 함유"
+        }
       ],
       "day": "30일분",
       "price": 13800
     },
     {
+      "id": 3,
       "sub_name": "장과 원활한 배변활동을 위한",
       "name": "프로바이오틱스",
-      "pill_image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
-      "pill_sub_image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
-      "pill_description": [
-        "유산균 증식 및 유해균 억제",
-        "캐나다/미국 등 11종 유산균 사용",
-        " 프리바이오틱스 부원료 함유"
+      "color": "#efe9d9",
+      "image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
+      "category_image": "https://pilly.kr/images/icons/product/icon-intestine.png",
+      "description": [
+        {
+          "content": "유산균 증식 및 유해균 억제",
+          "sub_content": "캐나다/미국 등 11종 유산균 사용",
+          "product_content": "프리바이오틱스 부원료 함유"
+        }
       ],
       "day": "30일분",
       "price": 13800
     },
     {
+      "id": 4,
       "sub_name": "장과 원활한 배변활동을 위한",
       "name": "프로바이오틱스",
-      "pill_image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
-      "pill_sub_image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
-      "pill_description": [
-        "유산균 증식 및 유해균 억제",
-        "캐나다/미국 등 11종 유산균 사용",
-        " 프리바이오틱스 부원료 함유"
+      "color": "#efe9d9",
+
+      "image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
+      "category_image": "https://pilly.kr/images/icons/product/icon-intestine.png",
+      "description": [
+        {
+          "content": "유산균 증식 및 유해균 억제",
+          "sub_content": "캐나다/미국 등 11종 유산균 사용",
+          "product_content": "프리바이오틱스 부원료 함유"
+        }
       ],
       "day": "30일분",
       "price": 13800
     },
     {
+      "id": 5,
       "sub_name": "장과 원활한 배변활동을 위한",
       "name": "프로바이오틱스",
-      "pill_image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
-      "pill_sub_image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
-      "pill_description": [
-        "유산균 증식 및 유해균 억제",
-        "캐나다/미국 등 11종 유산균 사용",
-        " 프리바이오틱스 부원료 함유"
+      "color": "#efe9d9",
+      "image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
+      "category_image": "https://pilly.kr/images/icons/product/icon-intestine.png",
+      "description": [
+        {
+          "content": "유산균 증식 및 유해균 억제",
+          "sub_content": "캐나다/미국 등 11종 유산균 사용",
+          "product_content": "프리바이오틱스 부원료 함유"
+        }
       ],
       "day": "30일분",
       "price": 13800
     },
     {
+      "id": 6,
       "sub_name": "장과 원활한 배변활동을 위한",
       "name": "프로바이오틱스",
-      "pill_image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
-      "pill_sub_image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
-      "pill_description": [
-        "유산균 증식 및 유해균 억제",
-        "캐나다/미국 등 11종 유산균 사용",
-        " 프리바이오틱스 부원료 함유"
+      "color": "#efe9d9",
+      "image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
+      "category_image": "https://pilly.kr/images/icons/product/icon-intestine.png",
+      "description": [
+        {
+          "content": "유산균 증식 및 유해균 억제",
+          "sub_content": "캐나다/미국 등 11종 유산균 사용",
+          "product_content": "프리바이오틱스 부원료 함유"
+        }
       ],
       "day": "30일분",
       "price": 13800
     },
     {
+      "id": 7,
       "sub_name": "장과 원활한 배변활동을 위한",
       "name": "프로바이오틱스",
-      "pill_image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
-      "pill_sub_image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
-      "pill_description": [
-        "유산균 증식 및 유해균 억제",
-        "캐나다/미국 등 11종 유산균 사용",
-        " 프리바이오틱스 부원료 함유"
+      "color": "#efe9d9",
+      "image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
+      "category_image": "https://pilly.kr/images/icons/product/icon-intestine.png",
+      "description": [
+        {
+          "content": "유산균 증식 및 유해균 억제",
+          "sub_content": "캐나다/미국 등 11종 유산균 사용",
+          "product_content": "프리바이오틱스 부원료 함유"
+        }
       ],
       "day": "30일분",
       "price": 13800
     },
     {
+      "id": 8,
       "sub_name": "장과 원활한 배변활동을 위한",
       "name": "프로바이오틱스",
-      "pill_image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
-      "pill_sub_image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
-      "pill_description": [
-        "유산균 증식 및 유해균 억제",
-        "캐나다/미국 등 11종 유산균 사용",
-        " 프리바이오틱스 부원료 함유"
+      "color": "#efe9d9",
+      "image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
+      "category_image": "https://pilly.kr/images/icons/product/icon-intestine.png",
+      "description": [
+        {
+          "content": "유산균 증식 및 유해균 억제",
+          "sub_content": "캐나다/미국 등 11종 유산균 사용",
+          "product_content": "프리바이오틱스 부원료 함유"
+        }
       ],
       "day": "30일분",
       "price": 13800
     },
     {
+      "id": 9,
       "sub_name": "장과 원활한 배변활동을 위한",
       "name": "프로바이오틱스",
-      "pill_image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
-      "pill_sub_image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
-      "pill_description": [
-        "유산균 증식 및 유해균 억제",
-        "캐나다/미국 등 11종 유산균 사용",
-        " 프리바이오틱스 부원료 함유"
+      "color": "#efe9d9",
+      "image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
+      "category_image": "https://pilly.kr/images/icons/product/icon-intestine.png",
+      "description": [
+        {
+          "content": "유산균 증식 및 유해균 억제",
+          "sub_content": "캐나다/미국 등 11종 유산균 사용",
+          "product_content": "프리바이오틱스 부원료 함유"
+        }
       ],
       "day": "30일분",
       "price": 13800
     },
     {
+      "id": 10,
       "sub_name": "장과 원활한 배변활동을 위한",
       "name": "프로바이오틱스",
-      "pill_image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
-      "pill_sub_image_url": "https://pilly.kr/images/icons/product/icon-intestine.png",
-      "pill_description": [
-        "유산균 증식 및 유해균 억제",
-        "캐나다/미국 등 11종 유산균 사용",
-        " 프리바이오틱스 부원료 함유"
+      "color": "#efe9d9",
+      "image_url": "https://img.pilly.kr/product/v20200103/common/probiotics.png",
+      "category_image": "https://pilly.kr/images/icons/product/icon-intestine.png",
+      "description": [
+        {
+          "content": "유산균 증식 및 유해균 억제",
+          "sub_content": "캐나다/미국 등 11종 유산균 사용",
+          "product_content": "프리바이오틱스 부원료 함유"
+        }
       ],
       "day": "30일분",
       "price": 13800
