@@ -13,7 +13,7 @@ function NavBar(props) {
     "/cart",
     "/signin",
     "/story",
-    "/cs",
+    "/mypilly",
   ]);
 
   const onScroll = useCallback(() => {
