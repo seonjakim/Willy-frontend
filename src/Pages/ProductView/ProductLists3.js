@@ -5,7 +5,7 @@ function ProductLists3() {
   const [datas, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://10.58.6.120:8000/information/story?category=review")
+    fetch("http://10.58.3.23:8000/information/story?category=review")
       .then((res) => res.json())
       .then((res) => {
         setData(res.story_list[1].story);
@@ -76,7 +76,7 @@ const Story = styled.div`
   div {
     display: flex;
     justify-content: space-between;
-    width: 462px;
+    width: 465px;
     padding-right: 10px;
     margin-top: 40px;
     img {

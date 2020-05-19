@@ -3,11 +3,10 @@ import styled from "styled-components";
 
 function ProductLists5(props) {
   return (
-    <Body datas={props.datas}>
-      {console.log(props)}
+    <Body>
       <Title>배송 및 반품 교환 안내</Title>
       <Content>
-        {props.datas[0].explanation_list.slice(4, 7).map((data, idx) => {
+        {props.datas.slice(4, 7).map((data, idx) => {
           return (
             <div key={idx}>
               <img src={data.image_url} alt="" />
@@ -28,7 +27,7 @@ export default ProductLists5;
 
 //style
 const Body = styled.div`
-  padding: 200px 0;
+  padding: 200px 0 60px 0;
   background-color: #f2f2f2;
   button {
     width: 152px;
@@ -61,7 +60,7 @@ const Content = styled.div`
   padding: 0 50px;
   div {
     display: flex;
-    width: 320px;
+    width: 325px;
     img {
       width: 101px;
       height: 101px;

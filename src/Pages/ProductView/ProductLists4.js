@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 function ProductLists4(props) {
   return (
-    <Body datas={props.datas}>
+    <Body>
       <Title>왜 필리인가?!</Title>
       <ListsWrap>
-        {props.datas[0].explanation_list.slice(0, 4).map((data, idx) => {
+        {props.datas.slice(0, 4).map((data, idx) => {
           return (
             <div key={idx}>
               <img src={data.image_url} alt="" />

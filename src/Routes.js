@@ -14,6 +14,7 @@ import PointMallDetail from "./Pages/MyPilly/Components/PointMallDetail";
 import Story from "./Pages/Story/Story";
 import ProductLists1 from "./Pages/ProductView/ProductLists1";
 import ReviewPost from "./Pages/Review/ReviewPost";
+import ProductPillyBox from "./Pages/ProductView/ProductPillyBox";
 
 class Routes extends React.Component {
   render() {
@@ -30,10 +31,15 @@ class Routes extends React.Component {
           <Route exact path="/mypilly/:id" component={PointMallDetail} />
           <Route exact path="/result" component={Result} />
           <Route exact path="/product" component={ProductView} />
-          <Route exact path="/product/:id" component={ProductLists1} />
           <Route exact path="/review" component={Review} />
           <Route exact path="/story" component={Story} />
           <Route exact path="/review/:id" component={ReviewPost} />
+          <Route exact path="/product/:id" component={ProductLists1} />
+          <Route
+            exact
+            path="/product/pillybox/:id"
+            component={ProductPillyBox}
+          />
         </Switch>
       </Router>
     );

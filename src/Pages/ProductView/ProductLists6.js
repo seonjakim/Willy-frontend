@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
-import Footer from "../../Component/Footer/Footer";
 
 function ProductLists6() {
   const [datas, setData] = useState([]);
@@ -14,12 +13,9 @@ function ProductLists6() {
 
   useEffect(() => {
     if (boolean === true) {
-      fetch(
-        `http://10.58.6.120:8000/product/review?offset=${count + 1}&limit=9`
-      )
+      fetch(`http://10.58.3.23:8000/product/review?offset=${count + 1}&limit=9`)
         .then((res) => res.json())
         .then((res) => {
-          console.log("res", res.reviews);
           setData(datas.concat(res.reviews));
         });
       setBoolean(false);
@@ -27,7 +23,7 @@ function ProductLists6() {
   }, [boolean, count, datas]);
 
   useEffect(() => {
-    fetch("http://10.58.6.120:8000/product/review?offset=1&limit=9")
+    fetch("http://10.58.3.23:8000/product/review?offset=1&limit=9")
       .then((res) => res.json())
       .then((res) => {
         setData(res.reviews);
@@ -38,7 +34,7 @@ function ProductLists6() {
     <Body>
       <P>고객후기</P>
       <ContentWrap>
-        {datas.length > 1
+        {datas.length >= 1
           ? datas.map((data, idx) => {
               return (
                 <Content key={idx}>
@@ -68,7 +64,6 @@ function ProductLists6() {
           : ""}
       </ContentWrap>
       <button onClick={() => PageNation()}>더보기</button>
-      <Footer />
     </Body>
   );
 }
