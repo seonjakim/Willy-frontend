@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { HWAN_URL } from "../../Constants"; // 지환님 IP
+
 import { LoginBtn, KakaoBtn, FbBtn, NaverBtn, Sns } from "../SignIn/SignIn";
 
 const SignUp = ({ history }) => {
@@ -36,18 +38,15 @@ const SignUp = ({ history }) => {
   const register = async () => {
     if (password === passwordCheck) {
       try {
-        const response = await axios.post(
-          "http://10.58.6.197:8000/account/sign-up",
-          {
-            name,
-            mobile_number: mobileNumber,
-            email,
-            password,
-            mobile_agreement: mobileAgreement, //연락처 인증시 1
-            terms: agreeTerms.every((term) => term === true) ? "1" : "0", //모두 true 일 경우 1 반환
-            agreement: agreeSMS ? "1" : "0",
-          }
-        );
+        const response = await axios.post(`${HWAN_URL}/user/sign-up`, {
+          name,
+          mobile_number: mobileNumber,
+          email,
+          password,
+          mobile_agreement: mobileAgreement, //연락처 인증시 1
+          terms: agreeTerms.every((term) => term === true) ? "1" : "0", //모두 true 일 경우 1 반환
+          agreement: agreeSMS ? "1" : "0",
+        });
         console.log("reponse..", response);
         alert(response.data.message);
         history.push("/signin");
@@ -62,29 +61,30 @@ const SignUp = ({ history }) => {
 
   // 인증번호 발송
   const verifyMobile = async () => {
-    try {
-      const response = await axios.post("http://10.58.6.197:8000/account/sms", {
-        mobile_number: mobileNumber,
-      });
-      console.log(response);
-      setTimer(10);
-      alert(response.data.message);
-    } catch (e) {
-      console.log(e.response);
-      e.response && alert(e.response.data.message); //undefined
+    if (mobileNumber.length === 11 || mobileNumber.length === 10) {
+      try {
+        const response = await axios.post(`${HWAN_URL}/user/sms`, {
+          mobile_number: mobileNumber,
+        });
+        console.log(response);
+        setTimer(15);
+        alert(response.data.message);
+      } catch (e) {
+        console.log(e.response);
+        e.response && alert(e.response.data.message); //undefined
+      }
+    } else {
+      alert("올바른 휴대폰 번호를 입력해주세요.");
     }
   };
 
   // 인증번호 입력 확인
   const verifySMS = async () => {
     try {
-      const response = await axios.post(
-        "http://10.58.6.197:8000/account/sms/verification",
-        {
-          mobile_number: mobileNumber,
-          auth_number: Number(authNumber),
-        }
-      );
+      const response = await axios.post(`${HWAN_URL}/user/sms/verification`, {
+        mobile_number: mobileNumber,
+        auth_number: Number(authNumber),
+      });
       if (response.status === 200) {
         alert(response.data.message);
         setMobileAgreement("1");
@@ -135,7 +135,11 @@ const SignUp = ({ history }) => {
         placeholder="인증번호를 입력해 주세요."
         onChange={(e) => setAuthNumber(e.target.value)}
       ></SmallerInput>
-      <SmallBtn onClick={verifySMS} timer={authTimer}>
+      <SmallBtn
+        onClick={authTimer ? verifySMS : ""}
+        style={{ cursor: authTimer ? "pointer" : "default" }}
+        timer={authTimer}
+      >
         확인
       </SmallBtn>
       <GrayBorderLine></GrayBorderLine>

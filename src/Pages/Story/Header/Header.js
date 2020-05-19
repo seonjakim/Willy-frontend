@@ -1,12 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 
-const Header = () => {
+const Header = ({ header, history }) => {
+  const items = ["All", "Life", "People", "Nutrition", "Review"];
   return (
-    <HeaderWrapper>
+    <HeaderWrapper image={header.image_url}>
+      {console.log(header)}
       <Contents>
-        <Title>필리 스토리</Title>
-        <Description></Description>
+        <Title>{header.title}</Title>
+        <Description>
+          {header.content
+            .split("#")[0]
+            .split(",")
+            .map((content, index) => (
+              <p>
+                {content}
+                {index !== header.content.split("#")[0].split(",").length - 1
+                  ? ","
+                  : ""}{" "}
+              </p>
+            ))}
+          {"# " + header.content.split("#")[1]}
+        </Description>
+        <Navigation>
+          {console.log(history)}
+          {items.map((item) => (
+            <Item onClick={() => history.push(`?category=${item}`)}>
+              {item}
+            </Item>
+          ))}
+        </Navigation>
       </Contents>
     </HeaderWrapper>
   );
@@ -16,7 +39,7 @@ export default Header;
 
 const HeaderWrapper = styled.div`
   height: 670px;
-  background-image: url(https://img.pilly.kr/story/v1/cover2-pc@2x.jpg);
+  background-image: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
@@ -24,7 +47,7 @@ const HeaderWrapper = styled.div`
 
 const Contents = styled.div`
   position: relative;
-  padding: 265px 52px 0 52px;
+  padding: 267px 48px 0 48px;
   width: 1150px;
   margin: 0 auto;
   color: #000;
@@ -38,8 +61,21 @@ const Title = styled.p`
 `;
 
 const Description = styled.p`
-  margin-top: 27px;
-  font-size: 16px;
-  line-height: 25px;
-  letter-spacing: -0.4px;
+  margin-top: 30px;
+  font-size: 18px;
+  line-height: 29px;
+  letter-spacing: -0.1px;
+`;
+
+const Navigation = styled.nav`
+  margin-top: 132px;
+`;
+
+const Item = styled.span`
+  display: inline-block;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding-right: 47px;
+  cursor: pointer;
 `;

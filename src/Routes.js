@@ -21,9 +21,6 @@ class Routes extends React.Component {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/survey" component={Survey} />
-          <Route path="/result" component={Result} />
-          <Route path="/product" component={ProductView} />
-          <Route path="/review" component={Review} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/mypilly" component={MyPilly} />
@@ -31,9 +28,9 @@ class Routes extends React.Component {
           <Route path="/story" component={Story} />
           <Route exact path="/result" component={Result} />
           <Route exact path="/product" component={ProductView} />
+          <Route exact path="/product/:id" component={ProductLists1} />
           <Route exact path="/review" component={Review} />
           <Route exact path="/story" component={Story} />
-          <Route exact path="/product/:id" component={ProductLists1} />
         </Switch>
       </Router>
     );
