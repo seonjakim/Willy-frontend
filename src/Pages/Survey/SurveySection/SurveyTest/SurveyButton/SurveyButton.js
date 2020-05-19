@@ -1,7 +1,10 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { connect } from "react-redux";
+import { clickPlus, clickMinus } from "../../../../../Actions";
 
 function SurveyButton(props) {
+  // console.log("props", props);
   const { handleClickPlus, handleClickMinus } = props;
 
   return (
@@ -12,7 +15,17 @@ function SurveyButton(props) {
   );
 }
 
-export default SurveyButton;
+const mapStateToProps = (state) => ({
+  click: state.clickCounter.click,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleClickPlus: () => dispatch(clickPlus()),
+  handleClickMinus: () => dispatch(clickMinus()),
+});
+
+// export default SurveyButton;
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyButton);
 
 const SurveyButtonWrapper = styled.div`
   width: 670px;

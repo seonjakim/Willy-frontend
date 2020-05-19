@@ -1,18 +1,77 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
+import axios from "axios";
 
 import SurveySection from "./SurveySection/SurveySection";
+import SurveyStart from "./SurveySection/SurveyStart/SurveyStart";
+import SurveyTest from "./SurveySection/SurveyTest/SurveyTest";
 
 function Survey({ match, history }) {
   const goBack = () => history.goBack();
+
+  //추가
+  const [survey, setSurvey] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [count, setCount] = useState(-1);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data: survey } = await axios.get("data/survey.json");
+      setSurvey(survey["survey"]);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  const handleClickPlus = () => {
+    if (survey && count < survey.length) setCount(count + 1);
+  };
+
+  const handleClickMinus = () => {
+    if (survey && count > -1) setCount(count - 1);
+  };
 
   return (
     <SurveyWrapper>
       <ContentsWrapper>
         <Contents>
-          <CloseButton onClick={goBack}>X</CloseButton>
-          <Route path={match.path} component={SurveySection} />
+          {/* <CloseButton onClick={goBack}>X</CloseButton> */}
+          <>
+            {count === -1 ? (
+              <>
+                <CloseButton onClick={goBack}>X</CloseButton>
+                <SurveyStart handleClickPlus={handleClickPlus} />
+              </>
+            ) : (
+              <SurveyTest
+                survey={survey}
+                count={count}
+                handleClickPlus={handleClickPlus}
+                handleClickMinus={handleClickMinus}
+              />
+            )}
+          </>
+
+          {/* <SurveySection
+            survey={survey}
+            count={count}
+            handleClickPlus={handleClickPlus}
+            handleClickMinus={handleClickMinus}
+            history={history}
+          /> */}
+          {/* <Route
+            path={match.path}
+            render={() => (
+              <SurveySection
+                survey={survey}
+                count={count}
+                handleClickPlus={handleClickPlus}
+                handleClickMinus={handleClickMinus}
+              />
+            )}
+          /> */}
         </Contents>
       </ContentsWrapper>
     </SurveyWrapper>

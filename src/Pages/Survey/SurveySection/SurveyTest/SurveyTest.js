@@ -9,22 +9,23 @@ import SurveyForm from "./SurveyForm/SurveyForm";
 import SurveyButton from "./SurveyButton/SurveyButton";
 
 function SurveyTest(props) {
-  const { count, handleClickPlus, handleClickMinus } = props;
-  const [survey, setSurvey] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [section, setSection] = useState("");
+  const { survey, count, handleClickPlus, handleClickMinus } = props;
+  // const [survey, setSurvey] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  // const [section, setSection] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data: survey } = await axios.get("data/survey.json");
-      setSurvey(survey["survey"]);
-      setIsLoading(false);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const { data: survey } = await axios.get("data/survey.json");
+  //     setSurvey(survey["survey"]);
+  //     setIsLoading(false);
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <SurveyTestWrapper>
+      {console.log("Test", survey)}
       <TestHeader>
         <TestItems count={count}>
           <TestItem>기본정보</TestItem>
@@ -36,15 +37,8 @@ function SurveyTest(props) {
           <ProgressRate rate="3%" />
         </Progress>
       </TestHeader>
-      {isLoading ? (
-        <h2>...</h2>
-      ) : (
-        <SurveyForm count={count} survey={survey[count]} />
-      )}
-      <SurveyButton
-        handleClickPlus={handleClickPlus}
-        handleClickMinus={handleClickMinus}
-      />
+      {isLoading ? <h2>...</h2> : <SurveyForm survey={survey[count]} />}
+      <SurveyButton />
     </SurveyTestWrapper>
   );
 }

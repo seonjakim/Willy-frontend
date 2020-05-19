@@ -51,6 +51,7 @@ const SignUp = ({ history }) => {
         alert(response.data.message);
         history.push("/signin");
       } catch (e) {
+        console.log(agreeTerms.every((term) => term === true));
         console.log("bad request..", e.response);
         e.response && alert(e.response.data.message);
       }
@@ -67,7 +68,7 @@ const SignUp = ({ history }) => {
           mobile_number: mobileNumber,
         });
         console.log(response);
-        setTimer(15);
+        setTimer(25);
         alert(response.data.message);
       } catch (e) {
         console.log(e.response);
@@ -83,7 +84,7 @@ const SignUp = ({ history }) => {
     try {
       const response = await axios.post(`${HWAN_URL}/user/sms/verification`, {
         mobile_number: mobileNumber,
-        auth_number: Number(authNumber),
+        auth_number: authNumber,
       });
       if (response.status === 200) {
         alert(response.data.message);

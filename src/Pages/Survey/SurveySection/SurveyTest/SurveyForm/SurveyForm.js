@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+import { connect } from "react-redux";
 
 function SurveyForm(props) {
-  // console.log(props.survey);
   const count = props.count;
-  const { section, problem, title, content, list } = props.survey;
+  console.log("form", props);
+  const { section, problem, title, content, answer_list } = props.survey;
 
   const [radioClicked, setRadioClicked] = useState(null);
   const [checkboxClicked, setCheckboxClicked] = useState([]);
 
   useEffect(() => {
-    //list input에 checkbox 포함 시 checkboxClicked 초기화
-    if (list.map((e) => e.input).includes("checkbox")) {
+    //answer_list input에 checkbox 포함 시 checkboxClicked 초기화
+    if (answer_list.map((e) => e.input).includes("checkbox")) {
       const initCheckboxClicked = () => {
         const checkboxClicked = Array.from(
-          { length: list.length },
+          { length: answer_list.length },
           () => false
         );
         setCheckboxClicked(checkboxClicked);
@@ -25,7 +26,7 @@ function SurveyForm(props) {
       setRadioClicked(null); // 다음 설문 이동 시(count 증가) 버튼 클릭 초기화
       setCheckboxClicked(null); // ""
     };
-  }, [count, list]);
+  }, [count, answer_list]);
 
   const handleRadioClick = (index) => {
     setRadioClicked(index);
@@ -41,6 +42,7 @@ function SurveyForm(props) {
 
   return (
     <SurveyFormWrapper>
+      {console.log("form", props.survey)}
       <Num>질문 {count + 1}</Num>{" "}
       {problem ? (
         <>
@@ -53,7 +55,7 @@ function SurveyForm(props) {
       <Title>{title}</Title>
       <Content>{content}</Content>
       <AnswerWrapper>
-        {list.map((e, index) => (
+        {answer_list.map((e, index) => (
           <AnswerList
             key={index}
             radioClicked={radioClicked}
@@ -92,7 +94,11 @@ function SurveyForm(props) {
   );
 }
 
-export default SurveyForm;
+const mapStateToProps = (state) => ({
+  click: state.clickCounter.click,
+});
+
+export default connect(mapStateToProps, "")(SurveyForm);
 
 const SurveyFormWrapper = styled.div`
   padding-top: 36px;
