@@ -4,24 +4,14 @@ import styled from "styled-components";
 import SurveyStart from "./SurveyStart/SurveyStart";
 import SurveyTest from "./SurveyTest/SurveyTest";
 
-function SurveySction({ location }) {
-  //console.log(location);
-  const [count, setCount] = useState(-1);
-
-  const handleClickPlus = () => {
-    setCount(count + 1);
-  };
-
-  const handleClickMinus = () => {
-    setCount(count - 1);
-  };
-
+function SurveySction({ survey, count, handleClickPlus, handleClickMinus }) {
   return (
     <>
       {count === -1 ? (
         <SurveyStart handleClickPlus={handleClickPlus} />
       ) : (
         <SurveyTest
+          survey={survey}
           count={count}
           handleClickPlus={handleClickPlus}
           handleClickMinus={handleClickMinus}

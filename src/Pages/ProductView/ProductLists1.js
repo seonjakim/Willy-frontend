@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { HO_URL } from "../../Constants"; // 석호님 IP
+
 import NavBar from "../../Component/NavBar/NavBar";
 import DeatilButton from "../../Component/BascketButton/DetailButton";
 import ProductLists2 from "./ProductLists2";
@@ -12,7 +14,7 @@ function ProductLists(props) {
   const [datas, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`http://10.58.6.120:8000/product/${props.match.params.id}`)
+    fetch(`${HO_URL}/product/${props.match.params.id}`) // 석호님 IP 이용
       .then((res) => res.json())
       .then((res) => {
         setData(res.product_detail);
@@ -23,6 +25,7 @@ function ProductLists(props) {
 
   return (
     <Body>
+      {console.log("hi", datas)}
       {datas.length >= 1 ? (
         <>
           <NavBar />

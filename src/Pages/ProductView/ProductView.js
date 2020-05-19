@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
+import { HO_URL } from "../../Constants"; // 석호님 IP
+
 import NavBar from "../../Component/NavBar/NavBar";
 import BascketButton from "../../Component/BascketButton/BascketButton";
 import Footer from "../../Component/Footer/Footer";
@@ -11,7 +13,7 @@ function ProductView(props) {
   const [state, setState] = useState([]);
 
   useEffect(() => {
-    fetch("http://10.58.6.120:8000/product")
+    fetch(`${HO_URL}/product`) // 석호님 IP 이용
       .then((res) => res.json())
       .then((res) => {
         setMain(res.products);
@@ -29,6 +31,7 @@ function ProductView(props) {
 
   return (
     <Body>
+      {console.log("pv")}
       <NavBar />
       {main.length >= 1 ? (
         <Top>

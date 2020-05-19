@@ -1,50 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import FacebookLogin from "react-facebook-login";
+
+import { HWAN_URL } from "../../Constants"; // 지환님 IP
 
 import color from "../../Styles/color";
-
 
 function SignIn({ history }) {
   const [mobile_number, setMobile_number] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [facebookToken, setFacebookToken] = useState(null);
 
   const handleSignIn = async () => {
     try {
-      const response = await axios.post(
-        "http://10.58.6.197:8000/account/sign-in",
-        {
-          mobile_number,
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${HWAN_URL}/user/sign-in`, {
+        mobile_number,
+        email,
+        password,
+      });
+
       // console.log("signIn..", response);
       localStorage.setItem("access_token", response.data.token);
-
-      // try {
-      //   const res = await axios.get(
-      //     "http://10.58.6.197:8000/account/user-profile",
-      //     {
-      //       headers: {
-      //         Authorization: localStorage.getItem("access_token"),
-      //       },
-      //     }
-      //   );
-      //   console.log(res);
-      //   console.log(localStorage.getItem("access_token"));
-      // } catch (e) {
-      //   console.log(e);
-      //   console.log(localStorage.getItem("access_token"));
-      // }
 
       history.push("/");
     } catch (e) {
       // console.log("bad request...", e.response);
       e.response && alert(e.response.data.message);
     }
+  };
+
+  const postToken = async () => {
+    console.log("postToken..", facebookToken);
+    try {
+      const res = await axios.post(`https://10.58.3.89:8000/user/fblogin`, {
+        token: facebookToken,
+      });
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const didMountRef = useRef(false);
+  useEffect(() => {
+    if (didMountRef && facebookToken) postToken();
+    else didMountRef.current = true;
+  });
+
+  const responseFacebook = (response) => {
+    console.log("facebook", response);
+    setFacebookToken(response.accessToken);
   };
 
   return (
@@ -80,10 +88,27 @@ function SignIn({ history }) {
           <Sns src="https://pilly.kr/images/icons/auth/icon-auth-kakaotalk.png" />
           KAKAO 로그인
         </KakaoBtn>
-        <FbBtn>
-          <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />
-          FACEBOOK
-        </FbBtn>
+
+        {/* 주소로 redirect */}
+
+        {/* <a href="https://www.facebook.com/v2.11/dialog/oauth?client_id=1081499318875893&redirect_uri=https://localhost:3000/">
+          <FbBtn>
+            <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />
+            FACEBOOK
+          </FbBtn>
+        </a> */}
+
+        {/* react-facebook Library */}
+
+        <FacebookLogin
+          appId="1081499318875893"
+          autoLoad={false}
+          callback={responseFacebook}
+          cssClass={<FbBtn />}
+          icon={
+            <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />
+          }
+        />
         <NaverBtn>
           <Sns src="https://pilly.kr/images/icons/auth/icon-auth-naver.png" />
           NAVER 로그인
