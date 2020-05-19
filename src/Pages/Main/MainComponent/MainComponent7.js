@@ -16,22 +16,22 @@ function MainPage7(props) {
           <Text>{subscribe[0].content}</Text>
           <Card>
             <Discount>
-              <CardImg1 src={subscribe[1].image_url.slice(2, 52)} />
+              <CardImg1 src={subscribe[1].image_url.slice(0, 50)} />
               <CardIcon1
                 src={subscribe[1].image_url.slice(
-                  55,
-                  subscribe[1].image_url.length - 2
+                  51,
+                  subscribe[1].image_url.length
                 )}
               />
               <BoldText1>{subscribe[1].title}</BoldText1>
               <SubText1>{subscribe[1].content}</SubText1>
             </Discount>
             <Delivery>
-              <CardImg2 src={subscribe[2].image_url.slice(2, 52)} />
+              <CardImg2 src={subscribe[2].image_url.slice(0, 50)} />
               <CardIcon2
                 src={subscribe[2].image_url.slice(
-                  55,
-                  subscribe[2].image_url.length - 2
+                  51,
+                  subscribe[2].image_url.length
                 )}
               />
               <BoldText2>{subscribe[2].title}</BoldText2>

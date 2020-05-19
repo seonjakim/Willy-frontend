@@ -57,12 +57,8 @@ function ProductView(props) {
         {products.length > 1
           ? products.slice(1, 8).map((product, idx) => {
               return (
-                <Card
-                  style={{ backgroundColor: `${product.color}` }}
-                  key={idx}
-                  onClick={() => goToProductLists(idx + 1)}
-                >
-                  <CardTop>
+                <Card style={{ backgroundColor: `${product.color}` }} key={idx}>
+                  <CardTop onClick={() => goToProductLists(idx + 1)}>
                     <div>
                       <SubName>{product.sub_name}</SubName>
                       <Name>{product.name}</Name>
@@ -92,7 +88,9 @@ function ProductView(props) {
                     </DayAndPrice>
                   </CardBottom>
                   <Div>
-                    <ViewMore>더보기</ViewMore>
+                    <ViewMore onClick={() => goToProductLists(idx + 1)}>
+                      더보기
+                    </ViewMore>
                     <BascketButton
                       state={state.indexOf(product.id) !== -1 ? state : ""}
                       onClick={() => buttonChange(idx)}
