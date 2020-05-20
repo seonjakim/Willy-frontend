@@ -1,25 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { HO_URL } from "../../Constants";
 
 import Header from "./Header/Header";
 import Content from "./Content/Content";
 
-const Story = () => {
+const Story = ({ history }) => {
+  const [header, setHeader] = useState({});
+  const [content, setContent] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        "http://10.58.6.120:8000/information/story"
+      const { data: story_list } = await axios.get(
+        `${HO_URL}/information/story`
       );
-      console.log(response);
+      console.log(story_list["story_list"]);
+      setHeader(story_list["story_list"][0]["header_image"]);
+      setContent(story_list["story_list"][1]["story"]);
+      setIsLoading(false);
     };
     fetchData();
-  });
+  }, []);
 
   return (
     <StoryWrapper>
-      <Header />
-      <Content />
+      {isLoading ? (
+        <h2>Fetching...</h2>
+      ) : (
+        <>
+          <Header header={header} history={history} />
+          <Content content={content} />
+        </>
+      )}
     </StoryWrapper>
   );
 };

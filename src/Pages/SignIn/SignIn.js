@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import { HWAN_URL } from "../../Constants"; // 지환님 IP
 
 import color from "../../Styles/color";
-
 
 function SignIn({ history }) {
   const [mobile_number, setMobile_number] = useState("");
@@ -13,32 +13,14 @@ function SignIn({ history }) {
 
   const handleSignIn = async () => {
     try {
-      const response = await axios.post(
-        "http://10.58.6.197:8000/account/sign-in",
-        {
-          mobile_number,
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${HWAN_URL}/user/sign-in`, {
+        mobile_number,
+        email,
+        password,
+      });
+
       // console.log("signIn..", response);
       localStorage.setItem("access_token", response.data.token);
-
-      // try {
-      //   const res = await axios.get(
-      //     "http://10.58.6.197:8000/account/user-profile",
-      //     {
-      //       headers: {
-      //         Authorization: localStorage.getItem("access_token"),
-      //       },
-      //     }
-      //   );
-      //   console.log(res);
-      //   console.log(localStorage.getItem("access_token"));
-      // } catch (e) {
-      //   console.log(e);
-      //   console.log(localStorage.getItem("access_token"));
-      // }
 
       history.push("/");
     } catch (e) {
@@ -154,7 +136,7 @@ export const Buttons = styled.button`
 
 export const LoginBtn = styled(Buttons)`
   background-color: ${color.pillyColor};
-  justify-content: center;
+  justify-content: center;ㄲ
   margin-top: 35px;
 `;
 
