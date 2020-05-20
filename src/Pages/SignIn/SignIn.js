@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import FacebookLogin from "react-facebook-login";
+import Kakao from "kakaojs";
 
 import { HWAN_URL } from "../../Constants"; // 지환님 IP
 import color from "../../Styles/color";
 
+// window.Kakao.init("0f69e11dca8e5bb956c1b1183d311fde");
+// console.log(Kakao.isInitialized());
 function SignIn({ history }) {
   const [mobile_number, setMobile_number] = useState("");
   const [email, setEmail] = useState("");
@@ -26,7 +29,6 @@ function SignIn({ history }) {
 
       history.push("/");
     } catch (e) {
-      // console.log("bad request...", e.response);
       e.response && alert(e.response.data.message);
     }
   };
@@ -52,6 +54,31 @@ function SignIn({ history }) {
   const responseFacebook = (response) => {
     console.log("facebook", response);
     setFacebookToken(response.accessToken);
+  };
+
+  const kakaoLogin = () => {
+    Kakao.Auth.login({
+      success: function (res) {
+        console.log(res);
+        fetch("http://10.58.0.50:8000/user/socialuser", {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: res.access_token,
+            type: 3,
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res);
+            localStorage.setItem("token", res.access_token);
+            //history.push("/");
+          });
+      },
+      fail: function (err) {
+        console.log(err);
+      },
+    });
   };
 
   return (
@@ -83,7 +110,7 @@ function SignIn({ history }) {
             <PwJoin>회원가입</PwJoin>
           </Link>
         </Find>
-        <KakaoBtn>
+        <KakaoBtn onClick={() => kakaoLogin()}>
           <Sns src="https://pilly.kr/images/icons/auth/icon-auth-kakaotalk.png" />
           KAKAO 로그인
         </KakaoBtn>
