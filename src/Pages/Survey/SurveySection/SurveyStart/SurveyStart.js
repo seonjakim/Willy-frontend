@@ -5,6 +5,7 @@ import logo_pilly from "../../../../Images/logo_pilly.png";
 
 function SurveyStart(props) {
   const { handleClickPlus } = props;
+
   return (
     <SurveyStartWrapper>
       <StartHeader>

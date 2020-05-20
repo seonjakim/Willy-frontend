@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { HWAN_URL } from "../../Constants"; // 지환님 IP
 
 import { LoginBtn, KakaoBtn, FbBtn, NaverBtn, Sns } from "../SignIn/SignIn";
@@ -18,6 +21,13 @@ const SignUp = ({ history }) => {
   const [agreeAll, setAgreeAll] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState([false, false]);
   const [agreeSMS, setAgreeSMS] = useState(false);
+
+  // Toast 메세지
+  const notify = (message) => {
+    toast.info(message, {
+      position: "bottom-left",
+    });
+  };
 
   //인증 end초 타이머
   const setTimer = (end) => {
@@ -48,15 +58,13 @@ const SignUp = ({ history }) => {
           agreement: agreeSMS ? "1" : "0",
         });
         console.log("reponse..", response);
-        alert(response.data.message);
+        notify(response.data.message);
         history.push("/signin");
       } catch (e) {
-        console.log(agreeTerms.every((term) => term === true));
-        console.log("bad request..", e.response);
-        e.response && alert(e.response.data.message);
+        e.response && notify(e.response.data.message);
       }
     } else {
-      alert("비밀번호가 일치하지 않습니다.");
+      notify("비밀번호가 일치하지 않습니다.");
     }
   };
 
@@ -69,13 +77,13 @@ const SignUp = ({ history }) => {
         });
         console.log(response);
         setTimer(25);
-        alert(response.data.message);
+        notify(response.data.message);
       } catch (e) {
         console.log(e.response);
-        e.response && alert(e.response.data.message); //undefined
+        e.response && notify(e.response.data.message); //undefined
       }
     } else {
-      alert("올바른 휴대폰 번호를 입력해주세요.");
+      notify("올바른 휴대폰 번호를 입력해주세요.");
     }
   };
 
@@ -87,15 +95,15 @@ const SignUp = ({ history }) => {
         auth_number: authNumber,
       });
       if (response.status === 200) {
-        alert(response.data.message);
+        notify(response.data.message);
         setMobileAgreement("1");
       }
       console.log(response.data.message);
-      alert(response.data.message);
+      notify(response.data.message);
     } catch (e) {
       console.log("bad request..", e.response);
       console.log(authNumber);
-      alert(e.response.data.message);
+      notify(e.response.data.message);
     }
   };
 
@@ -203,6 +211,7 @@ const SignUp = ({ history }) => {
           NAVER 회원가입
         </NaverModify>
       </BtnWrapper>
+      <StyledToastContainer />
     </SignUpWrapper>
   );
 };
@@ -335,4 +344,15 @@ const FbModify = styled(FbBtn)`
 
 const NaverModify = styled(NaverBtn)`
   padding: 0 95px;
+`;
+
+const StyledToastContainer = styled(ToastContainer).attrs({
+  className: "toast-container",
+})`
+  width: 300px;
+  font-size: 16px;
+
+  .Toastify__toast-body {
+    margin-left: 10px;
+  }
 `;

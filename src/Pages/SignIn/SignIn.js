@@ -4,6 +4,8 @@ import styled from "styled-components";
 import axios from "axios";
 import FacebookLogin from "react-facebook-login";
 import Kakao from "kakaojs";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { HWAN_URL } from "../../Constants"; // 지환님 IP
 import color from "../../Styles/color";
@@ -16,6 +18,14 @@ function SignIn({ history }) {
   const [password, setPassword] = useState("");
   const [facebookToken, setFacebookToken] = useState(null);
 
+  // Toast 메세지
+  const notify = (message) => {
+    toast.info(message, {
+      position: "bottom-left",
+    });
+  };
+
+  // 로그인 버튼 클릭
   const handleSignIn = async () => {
     try {
       const response = await axios.post(`${HWAN_URL}/user/sign-in`, {
@@ -29,10 +39,12 @@ function SignIn({ history }) {
 
       history.push("/");
     } catch (e) {
-      e.response && alert(e.response.data.message);
+      console.log(e.response);
+      e.response && notify(e.response.data.message);
     }
   };
 
+  // 페이스북 로그인
   const postToken = async () => {
     console.log("postToken..", facebookToken);
     try {
@@ -56,6 +68,7 @@ function SignIn({ history }) {
     setFacebookToken(response.accessToken);
   };
 
+  // 카카오 로그인
   const kakaoLogin = () => {
     Kakao.Auth.login({
       success: function (res) {
@@ -77,6 +90,7 @@ function SignIn({ history }) {
       },
       fail: function (err) {
         console.log(err);
+        notify(err);
       },
     });
   };
@@ -85,7 +99,9 @@ function SignIn({ history }) {
     <SignInWrapper>
       <BoxSize>
         <LogoWrapper>
-          <Logo src="https://pilly.kr/images/logo-colored.png" />
+          <Link to={"/"}>
+            <Logo src="https://pilly.kr/images/logo-colored.png" />
+          </Link>
         </LogoWrapper>
 
         <Input
@@ -117,16 +133,15 @@ function SignIn({ history }) {
 
         {/* 주소로 redirect */}
 
-        {/* <a href="https://www.facebook.com/v2.11/dialog/oauth?client_id=1081499318875893&redirect_uri=https://localhost:3000/">
+        <a href="https://www.facebook.com/v2.11/dialog/oauth?client_id=1081499318875893&redirect_uri=https://localhost:3000/">
           <FbBtn>
             <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />
             FACEBOOK
           </FbBtn>
-        </a> */}
+        </a>
 
         {/* react-facebook Library */}
-
-        <FacebookLogin
+        {/* <FacebookLogin
           appId="1081499318875893"
           autoLoad={false}
           callback={responseFacebook}
@@ -134,12 +149,13 @@ function SignIn({ history }) {
           icon={
             <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />
           }
-        />
+        /> */}
         <NaverBtn>
           <Sns src="https://pilly.kr/images/icons/auth/icon-auth-naver.png" />
           NAVER 로그인
         </NaverBtn>
       </BoxSize>
+      <StyledToastContainer />
     </SignInWrapper>
   );
 }
@@ -242,5 +258,16 @@ const PwJoin = styled.span`
   letter-spacing: -1px;
   &:last-child {
     border-left: 1px solid rgba(51, 51, 51, 0.6);
+  }
+`;
+
+const StyledToastContainer = styled(ToastContainer).attrs({
+  className: "toast-container",
+})`
+  width: 300px;
+  font-size: 16px;
+
+  .Toastify__toast-body {
+    margin-left: 10px;
   }
 `;

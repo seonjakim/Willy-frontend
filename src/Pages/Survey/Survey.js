@@ -1,84 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Route } from "react-router-dom";
-import axios from "axios";
+import { connect } from "react-redux";
+import { clickPlus } from "../../Actions";
 
-import SurveySection from "./SurveySection/SurveySection";
 import SurveyStart from "./SurveySection/SurveyStart/SurveyStart";
 import SurveyTest from "./SurveySection/SurveyTest/SurveyTest";
+import SurveyEnd from "./SurveySection/SurveyEnd/SurveyEnd";
 
-function Survey({ match, history }) {
+function Survey({ click, handleClickPlus, history }) {
   const goBack = () => history.goBack();
-
-  //추가
-  const [survey, setSurvey] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [count, setCount] = useState(-1);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data: survey } = await axios.get("data/survey.json");
-      setSurvey(survey["survey"]);
-      setIsLoading(false);
-    };
-    fetchData();
-  }, []);
-
-  const handleClickPlus = () => {
-    if (survey && count < survey.length) setCount(count + 1);
-  };
-
-  const handleClickMinus = () => {
-    if (survey && count > -1) setCount(count - 1);
-  };
+  console.log(click);
 
   return (
     <SurveyWrapper>
       <ContentsWrapper>
         <Contents>
-          {/* <CloseButton onClick={goBack}>X</CloseButton> */}
           <>
-            {count === -1 ? (
+            {click === -1 ? (
               <>
                 <CloseButton onClick={goBack}>X</CloseButton>
                 <SurveyStart handleClickPlus={handleClickPlus} />
               </>
+            ) : click !== "FINISH" ? (
+              <>
+                <CloseButton onClick={goBack}>X</CloseButton>
+                <SurveyTest />
+              </>
             ) : (
-              <SurveyTest
-                survey={survey}
-                count={count}
-                handleClickPlus={handleClickPlus}
-                handleClickMinus={handleClickMinus}
-              />
+              <>
+                <SurveyEnd history={history} />
+              </>
             )}
+            {/* <SurveyEnd history={history} /> */}
           </>
-
-          {/* <SurveySection
-            survey={survey}
-            count={count}
-            handleClickPlus={handleClickPlus}
-            handleClickMinus={handleClickMinus}
-            history={history}
-          /> */}
-          {/* <Route
-            path={match.path}
-            render={() => (
-              <SurveySection
-                survey={survey}
-                count={count}
-                handleClickPlus={handleClickPlus}
-                handleClickMinus={handleClickMinus}
-              />
-            )}
-          /> */}
         </Contents>
       </ContentsWrapper>
     </SurveyWrapper>
   );
 }
 
-export default Survey;
+const mapStateToProps = (state) => ({
+  click: state.clickCounter.click,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleClickPlus: () => dispatch(clickPlus()),
+});
+
+// export default Survey;
+export default connect(mapStateToProps, mapDispatchToProps)(Survey);
 
 //styled-components
 const SurveyWrapper = styled.div`

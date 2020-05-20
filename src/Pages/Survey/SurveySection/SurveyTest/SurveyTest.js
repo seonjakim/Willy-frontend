@@ -1,49 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import axios from "axios";
+import { connect } from "react-redux";
 
 import arrow_right from "../../../../Images/arrow_right.png";
 import arrow_right_dim from "../../../../Images/arrow_right_dim.png";
 
 import SurveyForm from "./SurveyForm/SurveyForm";
-import SurveyButton from "./SurveyButton/SurveyButton";
 
-function SurveyTest(props) {
-  const { survey, count, handleClickPlus, handleClickMinus } = props;
-  // const [survey, setSurvey] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  // const [section, setSection] = useState("");
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const { data: survey } = await axios.get("data/survey.json");
-  //     setSurvey(survey["survey"]);
-  //     setIsLoading(false);
-  //   };
-  //   fetchData();
-  // }, []);
+function SurveyTest({ surveyForm }) {
+  const { type, percentage } = surveyForm;
+  const typeToNum = {
+    기본정보: 0,
+    "증상/불편": 1,
+    "생활 습관": 2,
+    기타: 3,
+  };
 
   return (
     <SurveyTestWrapper>
-      {console.log("Test", survey)}
       <TestHeader>
-        <TestItems count={count}>
+        <TestItems type={typeToNum[type]}>
           <TestItem>기본정보</TestItem>
           <TestItem>증상/불편</TestItem>
           <TestItem>생활 습관</TestItem>
           <TestItem>기타</TestItem>
         </TestItems>
         <Progress>
-          <ProgressRate rate="3%" />
+          <ProgressRate rate={percentage + "%"} />
         </Progress>
       </TestHeader>
-      {isLoading ? <h2>...</h2> : <SurveyForm survey={survey[count]} />}
-      <SurveyButton />
+      <SurveyForm />
     </SurveyTestWrapper>
   );
 }
 
-export default SurveyTest;
+const mapStateToProps = (state) => ({
+  surveyForm: state.surveyForm,
+});
+
+// export default SurveyTest;
+export default connect(mapStateToProps, "")(SurveyTest);
 
 const SurveyTestWrapper = styled.div`
   width: 100%;
@@ -72,7 +68,7 @@ const TestItems = styled.ul`
 
   ${TestItem} {
     /* section 색 */
-    &:nth-child(${(props) => props.count + 1}) {
+    &:nth-child(${(props) => props.type + 1}) {
       color: #e26d59;
     }
 
@@ -92,7 +88,7 @@ const TestItems = styled.ul`
       background-position: 50% 50%;
     }
 
-    &:nth-child(${(props) => props.count + 1}):after {
+    &:nth-child(${(props) => props.type + 1}):after {
       background-image: url(${arrow_right});
     }
   }

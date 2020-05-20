@@ -9,7 +9,8 @@ function Nutrient() {
 
   const animateCircle = () => {
     const ctx = document.querySelector(".canvas").getContext("2d");
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = "#4183d7";
     const end = Math.PI * 1.5;
     for (let i = 0; i < 100; i++) {
       setTimeout(() => {
@@ -150,7 +151,7 @@ const Title = styled.p`
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #999;
+    background-color: #4183d7;
   }
 `;
 
@@ -204,7 +205,7 @@ const Score = styled.span`
 const Num = styled.em`
   display: block;
   font-size: 22px;
-  font-weight: 100;
+  font-weight: 600;
 `;
 
 // DetailWrapper
