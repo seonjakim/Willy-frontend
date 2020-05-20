@@ -1,12 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 
+import Toast from "../../../../Component/Toast/Toast";
 import logo_pilly from "../../../../Images/logo_pilly.png";
 
 function SurveyStart(props) {
   const { handleClickPlus } = props;
+
+  const Toasts = () => {
+    setTimeout(() => {
+      console.log("toast..");
+      return <Toast />;
+    }, 2000);
+    return "";
+  };
+
   return (
     <SurveyStartWrapper>
+      <Toasts />
+      {/* <Toasts></Toasts> */}
       <StartHeader>
         <IconPilly />
         <Title>

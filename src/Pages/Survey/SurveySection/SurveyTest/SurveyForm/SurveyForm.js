@@ -1,59 +1,145 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+import axios from "axios";
 import { connect } from "react-redux";
+import { getSurvey, getAnswer, clickFinish } from "../../../../../Actions";
+import { HO_URL } from "../../../../../Constants";
 
-function SurveyForm(props) {
-  const count = props.count;
-  console.log("form", props);
-  const { section, problem, title, content, answer_list } = props.survey;
+import SurveyButton from "../SurveyButton/SurveyButton";
 
+function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
   const [radioClicked, setRadioClicked] = useState(null);
   const [checkboxClicked, setCheckboxClicked] = useState([]);
+  const [textInput, setTextInput] = useState("");
+  const [name, setName] = useState("");
+  let box = "";
 
+  console.log("click..", click);
+  console.log("Fm..", surveyForm);
+  console.log("text..", textInput);
+  console.log("radio..", radioClicked);
+  console.log("check..", checkboxClicked);
+
+  const {
+    id,
+    person_id,
+    question,
+    detail_question,
+    sub_question,
+    image_url,
+    limit,
+  } = surveyForm;
+
+  const answer_list = surveyForm.answer_list;
+
+  const setAnswer = () => {
+    if (radioClicked) {
+      console.log(radioClicked);
+      console.log(answer_list[radioClicked - 1].id);
+      box = "radio";
+      return [answer_list[radioClicked - 1].id];
+    } else if (textInput) {
+      box = "textbox";
+      return [textInput];
+    } else if (checkboxClicked.length > 0) {
+      console.log(
+        checkboxClicked
+          .map((check, idx) => (check ? answer_list[idx].id : undefined))
+          .filter((e) => e !== undefined)
+      );
+      box = "checkbox";
+      return checkboxClicked
+        .map((check, idx) => (check ? answer_list[idx].id : undefined))
+        .filter((e) => e !== undefined);
+    }
+  };
+
+  console.log("name..", name);
+  console.log("answer..", setAnswer());
+  console.log("personID..", person_id);
+  console.log("box", box);
+
+  //유저 인풋 -> api 바디에 포함
+  let userInput = {
+    question: id ? id : "0",
+    answer: setAnswer() || [0],
+    person_id: person_id,
+    box: box,
+  };
+
+  //SurveyForm Fetch
   useEffect(() => {
-    //answer_list input에 checkbox 포함 시 checkboxClicked 초기화
-    if (answer_list.map((e) => e.input).includes("checkbox")) {
-      const initCheckboxClicked = () => {
+    const fetchData = async () => {
+      console.log("fetch..");
+      const response = await axios.post(`${HO_URL}/survey`, userInput);
+      console.log("response!", response.data.survey);
+      if (response.data.message && response.data.message === "finish") {
+        //마지막 설문시
+        //click 마지막 == .length
+        handleClickFinish();
+      } else {
+        console.log(response.data.survey);
+        handleGetSurvey(response.data.survey[0]);
+      }
+    };
+    fetchData();
+    return () => {
+      setRadioClicked(null); // 다음 설문 이동 시(count 증가) 버튼 클릭 초기화
+      setCheckboxClicked([]); // ""
+      setTextInput(""); // ""
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [handleGetSurvey, click]);
+
+  //체크박스 초기화
+  useEffect(() => {
+    const initializeContent = () => {
+      if (answer_list.map((e) => e.box).includes("checkbox")) {
         const checkboxClicked = Array.from(
           { length: answer_list.length },
           () => false
         );
         setCheckboxClicked(checkboxClicked);
-      };
-      initCheckboxClicked();
-    }
-    return () => {
-      setRadioClicked(null); // 다음 설문 이동 시(count 증가) 버튼 클릭 초기화
-      setCheckboxClicked(null); // ""
+      }
     };
-  }, [count, answer_list]);
+    initializeContent();
+  }, [answer_list]);
 
   const handleRadioClick = (index) => {
     setRadioClicked(index);
   };
 
-  const handleCheckboxClick = (index) => {
+  const handleCheckboxClick = (index, limit) => {
+    const clickedNum = checkboxClicked.filter((check) => check === true).length;
+    console.log("num..", clickedNum, "limit", Number(limit));
     setCheckboxClicked(
-      checkboxClicked.map((checkbox, idx) =>
-        idx === index ? !checkbox : checkbox
-      )
+      checkboxClicked.map((checkbox, idx) => {
+        if (idx === index) {
+          return !checkbox;
+        } else {
+          if (clickedNum < Number(limit)) {
+            return checkbox;
+          }
+        }
+        // idx === index ? !checkbox : checkbox
+      })
     );
   };
 
   return (
     <SurveyFormWrapper>
-      {console.log("form", props.survey)}
-      <Num>질문 {count + 1}</Num>{" "}
-      {problem ? (
+      <Num>질문 {click + 1}</Num>{" "}
+      {detail_question ? (
         <>
           <Space>|</Space>
-          <Num>{problem}</Num>
+          <Num>{detail_question}</Num>
         </>
       ) : (
         ""
       )}
-      <Title>{title}</Title>
-      <Content>{content}</Content>
+      <Title>{question.startsWith("님") ? name + question : question}</Title>
+      <Image img={image_url} />
+      <Content>{sub_question}</Content>
       <AnswerWrapper>
         {answer_list.map((e, index) => (
           <AnswerList
@@ -63,26 +149,37 @@ function SurveyForm(props) {
               checkboxClicked && checkboxClicked[index] === true ? index + 1 : 0
             }
           >
-            {e.label !== undefined ? (
+            {e.box !== "textbox" ? (
               <Label
                 onClick={() => {
-                  e.input === "radio"
+                  e.box === "radio"
                     ? handleRadioClick(index + 1)
-                    : handleCheckboxClick(index);
+                    : handleCheckboxClick(index, limit);
                 }}
               >
-                {e.input === "radio" ? <Radio /> : <Checkbox />}
-                {e.label}
+                {e.box === "radio" ? <Radio /> : <Checkbox />}
+                {e.answer}
               </Label>
             ) : (
               ""
             )}
-            {e.input !== "radio" && e.input !== "checkbox" ? (
+            {e.box !== "radio" && e.box !== "checkbox" ? (
               <InputContent
-                type={e.input}
+                type={
+                  answer_list[0].placeholder === "이름" ||
+                  answer_list[0].placeholder === "이메일" ||
+                  answer_list.some((answer) => answer.placeholder === "기타")
+                    ? "text"
+                    : "number"
+                }
                 placeholder={e.placeholder}
-                min={e.min}
-                max={e.max}
+                value={textInput}
+                onChange={(e) => {
+                  if (click === 0) setName(e.target.value);
+                  setTextInput(e.target.value);
+                }}
+                // min={e.min}
+                // max={e.max}
               />
             ) : (
               ""
@@ -90,17 +187,25 @@ function SurveyForm(props) {
           </AnswerList>
         ))}
       </AnswerWrapper>
+      <SurveyButton answer={setAnswer()} />
     </SurveyFormWrapper>
   );
 }
 
 const mapStateToProps = (state) => ({
   click: state.clickCounter.click,
+  surveyForm: state.surveyForm,
 });
 
-export default connect(mapStateToProps, "")(SurveyForm);
+const mapDispatchToProps = (dispatch) => ({
+  handleGetSurvey: (survey) => dispatch(getSurvey(survey)), //survey form 질문
+  handleClickFinish: () => dispatch(clickFinish()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyForm);
 
 const SurveyFormWrapper = styled.div`
+  position: relative;
   padding-top: 36px;
   margin: 0 auto;
   width: 670px;
@@ -129,6 +234,18 @@ const Title = styled.p`
   font-size: 24px;
   font-weight: 700;
   color: #333;
+`;
+
+const Image = styled.span`
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  width: 60px;
+  height: 60px;
+  background-image: url(${(props) => props.img});
+  background-size: 60px 60px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 `;
 
 const Content = styled.p`

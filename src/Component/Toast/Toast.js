@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const Toast = (content, color) => {
+const Toast = () => {
   return (
     <ToastWrapper>
-      <Item color={color}>{content}</Item>
+      <Item>Hello!</Item>
     </ToastWrapper>
   );
 };

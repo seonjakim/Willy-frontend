@@ -1,7 +1,7 @@
 import { CLICK_MINUS, CLICK_PLUS } from "../Actions/actionTypes";
 
 const initialState = {
-  click: 0,
+  click: -1,
   diff: 1,
 };
 
@@ -16,6 +16,11 @@ const clickCounter = (state = initialState, action) => {
       return {
         ...state,
         click: state.click + state.diff,
+      };
+    case "CLICK_FINISH":
+      return {
+        ...state,
+        click: "FINISH",
       };
     default:
       return state;

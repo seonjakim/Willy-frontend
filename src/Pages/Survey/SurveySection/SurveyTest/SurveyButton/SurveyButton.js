@@ -5,12 +5,23 @@ import { clickPlus, clickMinus } from "../../../../../Actions";
 
 function SurveyButton(props) {
   // console.log("props", props);
-  const { handleClickPlus, handleClickMinus } = props;
+  const { answer, handleClickPlus, handleClickMinus } = props;
 
   return (
     <SurveyButtonWrapper>
+      {console.log("button....", answer)}
       <ButtonPrev onClick={handleClickMinus}>이전</ButtonPrev>
-      <ButtonNext onClick={handleClickPlus}>이후</ButtonNext>
+      <ButtonNext
+        onClick={() => {
+          if (!answer || answer.length === 0) {
+            console.log("nono");
+            return;
+          }
+          handleClickPlus();
+        }}
+      >
+        이후
+      </ButtonNext>
     </SurveyButtonWrapper>
   );
 }
