@@ -3,7 +3,7 @@ import styled from "styled-components";
 import NavBar from "../../Component/NavBar/NavBar";
 import ReviewLists from "./ReviewLists";
 
-function Review() {
+function Review(props) {
   return (
     <Body>
       <NavBar />
@@ -15,7 +15,7 @@ function Review() {
           <span>을 확인하세요!</span>
         </div>
       </Header>
-      <ReviewLists />
+      <ReviewLists props={props} />
     </Body>
   );
 }

@@ -78,7 +78,6 @@ const QNAbox = styled.div`
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.06);
   width: 768px;
   margin: 20px auto 0 auto;
-
   cursor: pointer;
 
   img {
