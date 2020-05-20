@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { HO_URL } from "../../Constants"; // 석호님 IP
-
 import NavBar from "../../Component/NavBar/NavBar";
-import BascketButton from "../../Component/BascketButton/BascketButton";
 import Footer from "../../Component/Footer/Footer";
+import { connect } from "react-redux";
+import { addNavCart } from "../../Actions/index";
 
 function ProductView(props) {
   const [main, setMain] = useState([]);
@@ -21,8 +20,9 @@ function ProductView(props) {
       });
   }, []);
 
-  const buttonChange = (idx) => {
-    setState(state.concat(idx + 1));
+  const buttonChange = (id) => {
+    setState(state.concat(id));
+    props.addNavCart(id);
   };
 
   const goToProductLists = (id) => {
@@ -31,8 +31,7 @@ function ProductView(props) {
 
   return (
     <Body>
-      {console.log("pv")}
-      <NavBar />
+      <NavBar props={props} />
       {main.length >= 1 ? (
         <Top>
           <MainImg src={main[0].product_header[0].image_url} alt="" />
@@ -94,10 +93,29 @@ function ProductView(props) {
                     <ViewMore onClick={() => goToProductLists(idx + 1)}>
                       더보기
                     </ViewMore>
-                    <BascketButton
-                      state={state.indexOf(product.id) !== -1 ? state : ""}
-                      onClick={() => buttonChange(idx)}
-                    />
+                    <CarttButton
+                      onClick={() => buttonChange(product.id)}
+                      data={state}
+                      id={product.id}
+                    >
+                      <button>
+                        <Inner>
+                          <Img
+                            src={
+                              state.indexOf(product.id) === -1
+                                ? "https://pilly.kr/images/icons/icon-plus.png"
+                                : ""
+                            }
+                            alt=""
+                          />
+                          <Span1 data={state} id={product.id}>
+                            {state.indexOf(product.id) === -1
+                              ? "장바구니 담기"
+                              : "장바구니 추가됨"}
+                          </Span1>
+                        </Inner>
+                      </button>
+                    </CarttButton>
                   </Div>
                 </Card>
               );
@@ -113,12 +131,8 @@ function ProductView(props) {
         {products.length > 1
           ? products.slice(8, products.length).map((product, idx) => {
               return (
-                <Card
-                  style={{ backgroundColor: `${product.color}` }}
-                  key={idx}
-                  onClick={() => goToProductLists(idx + 8)}
-                >
-                  <CardTop>
+                <Card style={{ backgroundColor: `${product.color}` }} key={idx}>
+                  <CardTop onClick={() => goToProductLists(idx + 8)}>
                     <div>
                       <SubName>{product.sub_name}</SubName>
                       <Name>{product.name}</Name>
@@ -149,10 +163,29 @@ function ProductView(props) {
                   </CardBottom>
                   <Div>
                     <ViewMore>더보기</ViewMore>
-                    <BascketButton
-                      state={state.indexOf(product.id) !== -1 ? state : ""}
-                      onClick={() => buttonChange(idx + 7, product.id)}
-                    />
+                    <CarttButton
+                      onClick={() => buttonChange(product.id)}
+                      data={state}
+                      id={product.id}
+                    >
+                      <button>
+                        <Inner>
+                          <Img
+                            src={
+                              state.indexOf(product.id) === -1
+                                ? "https://pilly.kr/images/icons/icon-plus.png"
+                                : ""
+                            }
+                            alt=""
+                          />
+                          <Span1 data={state} id={product.id}>
+                            {state.indexOf(product.id) === -1
+                              ? "장바구니 담기"
+                              : "장바구니 추가됨"}
+                          </Span1>
+                        </Inner>
+                      </button>
+                    </CarttButton>
                   </Div>
                 </Card>
               );
@@ -164,7 +197,11 @@ function ProductView(props) {
   );
 }
 
-export default withRouter(ProductView);
+const mapDispatchProps = (dispatch) => ({
+  addNavCart: (id) => dispatch(addNavCart(id)),
+});
+
+export default connect(null, mapDispatchProps)(ProductView);
 
 //style
 const Body = styled.div`
@@ -322,4 +359,36 @@ const Bold = styled.p`
 const P = styled.p`
   margin-top: 18px;
   font-size: 16px;
+`;
+
+const CarttButton = styled.div`
+  width: 295px;
+  line-height: 58px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  margin: 29px auto 0 auto;
+
+  background-color: ${(data) =>
+    data.data.indexOf(data.id) === -1 ? "white" : "#ddd"};
+  box-shadow: ${(data) =>
+    data.data.indexOf(data.id) === -1
+      ? "0 5px 4px 0 rgba(0, 0, 0, 0.15)"
+      : "none"};
+  border: ${(data) =>
+    data.data.indexOf(data.id) === -1 ? "none" : "1px solid #ccc"};
+`;
+
+const Img = styled.img`
+  margin-right: 10px;
+`;
+
+const Inner = styled.div``;
+
+const Span1 = styled.span`
+  font-weight: bold;
+  font-size: 16px;
+
+  color: ${(data) => (data.data.indexOf(data.id) === -1 ? "#707070" : "white")};
 `;

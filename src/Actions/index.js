@@ -11,3 +11,10 @@ export const clickMinus = () => {
     type: CLICK_MINUS,
   };
 };
+
+export const addNavCart = (id) => {
+  return {
+    type: "ADD_NAVCART",
+    payload: id,
+  };
+};

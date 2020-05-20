@@ -10,8 +10,9 @@ import MainComponent6 from "./MainComponent/MainComponent6";
 import MainComponent7 from "./MainComponent/MainComponent7";
 import MainComponent8 from "./MainComponent/MainComponent8";
 import MainComponent9 from "./MainComponent/MainComponent9";
+import { HO_URL } from "../../Constants";
 
-function MainPage() {
+function MainPage(props) {
   const [mainDatas, setMainDatas] = useState([]);
   const [slides, setSlides] = useState([]);
   const [boxes, setBoxes] = useState([]);
@@ -22,7 +23,7 @@ function MainPage() {
   const [benefit, setBenefit] = useState([]);
 
   useEffect(() => {
-    fetch("http://10.58.6.120:8000/information/home")
+    fetch(`${HO_URL}/information/home`)
       .then((res) => res.json())
       .then((res) => {
         setMainDatas(res.home_list.slice(0, 1));
@@ -38,7 +39,7 @@ function MainPage() {
 
   return (
     <Main>
-      <NavBar />
+      <NavBar props={props} />
       <MainComponent1 datas={mainDatas} />
       <MainComponent2 datas={slides} />
       <MainComponent3 datas={boxes} />

@@ -6,7 +6,7 @@ import ReviewLists from "./ReviewLists";
 function Review(props) {
   return (
     <Body>
-      <NavBar />
+      <NavBar props={props} />
       <Header>
         <p>고객리뷰</p>
         <div>

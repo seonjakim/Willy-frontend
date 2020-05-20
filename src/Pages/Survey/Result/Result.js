@@ -6,18 +6,22 @@ import UserInfo from "./UserInfo/UserInfo";
 import Summary from "./Summary/Summary";
 import Recommendations from "./Recommendations/Recommendations";
 import ButtonCart from "./ButtonCart/ButtonCart";
+import NavBar from "../../../Component/NavBar/NavBar";
 
-function Result() {
+function Result(props) {
   const [click, setClick] = useState(false);
 
   return (
-    <ResultWrapper>
-      <Banner props={"bad"} />
-      <UserInfo setClick={setClick} />
-      <Summary click={click} setClick={setClick} />
-      <Recommendations recommendations={""} />
-      <ButtonCart />
-    </ResultWrapper>
+    <>
+      <NavBar props={props} />
+      <ResultWrapper>
+        <Banner props={"bad"} />
+        <UserInfo setClick={setClick} />
+        <Summary click={click} setClick={setClick} />
+        <Recommendations recommendations={""} />
+        <ButtonCart />
+      </ResultWrapper>
+    </>
   );
 }
 
