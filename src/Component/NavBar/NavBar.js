@@ -7,13 +7,13 @@ function NavBar(props) {
   const [datas, setDatas] = useState([]);
   const [stateY, setStateY] = useState({ y: 0 });
   const [address] = useState([
-    "survey",
-    "product",
-    "review",
-    "cart",
-    "signin",
-    "story",
-    "cs",
+    "/survey",
+    "/product",
+    "/review",
+    "/cart",
+    "/signin",
+    "/story",
+    "/cs",
   ]);
 
   const onScroll = useCallback(() => {
@@ -32,14 +32,20 @@ function NavBar(props) {
   }, [onScroll]);
 
   const goToPage = (idx) => {
-    props.props.history.push(`/${address[idx]}`);
-
-    if (props.props.match.url === `/${address[idx]}`) {
+    if (idx === 4 && localStorage.getItem("token")) {
+      return localStorage.removeItem("token"), props.props.history.push("/");
+    } else {
+      return props.props.history.push(`${address[idx]}`);
     }
   };
 
   return (
-    <Nav style={{ backgroundColor: stateY.y > 0 ? "white" : "" }}>
+    <Nav
+      style={{
+        backgroundColor: stateY.y > 0 ? "white" : "",
+        boxShadow: stateY.y > 0 ? "0 0 6px 0 rgba(0, 0, 0, 0.14)" : "",
+      }}
+    >
       {props.props.match.url === "/product" && window.scrollY === 0 ? (
         <Link to="/">
           <Img src="https://pilly.kr/images/logo-white.png" alt="" />
@@ -57,15 +63,17 @@ function NavBar(props) {
                   style={{
                     color: "white",
                     borderBottom: `${
-                      props.props.match.url === `/${address[index]}`
+                      props.props.match.url.indexOf(`${address[index]}`) !== -1
                         ? "1px solid white"
-                        : ""
+                        : {}
                     }`,
                   }}
                   onClick={() => goToPage(index)}
                   key={index}
                 >
-                  {data}
+                  {index === 4 && localStorage.getItem("token")
+                    ? "로그아웃"
+                    : data}
                   {index === 3 && props.CartNum.length > 0
                     ? props.CartNum.length
                     : ""}
@@ -76,15 +84,16 @@ function NavBar(props) {
               return (
                 <li
                   style={
-                    props.props.match.url ===
-                    `/${address[index] || props.props.match.url === "/result"}`
+                    props.props.match.url.indexOf(`${address[index]}`) !== -1
                       ? { borderBottom: "1px solid black" }
                       : {}
                   }
                   onClick={() => goToPage(index)}
                   key={index}
                 >
-                  {data}
+                  {index === 4 && localStorage.getItem("token")
+                    ? "로그아웃"
+                    : data}
                   {index === 3 && props.CartNum.length > 0
                     ? props.CartNum.length
                     : ""}

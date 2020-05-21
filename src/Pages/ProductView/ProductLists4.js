@@ -4,7 +4,7 @@ import styled from "styled-components";
 function ProductLists4(props) {
   return (
     <Body>
-      <Title>왜 필리인가?!</Title>
+      <Title>왜 필리인가?</Title>
       <ListsWrap>
         {props.datas.slice(0, 4).map((data, idx) => {
           return (

@@ -3,10 +3,11 @@ import styled from "styled-components";
 import axios from "axios";
 import { HO_URL } from "../../Constants";
 
+import NavBar from "../../Component/NavBar/NavBar";
 import Header from "./Header/Header";
 import Content from "./Content/Content";
 
-const Story = ({ history }) => {
+const Story = (props) => {
   const [header, setHeader] = useState({});
   const [content, setContent] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -25,16 +26,19 @@ const Story = ({ history }) => {
   }, []);
 
   return (
-    <StoryWrapper>
-      {isLoading ? (
-        <h2>Fetching...</h2>
-      ) : (
-        <>
-          <Header header={header} history={history} />
-          <Content content={content} />
-        </>
-      )}
-    </StoryWrapper>
+    <>
+      <NavBar props={props} />
+      <StoryWrapper>
+        {isLoading ? (
+          <h2>Fetching...</h2>
+        ) : (
+          <>
+            <Header header={header} history={props.history} />
+            <Content content={content} />
+          </>
+        )}
+      </StoryWrapper>
+    </>
   );
 };
 

@@ -3,17 +3,17 @@ import styled from "styled-components";
 
 function DetailButton(props) {
   return (
-    <Body onClick={props.onClick} state={props.state}>
+    <DetailButBody onClick={props.onClick} state={props.state}>
       <button>
         <span>장바구니 담기</span>
       </button>
-    </Body>
+    </DetailButBody>
   );
 }
 
 export default DetailButton;
 
-const Body = styled.div`
+const DetailButBody = styled.div`
   width: 232px;
   line-height: 58px;
   border-radius: 30px;

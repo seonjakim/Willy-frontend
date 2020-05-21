@@ -194,7 +194,7 @@ function ProductView(props) {
             })
           : ""}
       </List>
-      <Footer />
+      <Footer props={props} />
     </Body>
   );
 }
@@ -202,6 +202,12 @@ function ProductView(props) {
 const mapDispatchProps = (dispatch) => ({
   addNavCart: (id) => dispatch(addNavCart(id)),
 });
+
+// const mapStateProps = (state) => {
+//   return {
+//     CartNum: state.CartNum,
+//   };
+// };
 
 export default connect(null, mapDispatchProps)(ProductView);
 
@@ -235,6 +241,7 @@ const Card = styled.div`
 const CardTop = styled.div`
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 const CardBottom = styled.div`

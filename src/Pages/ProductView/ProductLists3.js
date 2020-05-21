@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { HO_URL } from "../../Constants"; // 석호님 IP
 
 function ProductLists3() {
   const [datas, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://10.58.3.23:8000/information/story?category=review")
+    fetch(`${HO_URL}/information/story?category=review`)
       .then((res) => res.json())
       .then((res) => {
         setData(res.story_list[1].story);
