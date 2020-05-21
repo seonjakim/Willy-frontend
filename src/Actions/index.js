@@ -1,4 +1,4 @@
-import { CLICK_PLUS, CLICK_MINUS } from "./actionTypes";
+import { CLICK_PLUS, CLICK_MINUS, GET_SURVEY } from "./actionTypes";
 
 export const clickPlus = () => {
   return {
@@ -16,5 +16,25 @@ export const addNavCart = (id) => {
   return {
     type: "ADD_NAVCART",
     payload: id,
+  };
+};
+
+export const clickFinish = () => {
+  return {
+    type: "CLICK_FINISH",
+  };
+};
+
+export const getSurvey = (survey) => {
+  return {
+    type: GET_SURVEY,
+    payload: survey,
+  };
+};
+
+export const getAnswer = (answer) => {
+  return {
+    type: "GET_ANSWER",
+    payload: answer,
   };
 };
