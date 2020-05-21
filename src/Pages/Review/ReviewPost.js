@@ -35,7 +35,7 @@ function ReviewPost(props) {
 
   return (
     <Body>
-      <NavBar />
+      <NavBar props={props} />
       <Header>
         <p>고객리뷰</p>
         <div>
@@ -109,7 +109,7 @@ function ReviewPost(props) {
           <></>
         )}
       </Div>
-      <Footer />
+      <Footer props={props} />
     </Body>
   );
 }

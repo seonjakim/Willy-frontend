@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { HO_URL } from "../../Constants"; // 석호님 IP
 import NavBar from "../../Component/NavBar/NavBar";
-import DetailButton from "../../Component/BascketButton/DetailButton";
 import ProductLists5 from "./ProductLists5";
+import { connect } from "react-redux";
+import { addNavCart } from "../../Actions/index";
 
 function ProductPillyBox(props) {
   const [datas, setData] = useState([]);
   const [explanation, setExplanation] = useState([]);
 
   useEffect(() => {
-    fetch(`http://10.58.3.23:8000/product/${props.match.params.id}`)
+    fetch(`${HO_URL}/product/${props.match.params.id}`)
       .then((res) => res.json())
       .then((res) => {
         setData(res.product_detail);
         setExplanation(res.product_detail[0].explanation_list);
       });
   }, [props.match.params.id]);
+
+  const goToCart = (id) => {
+    props.addNavCart(id);
+  };
+
   return (
     <Body>
-      <NavBar />
+      <NavBar props={props} />
       {datas.length >= 1 ? (
         <>
           <Header
@@ -52,7 +59,13 @@ function ProductPillyBox(props) {
                 <Img2 />
               </ImgWarapper>
               <BascketWrapper>
-                <DetailButton />
+                <DetailButBody
+                  onClick={() => goToCart(datas[5].product_list[0].id)}
+                >
+                  <button>
+                    <span>장바구니 담기</span>
+                  </button>
+                </DetailButBody>
               </BascketWrapper>
             </ContentWrapper>
           </Header>
@@ -70,7 +83,11 @@ function ProductPillyBox(props) {
   );
 }
 
-export default ProductPillyBox;
+const mapDispatchProps = (dispatch) => ({
+  addNavCart: (id) => dispatch(addNavCart(id)),
+});
+
+export default connect(null, mapDispatchProps)(ProductPillyBox);
 
 //style
 const Body = styled.div``;
@@ -160,4 +177,21 @@ const Middle = styled.span`
 const BascketWrapper = styled.div`
   position: absolute;
   margin-top: 21px;
+`;
+
+const DetailButBody = styled.div`
+  width: 232px;
+  line-height: 58px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  margin: 29px auto 0 auto;
+  background-color: #e26d59;
+  box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 0.15);
+  span {
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+  }
 `;

@@ -1,41 +1,30 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
+import { connect } from "react-redux";
 import { HWAN_URL } from "../../Constants"; // 지환님 IP
 
-import { LoginBtn, KakaoBtn, FbBtn, NaverBtn, Sns } from "../SignIn/SignIn";
+import { LoginBtn } from "../SignIn/SignIn";
 import NavBar from "../../Component/NavBar/NavBar";
 
 const SignUp = (props) => {
+  //console.log("소셜로그인페이지:", props);
   const [name, setName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [authNumber, setAuthNumber] = useState("");
   const [authTimer, setAuthTimer] = useState(false);
   const [mobileAgreement, setMobileAgreement] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
   // 약관 동의
   const [agreeAll, setAgreeAll] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState([false, false]);
   const [agreeSMS, setAgreeSMS] = useState(false);
-
-  // Toast 메세지
-  const notify = (message) => {
-    toast.info(message, {
-      position: "bottom-left",
-    });
-  };
 
   //인증 end초 타이머
   const setTimer = (end) => {
     let time = 0;
     const timer = setInterval(() => {
       time += 1;
-      console.log(time);
 
       if (time >= end) {
         clearInterval(timer);
@@ -47,25 +36,24 @@ const SignUp = (props) => {
 
   //회원가입 API
   const register = async () => {
-    if (password === passwordCheck) {
-      try {
-        const response = await axios.post(`${HWAN_URL}/user/sign-up`, {
-          name,
-          mobile_number: mobileNumber,
-          email,
-          password,
-          mobile_agreement: mobileAgreement, //연락처 인증시 1
-          terms: agreeTerms.every((term) => term === true) ? "1" : "0", //모두 true 일 경우 1 반환
-          agreement: agreeSMS ? "1" : "0",
-        });
-        console.log("reponse..", response);
-        notify(response.data.message);
-        props.history.push("/signin");
-      } catch (e) {
-        e.response && notify(e.response.data.message);
-      }
-    } else {
-      notify("비밀번호가 일치하지 않습니다.");
+    try {
+      const response = await axios.post(`${HWAN_URL}/user/sign-up`, {
+        name,
+        mobile_number: mobileNumber,
+        email,
+        mobile_agreement: mobileAgreement, //연락처 인증시 1
+        terms: agreeTerms.every((term) => term === true) ? "1" : "0", //모두 true 일 경우 1 반환
+        agreement: agreeSMS ? "1" : "0",
+        social_type: 3,
+        social_id: props.socialIdStore,
+      });
+      console.log("reponse..", response);
+      alert(response.data.message);
+      props.history.push("/signin");
+    } catch (e) {
+      console.log(agreeTerms.every((term) => term === true));
+      console.log("bad request..", e.response);
+      e.response && alert(e.response.data.message);
     }
   };
 
@@ -78,13 +66,13 @@ const SignUp = (props) => {
         });
         console.log(response);
         setTimer(25);
-        notify(response.data.message);
+        alert(response.data.message);
       } catch (e) {
         console.log(e.response);
-        e.response && notify(e.response.data.message); //undefined
+        e.response && alert(e.response.data.message); //undefined
       }
     } else {
-      notify("올바른 휴대폰 번호를 입력해주세요.");
+      alert("올바른 휴대폰 번호를 입력해주세요.");
     }
   };
 
@@ -96,15 +84,15 @@ const SignUp = (props) => {
         auth_number: authNumber,
       });
       if (response.status === 200) {
-        notify(response.data.message);
+        alert(response.data.message);
         setMobileAgreement("1");
       }
       console.log(response.data.message);
-      notify(response.data.message);
+      alert(response.data.message);
     } catch (e) {
       console.log("bad request..", e.response);
       console.log(authNumber);
-      notify(e.response.data.message);
+      alert(e.response.data.message);
     }
   };
 
@@ -160,20 +148,6 @@ const SignUp = (props) => {
           placeholder="아이디(이메일)을 입력해 주세요."
           onChange={(e) => setEmail(e.target.value)}
         ></SignUpInput>
-        <WordAboveInput>비밀번호</WordAboveInput>
-        <PasswordInput
-          placeholder="비밀번호를 입력해 주세요."
-          type="password"
-          style={{ borderColor: "#d7d7d7" }}
-          onChange={(e) => setPassword(e.target.value)}
-        ></PasswordInput>
-        <WordAboveInput>비밀번호 확인</WordAboveInput>
-        <PasswordInput
-          placeholder="비밀번호를 다시 입력해 주세요."
-          type="password"
-          equal={password === passwordCheck ? true : false} //비밀번호 다르면 false => border-color: red
-          onChange={(e) => setPasswordCheck(e.target.value)}
-        ></PasswordInput>
         {/* -- 약관 -- */}
         <ThickLetter onClick={agreeAllClick}>
           <AgreeBox checked={agreeAll ? checkedOn : checkedOff} /> 모두 동의하기
@@ -201,26 +175,19 @@ const SignUp = (props) => {
         </AgreeBoxWrapper>
         <BtnWrapper>
           <LoginBtn onClick={register}>회원가입</LoginBtn>
-          <KakaoModify>
-            <Sns src="https://pilly.kr/images/icons/auth/icon-auth-kakaotalk.png" />{" "}
-            KAKAO 회원가입
-          </KakaoModify>
-          <FbModify>
-            <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />{" "}
-            FACEBOOK 회원가입
-          </FbModify>
-          <NaverModify>
-            <Sns src="https://pilly.kr/images/icons/auth/icon-auth-naver.png" />{" "}
-            NAVER 회원가입
-          </NaverModify>
         </BtnWrapper>
-        <StyledToastContainer />
       </SignUpWrapper>
     </>
   );
 };
 
-export default SignUp;
+const mapStateProps = (state) => {
+  return {
+    socialIdStore: state.socialIdStore,
+  };
+};
+
+export default connect(mapStateProps)(SignUp);
 
 const SignUpWrapper = styled.div`
   width: 668px;
@@ -250,10 +217,6 @@ const SignUpInput = styled.input`
   padding: 0 30px;
   font-size: 20px;
   cursor: text;
-`;
-
-const PasswordInput = styled(SignUpInput)`
-  border-color: ${(props) => (props.equal ? "#d7d7d7" : "red")};
 `;
 
 const SmallerInput = styled(SignUpInput)`
@@ -335,28 +298,4 @@ const Contract = styled.span`
   right: 0;
   padding-bottom: 5px;
   font-weight: 500;
-`;
-
-const KakaoModify = styled(KakaoBtn)`
-  padding: 0 95px;
-  margin-top: 50px;
-`;
-
-const FbModify = styled(FbBtn)`
-  padding: 0 95px;
-`;
-
-const NaverModify = styled(NaverBtn)`
-  padding: 0 95px;
-`;
-
-const StyledToastContainer = styled(ToastContainer).attrs({
-  className: "toast-container",
-})`
-  width: 300px;
-  font-size: 16px;
-
-  .Toastify__toast-body {
-    margin-left: 10px;
-  }
 `;

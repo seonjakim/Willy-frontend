@@ -6,13 +6,16 @@ import FacebookLogin from "react-facebook-login";
 import Kakao from "kakaojs";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { connect } from "react-redux";
+import { socialId } from "../../Actions/index";
 
 import { HWAN_URL } from "../../Constants"; // 지환님 IP
 import color from "../../Styles/color";
+import NavBar from "../../Component/NavBar/NavBar";
 
 // window.Kakao.init("0f69e11dca8e5bb956c1b1183d311fde");
 // console.log(Kakao.isInitialized());
-function SignIn({ history }) {
+function SignIn(props) {
   const [mobile_number, setMobile_number] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,7 +40,7 @@ function SignIn({ history }) {
       // console.log("signIn..", response);
       localStorage.setItem("access_token", response.data.token);
 
-      history.push("/");
+      props.history.push("/");
     } catch (e) {
       console.log(e.response);
       e.response && notify(e.response.data.message);
@@ -73,19 +76,29 @@ function SignIn({ history }) {
     Kakao.Auth.login({
       success: function (res) {
         console.log(res);
-        fetch("http://10.58.0.50:8000/user/socialuser", {
+        fetch(`${HWAN_URL}/user/socialuser`, {
           method: "GET",
           headers: {
             "Content-type": "application/json",
             Authorization: res.access_token,
-            type: 3,
+            Type: 3,
           },
         })
           .then((res) => res.json())
           .then((res) => {
             console.log(res);
-            localStorage.setItem("token", res.access_token);
-            //history.push("/");
+            if (res.message === "회원가입 필요") {
+              return (
+                console.log("info.id: ", res.info.id),
+                props.socialId(res.info.id),
+                props.history.push("/social/signUp")
+              );
+            } else {
+              return (
+                localStorage.setItem("token", res.token),
+                props.history.push("/")
+              );
+            }
           });
       },
       fail: function (err) {
@@ -96,52 +109,52 @@ function SignIn({ history }) {
   };
 
   return (
-    <SignInWrapper>
-      <BoxSize>
-        <LogoWrapper>
-          <Link to={"/"}>
-            <Logo src="https://pilly.kr/images/logo-colored.png" />
-          </Link>
-        </LogoWrapper>
+    <>
+      <NavBar props={props} />
+      <SignInWrapper>
+        <BoxSize>
+          <LogoWrapper>
+            <Link to={"/"}>
+              <Logo src="https://pilly.kr/images/logo-colored.png" />
+            </Link>
+          </LogoWrapper>
 
-        <Input
-          placeholder="이메일 또는 전화번호를 입력하세요."
-          onChange={(e) =>
-            e.target.value.includes("@")
-              ? setEmail(e.target.value)
-              : setMobile_number(e.target.value)
-          }
-          onKeyUp={() => (window.event.keyCode === 13 ? handleSignIn() : "")} // 엔터로 로그인
-        />
-        <Input
-          placeholder="비밀번호를 입력하세요."
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          onKeyUp={() => (window.event.keyCode === 13 ? handleSignIn() : "")}
-        />
-        <LoginBtn onClick={handleSignIn}>로그인</LoginBtn>
-        <Find>
-          <PwJoin>비밀번호 찾기</PwJoin>
-          <Link to={"/signup"}>
-            <PwJoin>회원가입</PwJoin>
-          </Link>
-        </Find>
-        <KakaoBtn onClick={() => kakaoLogin()}>
-          <Sns src="https://pilly.kr/images/icons/auth/icon-auth-kakaotalk.png" />
-          KAKAO 로그인
-        </KakaoBtn>
+          <Input
+            placeholder="이메일 또는 전화번호를 입력하세요."
+            onChange={(e) =>
+              e.target.value.includes("@")
+                ? setEmail(e.target.value)
+                : setMobile_number(e.target.value)
+            }
+            onKeyUp={() => (window.event.keyCode === 13 ? handleSignIn() : "")} // 엔터로 로그인
+          />
+          <Input
+            placeholder="비밀번호를 입력하세요."
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyUp={() => (window.event.keyCode === 13 ? handleSignIn() : "")}
+          />
+          <LoginBtn onClick={handleSignIn}>로그인</LoginBtn>
+          <Find>
+            <PwJoin>비밀번호 찾기</PwJoin>
+            <Link to={"/signup"}>
+              <PwJoin>회원가입</PwJoin>
+            </Link>
+          </Find>
+          <KakaoBtn onClick={() => kakaoLogin()}>
+            <Sns src="https://pilly.kr/images/icons/auth/icon-auth-kakaotalk.png" />
+            KAKAO 로그인
+          </KakaoBtn>
+          {/* 주소로 redirect */}
 
-        {/* 주소로 redirect */}
-
-        <a href="https://www.facebook.com/v2.11/dialog/oauth?client_id=1081499318875893&redirect_uri=https://localhost:3000/">
-          <FbBtn>
-            <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />
-            FACEBOOK
-          </FbBtn>
-        </a>
-
-        {/* react-facebook Library */}
-        {/* <FacebookLogin
+          <a href="https://www.facebook.com/v2.11/dialog/oauth?client_id=1081499318875893&redirect_uri=https://localhost:3000/">
+            <FbBtn>
+              <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />
+              FACEBOOK
+            </FbBtn>
+          </a>
+          {/* react-facebook Library */}
+          {/* <FacebookLogin
           appId="1081499318875893"
           autoLoad={false}
           callback={responseFacebook}
@@ -150,17 +163,22 @@ function SignIn({ history }) {
             <Sns src="https://pilly.kr/images/icons/auth/icon-auth-facebook.png" />
           }
         /> */}
-        <NaverBtn>
-          <Sns src="https://pilly.kr/images/icons/auth/icon-auth-naver.png" />
-          NAVER 로그인
-        </NaverBtn>
-      </BoxSize>
-      <StyledToastContainer />
-    </SignInWrapper>
+          <NaverBtn>
+            <Sns src="https://pilly.kr/images/icons/auth/icon-auth-naver.png" />
+            NAVER 로그인
+          </NaverBtn>
+        </BoxSize>
+        <StyledToastContainer />
+      </SignInWrapper>
+    </>
   );
 }
 
-export default SignIn;
+const mapDispatchProps = (dispatch) => ({
+  socialId: (id) => dispatch(socialId(id)),
+});
+
+export default connect(null, mapDispatchProps)(SignIn);
 
 export const loginColor = {
   lightFont: "rgba(51,51,51,0.6)", //회원가입,
