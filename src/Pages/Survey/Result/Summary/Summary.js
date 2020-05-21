@@ -1,13 +1,22 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { connect } from "react-redux";
 
-const Summary = (props) => {
+const Summary = ({ summary, bmi, click, setClick }) => {
+  console.log("summ..", summary);
+  console.log("info", bmi);
+  const bmiToObese = (bmi) => {
+    if (bmi <= 18.5) return "저체중";
+    else if (bmi <= 24.9) return "정상 체중";
+    else if (bmi <= 29.9) return "비만";
+    else return "고도비만";
+  };
   return (
     <SummaryWrapper>
       <ContentTitle>
-        <BmiLayer click={props.click}>
+        <BmiLayer click={click}>
           <BmiTitle>BMI</BmiTitle>
-          <BmiClose onClick={() => props.setClick((click) => !click)} />
+          <BmiClose onClick={() => setClick((click) => !click)} />
           <BmiDescription>
             비만도를 나타내는 지수로 체중과 키의 관계를
             <br />
@@ -25,12 +34,13 @@ const Summary = (props) => {
           </BmiDescription>
         </BmiLayer>
         <ContentDescription>
-          <Bold>{"칙촉"}</Bold>
+          <Bold>{summary.name}</Bold>
           님의 BMI(체질량 지수)는
-          <Bold>{" 비만 "}</Bold>
+          <Bold>{" " + bmiToObese(bmi) + " "}</Bold>
           범위에 있습니다.
           <Advice>
-            140cm의 키에 해당하는 정상 체중 범위는 36kg ~ 45kg 입니다.
+            {summary.height}cm의 키에 해당하는 정상 체중 범위는 36kg ~ 45kg
+            입니다.
             <br />
             전문의와 상담도 고려해 보세요.
           </Advice>
@@ -40,7 +50,12 @@ const Summary = (props) => {
   );
 };
 
-export default Summary;
+const mapStateToProps = (state) => ({
+  summary: state.surveyResult.Summary,
+  bmi: state.surveyResult.UserInfo.bmi,
+});
+
+export default connect(mapStateToProps, "")(Summary);
 
 const MAX_WIDTH = "1008px";
 

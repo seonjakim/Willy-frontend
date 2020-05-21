@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import React from "react";
+import styled from "styled-components";
+import { connect } from "react-redux";
 
-const Banner = () => {
+const Banner = ({ banner }) => {
+  console.log("banner..", banner);
   return (
-    <BannerWrapper bad>
+    <BannerWrapper type={banner.type}>
       <Inner>
         <Title>
           <Head>
-            <Name>{"칙촉"}</Name>님의
+            <Name>{banner.name}</Name>님의
             <br />
             건강 설문 결과표
           </Head>
@@ -15,14 +17,12 @@ const Banner = () => {
         </Title>
         <Hrsplit />
         <Content>
-          <Summary>생활습관 개선이 필요해요.</Summary>
+          <Summary>{banner.summary}</Summary>
           <Prescriptions>
-            <Prescription>
-              체내 에너지 생성으로 활력 유지와 스트레스 관리가 필요해요.
-            </Prescription>
-            <Prescription>
-              뼈 건강 그리고 신경 및 근육 기능 관리가 필요해요.
-            </Prescription>
+            {banner.prescriptions &&
+              banner.prescriptions.map((prescription) => (
+                <Prescription>{prescription}</Prescription>
+              ))}
           </Prescriptions>
         </Content>
       </Inner>
@@ -30,15 +30,21 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+const mapStateToProps = (state) => ({
+  banner: state.surveyResult.Banner,
+});
+
+export default connect(mapStateToProps, "")(Banner);
 
 const MAX_WIDTH = "1008px";
 
 const BannerWrapper = styled.section`
   background-size: cover;
   background-image: ${(props) =>
-    props.bad
+    props.type === "bad"
       ? "linear-gradient(to bottom right, #ef3810, #fd7e48)"
+      : props.type === "effort"
+      ? "linear-gradient(to bottom right, #F38510, #FDDE1A)"
       : "linear-gradient(to bottom right, #2e469b, #4398a1)"};
 `;
 

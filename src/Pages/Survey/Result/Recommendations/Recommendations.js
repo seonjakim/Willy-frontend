@@ -1,27 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
+import { connect } from "react-redux";
 
 import Nutrients from "./Nutrients/Nutrients";
 
-function Recommendations(props) {
+function Recommendations({ recommendations }) {
+  console.log("recommen..", recommendations);
+
+  useEffect(() => {}, [recommendations]);
   return (
     <RecommendationsWrapper>
       <Header>
         <Title>
           영양성분 추천
-          <Value>{6}</Value>
+          <Value>{recommendations.amount}</Value>
           <Description>
-            <Bold>칙촉</Bold>님의 건강 설문에 따르면 다음과 같은 영양성분이
-            건강에 도움을 줄 수 있습니다.
+            <Bold>{recommendations.name}</Bold>님의 건강 설문에 따르면 다음과
+            같은 영양성분이 건강에 도움을 줄 수 있습니다.
           </Description>
         </Title>
       </Header>
-      <Nutrients />
+      <Nutrients user={recommendations.name} />
     </RecommendationsWrapper>
   );
 }
 
-export default Recommendations;
+const mapStateToProps = (state) => ({
+  recommendations: state.surveyResult.Recommendations,
+});
+
+export default connect(mapStateToProps, "")(Recommendations);
 
 const MAX_WIDTH = "1008px";
 

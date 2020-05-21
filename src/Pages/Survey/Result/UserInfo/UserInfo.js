@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
+import { connect } from "react-redux";
 
-const UserInfo = (props) => {
+const UserInfo = ({ userInfo, setClick }) => {
+  console.log("userInfo..", userInfo);
   return (
     <UserInfoWrapper>
       <UserInfoBox>
         <Lists>
           <List>
-            나이<Value>10세</Value>
+            나이<Value>{userInfo.age}세</Value>
           </List>
           <List>
-            성별<Value>남</Value>
+            성별<Value>{userInfo.sex}</Value>
           </List>
-          <List onClick={() => props.setClick((click) => !click)}>
+          <List onClick={() => setClick((click) => !click)}>
             BMI
             <Info />
-            <Value>71.11</Value>
+            <Value>{(userInfo.bmi + "").substring(0, 4)}</Value>
           </List>
         </Lists>
       </UserInfoBox>
@@ -23,7 +25,11 @@ const UserInfo = (props) => {
   );
 };
 
-export default UserInfo;
+const mapStateToProps = (state) => ({
+  userInfo: state.surveyResult.UserInfo,
+});
+
+export default connect(mapStateToProps, "")(UserInfo);
 
 const MAX_WIDTH = "1008px";
 

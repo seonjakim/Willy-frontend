@@ -11,6 +11,16 @@ function ButtonCart() {
     }, 1000);
   });
 
+  const postItemsToCart = () => {
+    // fetch(`${Hee_API_URL}/order/cart`, {
+    //   method: "POST",
+    //   headers: {
+    //     Authorization:
+    //       "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxM30.Jb6-CH13fEneNF1APHkPUQK8j7y6tc-BR2STcDBZ5wg",
+    //   },
+    //   body: JSON.stringify({ product_id: 4 }),
+  };
+
   const secondsToTime = (time) => {
     let hours = Math.floor(time / 3600);
     let minutes = Math.floor((time - hours * 3600) / 60);
@@ -52,6 +62,7 @@ function ButtonCart() {
       )}
       {/* 버튼 */}
       <Button>추천 영양성분 장바구니 담기</Button>
+      {/* 클릭시 history.push("/cart") */}
     </ButtonCartWrapper>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import axios from "axios";
 import { connect } from "react-redux";
-import { getSurvey, getAnswer, clickFinish } from "../../../../../Actions";
+import { getSurvey, clickFinish } from "../../../../../Actions";
 import { HO_URL } from "../../../../../Constants";
 
 import SurveyButton from "../SurveyButton/SurveyButton";
@@ -14,11 +14,11 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
   const [name, setName] = useState("");
   let box = "";
 
-  console.log("click..", click);
-  console.log("Fm..", surveyForm);
-  console.log("text..", textInput);
-  console.log("radio..", radioClicked);
-  console.log("check..", checkboxClicked);
+  // console.log("click..", click);
+  // console.log("Fm..", surveyForm);
+  // console.log("text..", textInput);
+  // console.log("radio..", radioClicked);
+  // console.log("check..", checkboxClicked);
 
   const {
     id,
@@ -34,19 +34,19 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
 
   const setAnswer = () => {
     if (radioClicked) {
-      console.log(radioClicked);
-      console.log(answer_list[radioClicked - 1].id);
+      // console.log(radioClicked);
+      // console.log(answer_list[radioClicked - 1].id);
       box = "radio";
       return [answer_list[radioClicked - 1].id];
     } else if (textInput) {
       box = "textbox";
       return [textInput];
     } else if (checkboxClicked.length > 0) {
-      console.log(
-        checkboxClicked
-          .map((check, idx) => (check ? answer_list[idx].id : undefined))
-          .filter((e) => e !== undefined)
-      );
+      // console.log(
+      //   checkboxClicked
+      //     .map((check, idx) => (check ? answer_list[idx].id : undefined))
+      //     .filter((e) => e !== undefined)
+      // );
       box = "checkbox";
       return checkboxClicked
         .map((check, idx) => (check ? answer_list[idx].id : undefined))
@@ -56,7 +56,7 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
 
   console.log("name..", name);
   console.log("answer..", setAnswer());
-  console.log("personID..", person_id);
+  console.log("personID from Form..", person_id);
   console.log("box", box);
 
   //유저 인풋 -> api 바디에 포함
@@ -70,12 +70,12 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
   //SurveyForm Fetch
   useEffect(() => {
     const fetchData = async () => {
-      console.log("fetch..");
       const response = await axios.post(`${HO_URL}/survey`, userInput);
       console.log("response!", response.data.survey);
       if (response.data.message && response.data.message === "finish") {
         //마지막 설문시
         //click 마지막 == .length
+        localStorage.setItem("survey", 1);
         handleClickFinish();
       } else {
         console.log(response.data.survey);
@@ -121,7 +121,6 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
             return checkbox;
           }
         }
-        // idx === index ? !checkbox : checkbox
       })
     );
   };
@@ -178,8 +177,6 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
                   if (click === 0) setName(e.target.value);
                   setTextInput(e.target.value);
                 }}
-                // min={e.min}
-                // max={e.max}
               />
             ) : (
               ""

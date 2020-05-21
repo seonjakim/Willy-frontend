@@ -37,7 +37,7 @@ function SignIn(props) {
         password,
       });
 
-      // console.log("signIn..", response);
+      console.log("signIn..", response);
       localStorage.setItem("access_token", response.data.token);
 
       props.history.push("/");

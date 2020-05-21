@@ -53,6 +53,7 @@ const SignUp = (props) => {
           name,
           mobile_number: mobileNumber,
           email,
+          social_type: "1",
           password,
           mobile_agreement: mobileAgreement, //연락처 인증시 1
           terms: agreeTerms.every((term) => term === true) ? "1" : "0", //모두 true 일 경우 1 반환

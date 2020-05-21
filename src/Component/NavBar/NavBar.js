@@ -40,7 +40,7 @@ function NavBar(props) {
   };
 
   const goToSurvey = (idx) => {
-    if (idx === 0 && localStorage.getItem("survey")) {
+    if (idx === 0 && localStorage.getItem("survey") === "1") {
       return props.props.history.push("/result");
     } else {
       return props.props.history.push(`${address[idx]}`);
