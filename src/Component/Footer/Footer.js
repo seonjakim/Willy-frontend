@@ -25,4 +25,6 @@ const FooterBody = styled.div`
   color: #848484;
   font-size: 14px;
   margin: 0 auto;
+  width: 1024px;
+  text-align: center;
 `;
