@@ -54,10 +54,6 @@ function ProductPillyBox(props) {
                 <Middle>|</Middle>
                 <Span>{datas[5].product_list[0].price.toLocaleString()}</Span>
               </DayPrice>
-              <ImgWarapper>
-                <Img3 />
-                <Img2 />
-              </ImgWarapper>
               <BascketWrapper>
                 <DetailButBody
                   onClick={() => goToCart(datas[5].product_list[0].id)}
@@ -116,11 +112,6 @@ const ContentTop = styled.div`
   padding-top: 115px;
 `;
 
-const ImgWarapper = styled.div`
-  display: flex;
-  margin-top: 18px;
-`;
-
 const SubTitle = styled.p`
   font-size: 36px;
 `;
@@ -140,23 +131,6 @@ const Img = styled.img`
   margin-top: 30px;
 `;
 
-const Img2 = styled.div`
-  margin-left: 5px;
-  width: 54px;
-  height: 54px;
-  background-image: url(https://pilly.kr/images/icons/productDetail/icon-certification-gmp.png);
-  background-size: 54px;
-  background-repeat: no-repeat;
-`;
-
-const Img3 = styled.div`
-  margin-top: 6px;
-  width: 50px;
-  height: 50px;
-  background-image: url(https://pilly.kr/images/icons/productDetail/icon-certification-health2.png);
-  background-size: 44px;
-  background-repeat: no-repeat;
-`;
 const Span = styled.span`
   font-size: 14px;
   font-weight: bold;

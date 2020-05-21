@@ -6,11 +6,15 @@ function ProductLists9(props) {
     <Body>
       <Precautions>
         <p>섭취시 주의사항</p>
-        {props.datas[0].precautions.split(",").map((data, idx) => {
-          return <div key={idx}>{data}</div>;
-        })}
+        {props.datas[4].material_list[0].precautions
+          .split(",")
+          .map((data, idx) => {
+            return <div key={idx}>{data}</div>;
+          })}
       </Precautions>
-      <Button>제품설명서 보기</Button>
+      <a href={props.datas[5].product_list[0].manual_url}>
+        <Button>제품설명서 보기</Button>
+      </a>
     </Body>
   );
 }

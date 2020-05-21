@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addNavCart } from "../../Actions/index";
 
@@ -61,7 +62,9 @@ function ProductLists8(props) {
         ) : (
           <>
             <TalkImg />
-            <Review>522 개의 후기 보러가기</Review>
+            <Review>
+              <Link to="/review">522 개의 후기 보러가기</Link>
+            </Review>
           </>
         )}
         <MainBody>
