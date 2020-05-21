@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import DeatilButton from "../../Component/BascketButton/DetailButton";
+import { connect } from "react-redux";
+import { addNavCart } from "../../Actions/index";
 
 function ProductLists8(props) {
+  const goToCart = (id) => {
+    props.addNavCart(id);
+  };
+
   return (
     <>
       <Header
@@ -40,7 +45,13 @@ function ProductLists8(props) {
             </ImgWarapper>
           )}
           <BascketWrapper>
-            <DeatilButton />
+            <DetailButBody
+              onClick={() => goToCart(props.datas[5].product_list[0].id)}
+            >
+              <button>
+                <span>장바구니 담기</span>
+              </button>
+            </DetailButBody>
           </BascketWrapper>
         </ContentWrapper>
       </Header>
@@ -117,7 +128,11 @@ function ProductLists8(props) {
   );
 }
 
-export default ProductLists8;
+const mapDispatchProps = (dispatch) => ({
+  addNavCart: (id) => dispatch(addNavCart(id)),
+});
+
+export default connect(null, mapDispatchProps)(ProductLists8);
 
 //style
 
@@ -397,5 +412,22 @@ const SectionLists5 = styled.div`
   iframe {
     margin-top: 150px;
     height: 540px;
+  }
+`;
+
+const DetailButBody = styled.div`
+  width: 232px;
+  line-height: 58px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  margin: 29px auto 0 auto;
+  background-color: #e26d59;
+  box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 0.15);
+  span {
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
   }
 `;

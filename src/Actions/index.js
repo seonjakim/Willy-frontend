@@ -38,3 +38,10 @@ export const getAnswer = (answer) => {
     payload: answer,
   };
 };
+
+export const socialId = (id) => {
+  return {
+    type: "SOCIAL_ID",
+    payload: id,
+  };
+};

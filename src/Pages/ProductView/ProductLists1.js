@@ -29,7 +29,7 @@ function ProductLists(props) {
 
   return (
     <Body>
-      <NavBar />
+      <NavBar props={props} />
       {props.match.params.id === "8" || props.match.params.id === "10" ? (
         material.length >= 1 ? (
           <>
@@ -49,12 +49,12 @@ function ProductLists(props) {
           <ProductLists3 />
           <ProductLists4 datas={explanation} />
           <ProductLists5 datas={explanation} />
-          <ProductLists6 />
+          <ProductLists6 props={props} />
         </>
       ) : (
         <></>
       )}
-      <Footer />
+      <Footer props={props} />
     </Body>
   );
 }

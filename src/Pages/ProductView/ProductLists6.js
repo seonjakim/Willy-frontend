@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
+import { HO_URL } from "../../Constants"; // 석호님 IP
 
-function ProductLists6() {
+function ProductLists6(props) {
   const [datas, setData] = useState([]);
   const [count, setCount] = useState(0);
   const [boolean, setBoolean] = useState(false);
@@ -13,7 +14,7 @@ function ProductLists6() {
 
   useEffect(() => {
     if (boolean === true) {
-      fetch(`http://10.58.3.23:8000/product/review?offset=${count + 1}&limit=9`)
+      fetch(`${HO_URL}/product/review?offset=${count + 1}&limit=9`)
         .then((res) => res.json())
         .then((res) => {
           setData(datas.concat(res.reviews));
@@ -23,12 +24,16 @@ function ProductLists6() {
   }, [boolean, count, datas]);
 
   useEffect(() => {
-    fetch("http://10.58.3.23:8000/product/review?offset=1&limit=9")
+    fetch(`${HO_URL}/product/review?offset=1&limit=9`)
       .then((res) => res.json())
       .then((res) => {
         setData(res.reviews);
       });
   }, []);
+
+  const goToReviewPost = (id) => {
+    props.props.history.push(`/review/${id}`);
+  };
 
   return (
     <Body>
@@ -39,24 +44,26 @@ function ProductLists6() {
               return (
                 <Content key={idx}>
                   <div>
-                    <Title>
-                      <p>{data.name}</p>
-                      {data.products.length >= 18 ? (
-                        <p> {data.products.slice(0, 18)}...</p>
-                      ) : (
-                        <p>{data.products}</p>
-                      )}
-                    </Title>
-                    <Right>
-                      {data.created_at} / {data.subscription}
-                    </Right>
+                    <div>
+                      <Title onClick={() => goToReviewPost(idx + 1)}>
+                        <p>{data.name} </p>
+                        {data.products.length >= 18 ? (
+                          <p> {data.products.slice(0, 18)}...</p>
+                        ) : (
+                          <p>{data.products}</p>
+                        )}
+                      </Title>
+                      <Right>
+                        {data.created_at} / {data.subscription}
+                      </Right>
+                    </div>
+                    <img src={data.image} alt="" />
+                    {data.content.length >= 107 ? (
+                      <Text>{data.content.slice(0, 107)}···</Text>
+                    ) : (
+                      <Text>{data.content}</Text>
+                    )}
                   </div>
-                  <img src={data.image} alt="" />
-                  {data.content.length >= 107 ? (
-                    <Text>{data.content.slice(0, 107)}···</Text>
-                  ) : (
-                    <Text>{data.content}</Text>
-                  )}
                   <More>더보기</More>
                 </Content>
               );
@@ -106,6 +113,9 @@ const ContentWrap = styled.div`
 `;
 
 const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 296px;
   background-color: white;
   border-radius: 6px 6px 0 0;
@@ -121,6 +131,7 @@ const Title = styled.div`
   display: flex;
   padding: 24px 20px;
   font-size: 13.5px;
+  cursor: pointer;
 `;
 
 const Right = styled.p`
