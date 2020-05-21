@@ -9,7 +9,6 @@ import Footer from "../../Component/Footer/Footer";
 
 function ProductView(props) {
   const [main, setMain] = useState([]);
-  const [products, setProduct] = useState([]);
   const [state, setState] = useState([]);
 
   useEffect(() => {
@@ -17,7 +16,6 @@ function ProductView(props) {
       .then((res) => res.json())
       .then((res) => {
         setMain(res.products);
-        setProduct(res.products);
       });
   }, []);
 
@@ -26,7 +24,11 @@ function ProductView(props) {
   };
 
   const goToProductLists = (id) => {
-    props.history.push(`/product/${id}`);
+    if (id === 9) {
+      return props.history.push(`/product/pillybox/${id}`);
+    } else {
+      return props.history.push(`/product/${id}`);
+    }
   };
 
   return (
@@ -57,8 +59,8 @@ function ProductView(props) {
         ""
       )}
       <List>
-        {products.length > 1
-          ? products.slice(1, 8).map((product, idx) => {
+        {main.length > 1
+          ? main.slice(1, 8).map((product, idx) => {
               return (
                 <Card style={{ backgroundColor: `${product.color}` }} key={idx}>
                   <CardTop onClick={() => goToProductLists(idx + 1)}>
@@ -110,15 +112,11 @@ function ProductView(props) {
             배송됩니다.
           </P>
         </OneTime>
-        {products.length > 1
-          ? products.slice(8, products.length).map((product, idx) => {
+        {main.length > 1
+          ? main.slice(8, main.length).map((product, idx) => {
               return (
-                <Card
-                  style={{ backgroundColor: `${product.color}` }}
-                  key={idx}
-                  onClick={() => goToProductLists(idx + 8)}
-                >
-                  <CardTop>
+                <Card style={{ backgroundColor: `${product.color}` }} key={idx}>
+                  <CardTop onClick={() => goToProductLists(idx + 8)}>
                     <div>
                       <SubName>{product.sub_name}</SubName>
                       <Name>{product.name}</Name>
@@ -169,7 +167,6 @@ export default withRouter(ProductView);
 //style
 const Body = styled.div`
   position: relative;
-  padding-bottom: 177px;
 `;
 
 const Top = styled.div`
@@ -182,6 +179,7 @@ const List = styled.div`
   flex-wrap: wrap;
   width: 1024px;
   margin: 0 auto;
+  padding-bottom: 177px;
 `;
 
 const Card = styled.div`

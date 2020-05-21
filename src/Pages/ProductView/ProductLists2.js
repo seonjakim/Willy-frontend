@@ -11,39 +11,43 @@ function ProductLists2(props) {
   };
   return (
     <Body>
-      <img src={props.datas[3].frequent_question_list[0].image_url} alt="" />
-      <Title>필리 비타민C가 궁금하세요?</Title>
-      {props.datas[3].frequent_question_list.map((data, idx) => {
-        return (
-          <QNAbox key={idx} onClick={() => createAnswer(idx)}>
-            <BoldText>
-              <span>Q. </span>
-              {data.question}
-            </BoldText>
-            {answerIdx === idx && answer === true ? (
-              <img
-                src="https://pilly.kr/images/icons/common/icon-arrow-up.png"
-                alt=""
-              />
-            ) : (
-              <img
-                src="https://pilly.kr/images/icons/common/icon-arrow-down.png"
-                alt=""
-              />
-            )}
-            {answer === true || answerIdx !== idx ? (
-              <SubText>
-                <div>
-                  <span>A. </span>
-                  {data.answer}
-                </div>
-              </SubText>
-            ) : (
-              ""
-            )}
-          </QNAbox>
-        );
-      })}
+      <>
+        <img src={props.datas[3].frequent_question_list[0].image_url} alt="" />
+        <Title>
+          필리 {props.datas[4].material_list[0].nutrial}이 궁금하세요?
+        </Title>
+        {props.datas[3].frequent_question_list.map((data, idx) => {
+          return (
+            <QNAbox key={idx} onClick={() => createAnswer(idx)}>
+              <BoldText>
+                <span>Q. </span>
+                {data.question}
+              </BoldText>
+              {answerIdx === idx && answer === true ? (
+                <img
+                  src="https://pilly.kr/images/icons/common/icon-arrow-up.png"
+                  alt=""
+                />
+              ) : (
+                <img
+                  src="https://pilly.kr/images/icons/common/icon-arrow-down.png"
+                  alt=""
+                />
+              )}
+              {answer === true || answerIdx !== idx ? (
+                <SubText>
+                  <div>
+                    <span>A. </span>
+                    {data.answer}
+                  </div>
+                </SubText>
+              ) : (
+                ""
+              )}
+            </QNAbox>
+          );
+        })}
+      </>
     </Body>
   );
 }
