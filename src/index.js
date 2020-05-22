@@ -5,6 +5,7 @@ import store from "./Store";
 import { Provider } from "react-redux";
 
 const unsub = store.subscribe(() => console.log("store", store.getState()));
+
 ReactDOM.render(
   <Provider store={store}>
     <Routes />

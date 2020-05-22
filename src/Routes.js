@@ -16,6 +16,7 @@ import ProductLists1 from "./Pages/ProductView/ProductLists1";
 import ReviewPost from "./Pages/Review/ReviewPost";
 import ProductPillyBox from "./Pages/ProductView/ProductPillyBox";
 import SocialSignUp from "./Pages/SignUp/SocialSignUp";
+import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 
 class Routes extends React.Component {
   render() {
@@ -42,6 +43,7 @@ class Routes extends React.Component {
             component={ProductPillyBox}
           />
           <Route exact path="/social/signUp" component={SocialSignUp} />
+          <Route path="/cart" component={ShoppingCart} />
         </Switch>
       </Router>
     );
