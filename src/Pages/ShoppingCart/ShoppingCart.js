@@ -47,7 +47,6 @@ export default function ShoppingCart(props) {
           })
       );
   }, [cookieId]);
-  console.log("data", allData);
   const getData = () => {
     console.log("getData executed");
     fetch(`${HO_URL}/order/cart`, {
