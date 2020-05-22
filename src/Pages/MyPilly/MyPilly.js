@@ -15,7 +15,6 @@ function MyPilly(props) {
   const [diffCom, setDiffcom] = useState(0);
   const [user, setUser] = useState([]);
   const accessToken = localStorage.getItem("token");
-
   useEffect(() => {
     fetch(`$${HO_URL}/user/user-profile`, {
       method: "GET",
