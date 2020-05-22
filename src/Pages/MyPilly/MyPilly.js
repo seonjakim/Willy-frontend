@@ -15,15 +15,18 @@ function MyPilly(props) {
   const [diffCom, setDiffcom] = useState(0);
   const [user, setUser] = useState([]);
   const accessToken = localStorage.getItem("token");
+
   useEffect(() => {
-    fetch(`$${HO_URL}/user/user-profile`, {
-      method: "GET",
-      headers: {
-        Authorization: accessToken,
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => setUser(res.user_profile[0]));
+    if (accessToken) {
+      fetch(`${HO_URL}/user/user-profile`, {
+        method: "GET",
+        headers: {
+          Authorization: accessToken,
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => setUser(res.user_profile[0]));
+    }
   }, [accessToken]);
 
   const obj = {
