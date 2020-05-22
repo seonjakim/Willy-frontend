@@ -38,7 +38,7 @@ function SignIn(props) {
       });
 
       console.log("signIn..", response);
-      localStorage.setItem("access_token", response.data.token);
+      localStorage.setItem("token", response.data.token);
 
       props.history.push("/");
     } catch (e) {

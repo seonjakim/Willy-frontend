@@ -76,6 +76,7 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
         //마지막 설문시
         //click 마지막 == .length
         localStorage.setItem("survey", 1);
+        localStorage.setItem("person_id", person_id);
         handleClickFinish();
       } else {
         console.log(response.data.survey);
