@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { HWAN_URL } from "../../Constants"; // 지환님 IP
+import { HO_URL } from "../../Constants"; // 지환님 IP
 
 import { LoginBtn, KakaoBtn, FbBtn, NaverBtn, Sns } from "../SignIn/SignIn";
 import NavBar from "../../Component/NavBar/NavBar";
@@ -49,7 +49,7 @@ const SignUp = (props) => {
   const register = async () => {
     if (password === passwordCheck) {
       try {
-        const response = await axios.post(`${HWAN_URL}/user/sign-up`, {
+        const response = await axios.post(`${HO_URL}/user/sign-up`, {
           name,
           mobile_number: mobileNumber,
           email,
@@ -74,7 +74,7 @@ const SignUp = (props) => {
   const verifyMobile = async () => {
     if (mobileNumber.length === 11 || mobileNumber.length === 10) {
       try {
-        const response = await axios.post(`${HWAN_URL}/user/sms`, {
+        const response = await axios.post(`${HO_URL}/user/sms`, {
           mobile_number: mobileNumber,
         });
         console.log(response);
@@ -92,7 +92,7 @@ const SignUp = (props) => {
   // 인증번호 입력 확인
   const verifySMS = async () => {
     try {
-      const response = await axios.post(`${HWAN_URL}/user/sms/verification`, {
+      const response = await axios.post(`${HO_URL}/user/sms/verification`, {
         mobile_number: mobileNumber,
         auth_number: authNumber,
       });

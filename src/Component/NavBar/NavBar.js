@@ -34,14 +34,8 @@ function NavBar(props) {
   const goToPage = (idx) => {
     if (idx === 4 && localStorage.getItem("token")) {
       return localStorage.removeItem("token"), props.props.history.push("/");
-    } else {
-      return props.props.history.push(`${address[idx]}`);
-    }
-  };
-
-  const goToSurvey = (idx) => {
-    if (idx === 0 && localStorage.getItem("survey") === "1") {
-      return props.props.history.push("/result");
+    } else if (idx === 0 && localStorage.getItem("survey")) {
+      return props.props.history.push("result");
     } else {
       return props.props.history.push(`${address[idx]}`);
     }
@@ -99,7 +93,7 @@ function NavBar(props) {
                   onClick={() => goToPage(index)}
                   key={index}
                 >
-                  <div onClick={() => goToSurvey(index)}>
+                  <div>
                     {index === 4 && localStorage.getItem("token")
                       ? "로그아웃"
                       : data}

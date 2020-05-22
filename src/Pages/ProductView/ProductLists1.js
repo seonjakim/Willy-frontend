@@ -34,8 +34,8 @@ function ProductLists(props) {
         material.length >= 1 ? (
           <>
             <ProductLists8 datas={datas} id={8} />
-            <ProductLists9 datas={material} />
-            <ProductLists5 datas={datas} />
+            <ProductLists9 datas={datas} />
+            <ProductLists5 datas={explanation} />
           </>
         ) : (
           <></>
