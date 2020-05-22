@@ -8,13 +8,14 @@ import Payment from "./Components/Payment";
 import PointMall from "./Components/PointMall";
 import MemberInfo from "./Components/MemberInfo";
 import PointMallDetail from "./Components/PointMallDetail";
-import NavBar from "../../Component/NavBar/NavBar";
 import { HO_URL } from "../../Constants";
+import NavBar from "../../Component/NavBar/NavBar";
 
 function MyPilly() {
   const [diffCom, setDiffcom] = useState(0);
   const [user, setUser] = useState([]);
   const accessToken = localStorage.getItem("token");
+
   useEffect(() => {
     if (accessToken) {
       fetch(`${HO_URL}/user/user-profile`, {
