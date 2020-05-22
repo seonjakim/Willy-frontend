@@ -6,6 +6,8 @@ import { HO_URL } from "../../Constants"; // 지환님 IP
 
 import { LoginBtn } from "../SignIn/SignIn";
 import NavBar from "../../Component/NavBar/NavBar";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = (props) => {
   //console.log("소셜로그인페이지:", props);
@@ -19,6 +21,13 @@ const SignUp = (props) => {
   const [agreeAll, setAgreeAll] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState([false, false]);
   const [agreeSMS, setAgreeSMS] = useState(false);
+
+  // Toast 메세지
+  const notify = (message) => {
+    toast.info(message, {
+      position: "bottom-left",
+    });
+  };
 
   //인증 end초 타이머
   const setTimer = (end) => {
@@ -48,12 +57,12 @@ const SignUp = (props) => {
         social_id: props.socialIdStore,
       });
       console.log("reponse..", response);
-      alert(response.data.message);
+      notify(response.data.message);
       props.history.push("/signin");
     } catch (e) {
       console.log(agreeTerms.every((term) => term === true));
       console.log("bad request..", e.response);
-      e.response && alert(e.response.data.message);
+      e.response && notify(e.response.data.message);
     }
   };
 
@@ -66,13 +75,13 @@ const SignUp = (props) => {
         });
         console.log(response);
         setTimer(25);
-        alert(response.data.message);
+        notify(response.data.message);
       } catch (e) {
         console.log(e.response);
-        e.response && alert(e.response.data.message); //undefined
+        e.response && notify(e.response.data.message); //undefined
       }
     } else {
-      alert("올바른 휴대폰 번호를 입력해주세요.");
+      notify("올바른 휴대폰 번호를 입력해주세요.");
     }
   };
 
@@ -84,15 +93,15 @@ const SignUp = (props) => {
         auth_number: authNumber,
       });
       if (response.status === 200) {
-        alert(response.data.message);
+        notify(response.data.message);
         setMobileAgreement("1");
       }
       console.log(response.data.message);
-      alert(response.data.message);
+      notify(response.data.message);
     } catch (e) {
       console.log("bad request..", e.response);
       console.log(authNumber);
-      alert(e.response.data.message);
+      notify(e.response.data.message);
     }
   };
 
@@ -176,6 +185,7 @@ const SignUp = (props) => {
         <BtnWrapper>
           <LoginBtn onClick={register}>회원가입</LoginBtn>
         </BtnWrapper>
+        <StyledToastContainer />
       </SignUpWrapper>
     </>
   );
@@ -298,4 +308,15 @@ const Contract = styled.span`
   right: 0;
   padding-bottom: 5px;
   font-weight: 500;
+`;
+
+const StyledToastContainer = styled(ToastContainer).attrs({
+  className: "toast-container",
+})`
+  width: 300px;
+  font-size: 16px;
+
+  .Toastify__toast-body {
+    margin-left: 10px;
+  }
 `;
