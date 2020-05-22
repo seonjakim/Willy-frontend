@@ -1,23 +1,33 @@
 import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 
-function Nutrient() {
+function Nutrient({ user, idx, nutrient }) {
   useEffect(() => {
-    console.log("Effect..");
-    animateCircle();
+    animateCircle(idx, nutrient.point);
   });
 
-  const animateCircle = () => {
-    const ctx = document.querySelector(".canvas").getContext("2d");
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = "#4183d7";
+  const animateCircle = (idx, point) => {
+    console.log(idx, point);
+    const canvas = document.querySelectorAll(".canvas");
+    const ctx = Array.from(canvas).map((c) => c.getContext("2d"));
+
+    ctx[idx].lineWidth = 4;
+    ctx[idx].strokeStyle = "#4183d7";
     const end = Math.PI * 1.5;
-    for (let i = 0; i < 100; i++) {
+
+    for (let i = 0; i < (100 / 5.0) * point; i++) {
+      console.log(i);
       setTimeout(() => {
-        ctx.clearRect(0, 0, 200, 200);
-        ctx.beginPath();
-        ctx.arc(50, 50, 47, Math.PI * 1.5, (end / 100) * i + 0.045);
-        ctx.stroke();
+        ctx[idx].clearRect(0, 0, 200, 200);
+        ctx[idx].beginPath();
+        ctx[idx].arc(
+          50,
+          50,
+          47,
+          Math.PI * 1.5,
+          (((end / 100) * point) / 5.0) * i + 0.045
+        );
+        ctx[idx].stroke();
       }, i * 10);
     }
   };
@@ -25,20 +35,22 @@ function Nutrient() {
   return (
     <NutrientWrapper>
       <Text>
-        <Title>오메가3</Title>
+        <Title>{nutrient.name}</Title>
+        {console.log(nutrient.name)}
         <Efficiency>
-          {/* effect list map here */}
-          <Effect>#혈중중성지방 개선에 도움</Effect>
-          <Effect>#눈 건강에 도움</Effect>
+          {console.log(nutrient.effects[0].content)}
+          <Effect># {nutrient.effects[0].content}</Effect>
+          <Effect># {nutrient.effects[0].product_content}</Effect>
+          <Effect># {nutrient.effects[0].sub_content}</Effect>
         </Efficiency>
-        <Recommend> * 10대초반의 남성 0.00%가 추천 받았습니다. </Recommend>
+        {/* <Recommend> * 10대초반의 남성 0.00%가 추천 받았습니다. </Recommend> */}
       </Text>
       <Rating>
         <Progress>
           <Canvas width="100" height="100" className="canvas" />
           <Score>
             추천점수
-            <Num>5.0</Num>
+            <Num>{nutrient.point}</Num>
           </Score>
         </Progress>
       </Rating>
@@ -46,65 +58,59 @@ function Nutrient() {
         <Detailbox>
           {/* item map here */}
           <ItemFirst>
-            <Header>{"칙촉"}님은</Header>
+            <Header>{user}님은</Header>
             {/* 필요해요 List here */}
             <Lists>
-              <List>
-                <ListTitle>혈액순환 관리가 필요해요.</ListTitle>
-                <ListDesc>
-                  {" "}
-                  인스턴트와 육류 위주의 식습관을 가지고 있는 현대인들은 혈중
-                  중성지방과 콜레스테롤 수치가 높습니다. 또한, 장시간 앉아 있는
-                  습관은 혈류를 느리게 만들어 혈액이 온몸을 잘 순환하지 않아
-                  집중력과 기억력을 저하시키고,
-                  고혈압∙고지혈증∙동맥경화∙심근경색과 같은 심혈관성 질환의
-                  발병할 확률이 높습니다. <Highlight>오메가3는</Highlight>{" "}
-                  혈전의 생성을 방지하고 혈관내피세포의 기능을 개선하여{" "}
-                  <Highlight>혈행 개선에 도움을 줄 수 있습니다.</Highlight>
-                  <br />
-                  <Reference>참고자료#{1}</Reference>
-                </ListDesc>
-              </List>
+              {nutrient.needs.map((need) => (
+                <List>
+                  <ListTitle>{need.title}</ListTitle>
+                  <ListDesc>
+                    {need.content.split(need.highlight)[0]}
+                    <Highlight>{need.highlight}</Highlight>
+                    {need.content.split(need.highlight)[1]}
+                    <br />
+
+                    {console.log(need.link.split(","))}
+                    {need.link.split(",").map((link, idx) => {
+                      console.log("link", link);
+                      return (
+                        <a href={`${link}`}>
+                          <Reference>참고자료#{idx + 1}</Reference>
+                        </a>
+                      );
+                    })}
+                  </ListDesc>
+                </List>
+              ))}
             </Lists>
           </ItemFirst>
           <ItemSecond>
             <Header>영양성분</Header>
             {/* 영양성분 List here */}
             <Lists>
-              <List>
-                <ListTitle>
-                  {"오메가3는 남녀노소 필수 영양성분입니다."}
-                </ListTitle>
-                <ListDesc>
-                  오메가3는 주로 생선 기름에 많이 함유되어있는 불포화지방산으로,
-                  효능을 나타내는 주요 성분은 DHA와 EPA입니다.{" "}
-                  <Highlight>오메가3는</Highlight> 간에서 중성지방이 합성되는
-                  것을 억제하여 혈전 생성을 방지하고,
-                  <Highlight>혈액이 잘 흐르게 하는데 도움을 줍니다.</Highlight>
-                  오메가3는 서구화된 식습관, 인스턴트 음식 과다 섭취등으로 인해
-                  부족한 경우가 많습니다. 또한, 체내에서 합성되는 효율이 매우
-                  낮아 식품이나 건강기능식품으로 섭취하는 것이 좋습니다. 일일
-                  권장 섭취량은 DHA와 EPA의 합으로서 매일 500~2,000mg이며
-                  일주일에 2~3회 고등어 등의 등푸른 생선을 먹는 것으로 500mg이상
-                  섭취가 가능합니다.
-                </ListDesc>
-              </List>
+              {nutrient.importants.map((important) => (
+                <List>
+                  <ListTitle>{important.title}</ListTitle>
+                  <ListDesc>
+                    {important.description.split(important.highlights)[0]}
+                    <Highlight>{important.highlights}</Highlight>
+                    {important.description.split(important.highlights)[1]}
+                  </ListDesc>
+                </List>
+              ))}
             </Lists>
           </ItemSecond>
-          <ItemThird
-            img={"https://img.pilly.kr/survey/product/pilly-omega3@2x.png"}
-          >
+          <ItemThird img={nutrient.nutrient.image}>
             <VitaTitle>
               필리가 연구한
               <br />
-              <Bold>{"오메가3"}</Bold>
+              <Bold>{nutrient.name}</Bold>
             </VitaTitle>
             <VitaLists>
-              <VitaList>북대서양의 청정한 노르웨이산 오메가3</VitaList>
-              <VitaList>작은 어류를 사용한 원료</VitaList>
-              <VitaList>체내 이용율이 높은 rTG타입 오메가3</VitaList>
+              {nutrient.nutrient.list.map((list) => (
+                <VitaList>{list}</VitaList>
+              ))}
               {/* Link */}
-              <ReferTo></ReferTo>
             </VitaLists>
           </ItemThird>
         </Detailbox>
@@ -259,7 +265,7 @@ const Highlight = styled.span`
   background-color: rgba(230, 230, 50, 0.5);
 `;
 
-const Reference = styled.a`
+const Reference = styled.span`
   display: inline-block;
   margin-top: 34px;
   margin-right: 20px;
@@ -330,5 +336,3 @@ const VitaList = styled.li`
     background-color: #999;
   }
 `;
-
-const ReferTo = styled.div``;

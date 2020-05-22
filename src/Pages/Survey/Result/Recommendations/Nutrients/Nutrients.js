@@ -1,18 +1,25 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { connect } from "react-redux";
 
 import Nutrient from "./Nutrient/Nutrient";
 
-function Nutrients() {
+function Nutrients({ user, nutrients }) {
+  console.log("NU", nutrients);
   return (
     <NutrientsWrapper>
-      {/* use .map() here */}
-      <Nutrient></Nutrient>
+      {nutrients.map((nutrient, idx) => (
+        <Nutrient user={user} idx={idx} nutrient={nutrient}></Nutrient>
+      ))}
     </NutrientsWrapper>
   );
 }
 
-export default Nutrients;
+const mapStateToProps = (state) => ({
+  nutrients: state.surveyResult.Recommendations.nutrients,
+});
+
+export default connect(mapStateToProps, "")(Nutrients);
 
 const NutrientsWrapper = styled.ul`
   line-height: 1.2;

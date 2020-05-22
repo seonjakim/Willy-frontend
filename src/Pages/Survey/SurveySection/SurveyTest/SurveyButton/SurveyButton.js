@@ -18,7 +18,6 @@ function SurveyButton(props) {
 
   return (
     <SurveyButtonWrapper>
-      {console.log("button....", answer)}
       <ButtonPrev onClick={handleClickMinus}>이전</ButtonPrev>
       <ButtonNext
         onClick={() => {

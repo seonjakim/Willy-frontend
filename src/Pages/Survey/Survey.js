@@ -9,7 +9,6 @@ import SurveyEnd from "./SurveySection/SurveyEnd/SurveyEnd";
 
 function Survey({ click, handleClickPlus, history }) {
   const goBack = () => history.goBack();
-  console.log(click);
 
   return (
     <SurveyWrapper>

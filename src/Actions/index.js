@@ -25,6 +25,7 @@ export const clickFinish = () => {
   };
 };
 
+// survey form
 export const getSurvey = (survey) => {
   return {
     type: GET_SURVEY,
@@ -32,6 +33,7 @@ export const getSurvey = (survey) => {
   };
 };
 
+// survey answer
 export const getAnswer = (answer) => {
   return {
     type: "GET_ANSWER",
@@ -43,5 +45,13 @@ export const socialId = (id) => {
   return {
     type: "SOCIAL_ID",
     payload: id,
+  };
+};
+
+// survey result
+export const getResult = (result) => {
+  return {
+    type: "GET_RESULT",
+    payload: result,
   };
 };

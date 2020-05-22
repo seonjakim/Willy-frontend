@@ -4,6 +4,7 @@ import surveyForm from "./surveyForm";
 import surveyAnswer from "./surveyAnswer";
 import CartNum from "./cartNum";
 import socialIdStore from "./socialIdStore";
+import surveyResult from "./surveyResult";
 
 export default combineReducers({
   clickCounter,
@@ -11,4 +12,5 @@ export default combineReducers({
   surveyForm,
   surveyAnswer,
   socialIdStore,
+  surveyResult,
 });
