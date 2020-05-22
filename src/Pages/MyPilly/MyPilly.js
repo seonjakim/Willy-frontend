@@ -8,17 +8,14 @@ import Payment from "./Components/Payment";
 import PointMall from "./Components/PointMall";
 import MemberInfo from "./Components/MemberInfo";
 import PointMallDetail from "./Components/PointMallDetail";
+import { HO_URL } from "../../Constants";
 
 function MyPilly() {
   const [diffCom, setDiffcom] = useState(0);
   const [user, setUser] = useState([]);
   const accessToken = localStorage.getItem("token");
-  const Hee_API_URL = "http://10.58.5.47:8000";
-
-  // const Hee_API_URL = "http://10.58.1.67:8000";
-
   useEffect(() => {
-    fetch(`${Hee_API_URL}/user/user-profile`, {
+    fetch(`${HO_URL}/user/user-profile`, {
       method: "GET",
       headers: {
         Authorization: accessToken,
