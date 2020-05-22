@@ -16,7 +16,6 @@ function Nutrient({ user, idx, nutrient }) {
     const end = Math.PI * 1.5;
 
     for (let i = 0; i < (100 / 5.0) * point; i++) {
-      console.log(i);
       setTimeout(() => {
         ctx[idx].clearRect(0, 0, 200, 200);
         ctx[idx].beginPath();

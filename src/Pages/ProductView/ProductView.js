@@ -5,10 +5,19 @@ import NavBar from "../../Component/NavBar/NavBar";
 import Footer from "../../Component/Footer/Footer";
 import { connect } from "react-redux";
 import { addNavCart } from "../../Actions/index";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ProductView(props) {
   const [main, setMain] = useState([]);
   const [state, setState] = useState([]);
+
+  // Toast 메세지
+  const notify = (message) => {
+    toast.success(message, {
+      position: "bottom-left",
+    });
+  };
 
   useEffect(() => {
     fetch(`${HO_URL}/product`) // 석호님 IP 이용
@@ -96,7 +105,10 @@ function ProductView(props) {
                       더보기
                     </ViewMore>
                     <CarttButton
-                      onClick={() => buttonChange(product.id)}
+                      onClick={() => {
+                        buttonChange(product.id);
+                        notify("제품을 장바구니에 담았습니다.");
+                      }}
                       data={state}
                       id={product.id}
                     >
@@ -166,7 +178,10 @@ function ProductView(props) {
                   <Div>
                     <ViewMore>더보기</ViewMore>
                     <CarttButton
-                      onClick={() => buttonChange(product.id)}
+                      onClick={() => {
+                        buttonChange(product.id);
+                        notify("제품을 장바구니에 담았습니다.");
+                      }}
                       data={state}
                       id={product.id}
                     >
@@ -195,6 +210,7 @@ function ProductView(props) {
           : ""}
       </List>
       <Footer props={props} />
+      <StyledToastContainer />
     </Body>
   );
 }
@@ -400,4 +416,15 @@ const Span1 = styled.span`
   font-size: 16px;
 
   color: ${(data) => (data.data.indexOf(data.id) === -1 ? "#707070" : "white")};
+`;
+
+const StyledToastContainer = styled(ToastContainer).attrs({
+  className: "toast-container",
+})`
+  width: 300px;
+  font-size: 16px;
+
+  .Toastify__toast-body {
+    margin-left: 10px;
+  }
 `;

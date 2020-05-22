@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+import { HO_URL, JIN_URL } from "../../../../Constants";
 
-function ButtonCart() {
+function ButtonCart({ products, history }) {
   const [time, setTime] = useState(500);
   const [click, setClick] = useState(true);
 
@@ -12,13 +13,15 @@ function ButtonCart() {
   });
 
   const postItemsToCart = () => {
-    // fetch(`${Hee_API_URL}/order/cart`, {
-    //   method: "POST",
-    //   headers: {
-    //     Authorization:
-    //       "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxM30.Jb6-CH13fEneNF1APHkPUQK8j7y6tc-BR2STcDBZ5wg",
-    //   },
-    //   body: JSON.stringify({ product_id: 4 }),
+    products.map((product) =>
+      fetch(`${HO_URL}/order/cart`, {
+        method: "POST",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ product_id: product }),
+      })
+    );
   };
 
   const secondsToTime = (time) => {
@@ -61,8 +64,14 @@ function ButtonCart() {
         ""
       )}
       {/* 버튼 */}
-      <Button>추천 영양성분 장바구니 담기</Button>
-      {/* 클릭시 history.push("/cart") */}
+      <Button
+        onClick={() => {
+          postItemsToCart();
+          history.push("/cart");
+        }}
+      >
+        추천 영양성분 장바구니 담기
+      </Button>
     </ButtonCartWrapper>
   );
 }

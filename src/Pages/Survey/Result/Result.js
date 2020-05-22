@@ -17,10 +17,12 @@ function Result(props) {
 
   console.log(props);
 
-  const { person_id, handleGetResult } = props;
+  let { person_id, products, handleGetResult } = props;
   console.log("person_id,,", person_id);
+  console.log("products", products);
 
   useEffect(() => {
+    if (person_id === 0) person_id = localStorage.getItem("person_id");
     try {
       const fetchData = async () => {
         const response = await axios.post(`${HO_URL}/survey/result`, {
@@ -45,8 +47,8 @@ function Result(props) {
         <UserInfo setClick={setClick} />
         <Summary click={click} setClick={setClick} />
         <Recommendations />
-        <ButtonCart />
-        {/* <ButtonCart products={products} */}
+        {/* <ButtonCart /> */}
+        <ButtonCart products={products} history={props.history} />
       </ResultWrapper>
     </>
   );
@@ -54,7 +56,9 @@ function Result(props) {
 
 const mapStateToProps = (state) => ({
   person_id: state.surveyForm.person_id,
-  //products : state.surveyResult.Recommendations.nutrients.map(product => product.product_id)
+  products: state.surveyResult.Recommendations.nutrients.map(
+    (product) => product.product_id
+  ),
 });
 
 const mapDispatchToProps = (dispatch) => ({
