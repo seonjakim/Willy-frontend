@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { connect } from "react-redux";
 import { socialId } from "../../Actions/index";
 
-import { HWAN_URL } from "../../Constants"; // 지환님 IP
+import { HO_URL } from "../../Constants"; // 지환님 IP
 import color from "../../Styles/color";
 import NavBar from "../../Component/NavBar/NavBar";
 
@@ -31,7 +31,7 @@ function SignIn(props) {
   // 로그인 버튼 클릭
   const handleSignIn = async () => {
     try {
-      const response = await axios.post(`${HWAN_URL}/user/sign-in`, {
+      const response = await axios.post(`${HO_URL}/user/sign-in`, {
         mobile_number,
         email,
         password,
@@ -51,7 +51,7 @@ function SignIn(props) {
   const postToken = async () => {
     console.log("postToken..", facebookToken);
     try {
-      const res = await axios.post(`https://10.58.3.89:8000/user/fblogin`, {
+      const res = await axios.post(`${HO_URL}/user/fblogin`, {
         token: facebookToken,
       });
       console.log(res);
@@ -76,7 +76,7 @@ function SignIn(props) {
     Kakao.Auth.login({
       success: function (res) {
         console.log(res);
-        fetch(`${HWAN_URL}/user/socialuser`, {
+        fetch(`${HO_URL}/user/socialuser`, {
           method: "GET",
           headers: {
             "Content-type": "application/json",
