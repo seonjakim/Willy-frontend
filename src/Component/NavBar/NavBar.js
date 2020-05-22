@@ -39,6 +39,14 @@ function NavBar(props) {
     }
   };
 
+  const goToSurvey = (idx) => {
+    if (idx === 0 && localStorage.getItem("survey")) {
+      return props.props.history.push("/result");
+    } else {
+      return props.props.history.push(`${address[idx]}`);
+    }
+  };
+
   return (
     <Nav
       style={{
@@ -91,12 +99,14 @@ function NavBar(props) {
                   onClick={() => goToPage(index)}
                   key={index}
                 >
-                  {index === 4 && localStorage.getItem("token")
-                    ? "로그아웃"
-                    : data}
-                  {index === 3 && props.CartNum.length > 0
-                    ? props.CartNum.length
-                    : ""}
+                  <div onClick={() => goToSurvey(index)}>
+                    {index === 4 && localStorage.getItem("token")
+                      ? "로그아웃"
+                      : data}
+                    {index === 3 && props.CartNum.length > 0
+                      ? props.CartNum.length
+                      : ""}
+                  </div>
                 </li>
               );
             })}

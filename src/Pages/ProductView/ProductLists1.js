@@ -35,7 +35,7 @@ function ProductLists(props) {
           <>
             <ProductLists8 datas={datas} id={8} />
             <ProductLists9 datas={material} />
-            <ProductLists5 datas={explanation} />
+            <ProductLists5 datas={datas} />
           </>
         ) : (
           <></>
@@ -43,7 +43,7 @@ function ProductLists(props) {
       ) : material.length >= 1 ? (
         <>
           <ProductLists8 datas={datas} />
-          <ProductLists9 datas={material} />
+          <ProductLists9 datas={datas} />
           <ProductLists7 datas={material} />
           <ProductLists2 datas={datas} />
           <ProductLists3 />
