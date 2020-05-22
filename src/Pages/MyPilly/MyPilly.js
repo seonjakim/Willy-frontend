@@ -8,6 +8,7 @@ import Payment from "./Components/Payment";
 import PointMall from "./Components/PointMall";
 import MemberInfo from "./Components/MemberInfo";
 import PointMallDetail from "./Components/PointMallDetail";
+import NavBar from "../../Component/NavBar/NavBar";
 import { HO_URL } from "../../Constants";
 
 function MyPilly() {
@@ -15,14 +16,16 @@ function MyPilly() {
   const [user, setUser] = useState([]);
   const accessToken = localStorage.getItem("token");
   useEffect(() => {
-    fetch(`${HO_URL}/user/user-profile`, {
-      method: "GET",
-      headers: {
-        Authorization: accessToken,
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => setUser(res.user_profile[0]));
+    if (accessToken) {
+      fetch(`${HO_URL}/user/user-profile`, {
+        method: "GET",
+        headers: {
+          Authorization: accessToken,
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => setUser(res.user_profile[0]));
+    }
   }, [accessToken]);
 
   const obj = {
