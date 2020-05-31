@@ -24,44 +24,48 @@ function SubscribeItems(props) {
     ).then((props) => props.getData(props.pill.product_id));
   };
 
+  const { image, name, product_id, quantity, price } = props.pill;
+
   return (
+    // const {price} = props.pill;
     <Body>
+      {console.log("props1", price)}
       <Wrappers blur={blur}>
-        {props.pill && (
+        {price !== undefined ? (
           <>
             <InputWrapper>
               <Input blur={blur} onClick={blurNMinus} />
             </InputWrapper>
             <ImgWrapper>
-              <SuppleImg src={props.pill.image} />
+              <SuppleImg src={image} />
             </ImgWrapper>
             <SideWrapper>
               <SuppleTitle>
-                <SpanTitle>{props.pill.name}</SpanTitle>
+                <SpanTitle>{name}</SpanTitle>
               </SuppleTitle>
-              <Buttons
-                onClick={() => props.minusTheNumber(props.pill.product_id)}
-              >
+              <Buttons onClick={() => props.minusTheNumber(product_id)}>
                 <Img src="https://pilly.kr/images/icons/cart/icon-cart-minus.png" />
               </Buttons>
-              <NumCount>{props.pill.quantity}</NumCount>
+              <NumCount>{quantity}</NumCount>
               <PlusBtn
                 onClick={() =>
-                  props.pill.quantity >= 5
+                  quantity >= 5
                     ? alert("개수를 초과하였습니다")
-                    : props.plusTheNumber(props.pill.product_id)
+                    : props.plusTheNumber(product_id)
                 }
               >
                 <Img src="https://pilly.kr/images/icons/cart/icon-cart-plus.png" />
               </PlusBtn>
             </SideWrapper>
             <Price>
-              <ActualPrice>{props.pill.price}원</ActualPrice>
+              <ActualPrice>{price}원</ActualPrice>
             </Price>
           </>
+        ) : (
+          ""
         )}
       </Wrappers>
-      {props.pill.quantity >= filterObj[0].value ? (
+      {filterObj.length > 0 && quantity >= filterObj[0].value ? (
         <DivHiddenWarning>
           <RedWarning>
             ※ 보건복지부의 영양성분 섭취기준을 초과할 수 있으니 주의하세요

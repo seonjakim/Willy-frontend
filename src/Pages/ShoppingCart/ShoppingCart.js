@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import NavBar from "../../Component/NavBar/NavBar";
 
 export default function ShoppingCart(props) {
-  const cookieId = localStorage.getItem("token");
+  const tokenId = localStorage.getItem("token");
 
   const [allData, setNewSupple] = useState({
     supplement: [],
@@ -27,15 +27,12 @@ export default function ShoppingCart(props) {
   });
 
   useEffect(() => {
-    fetch(
-      "http://localhost:3000/pillMock.json"
-      // , {
-      //   method: "GET",
-      //   headers: {
-      //     Authorization: cookieId,
-      //   },
-      // }
-    )
+    fetch(`${HO_URL}/order/cart`, {
+      method: "GET",
+      headers: {
+        Authorization: tokenId,
+      },
+    })
       .then((res) => res.json())
       .then(
         (res) =>
@@ -47,14 +44,14 @@ export default function ShoppingCart(props) {
             disposable: res.disposable_total_price[0],
           })
       );
-  }, []);
+  }, [tokenId]);
   console.log("data", allData);
   const getData = () => {
     console.log("getData executed");
     fetch(`${HO_URL}/order/cart`, {
       method: "GET",
       headers: {
-        Authorization: cookieId,
+        Authorization: tokenId,
       },
     })
       .then((res) => res.json())
@@ -72,7 +69,7 @@ export default function ShoppingCart(props) {
     fetch(`${HO_URL}/order/cart`, {
       method: "POST",
       headers: {
-        Authorization: cookieId,
+        Authorization: tokenId,
       },
       body: JSON.stringify({
         product_id: num,
@@ -83,7 +80,7 @@ export default function ShoppingCart(props) {
   const minusTheNumber = (num) => {
     fetch(`${HO_URL}/order/cart/remove/${num}`, {
       headers: {
-        Authorization: cookieId,
+        Authorization: tokenId,
       },
     }).then(() => getData());
   };
@@ -91,7 +88,7 @@ export default function ShoppingCart(props) {
   const removeEverything = () => {
     fetch(`${HO_URL}/order/cart/remove`, {
       headers: {
-        Authorization: cookieId,
+        Authorization: tokenId,
       },
     }).then(() => getData());
   };
@@ -133,7 +130,7 @@ export default function ShoppingCart(props) {
                 supplement={supplement}
                 plusTheNumber={(num) => plusTheNumber(num)}
                 minusTheNumber={(num) => minusTheNumber(num)}
-                getData={(num) => getData(num)}
+                getData={getData}
               />
             </InnerElements>
             <CartMiddle
