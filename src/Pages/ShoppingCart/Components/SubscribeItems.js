@@ -1,59 +1,36 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
-import MyPilly from "../../MyPilly/MyPilly";
-import ShoppingCart from "../ShoppingCart";
-
-// import { connect } from "./react-redux";
-// import { addCart } from "../../store/actions";
-
-// 역할에 따른 코드 분리
-
-// 정보를 기억만 하는 코드
-// const limits = [
-//   { id: 2, value: 2 },
-//   { id: 3, value: 1 },
-//   { id: 4, value: 3 },
-//   { id: 5, value: 1 },
-//   { id: 6, value: 1 },
-//   { id: 7, value: 3 },
-// ];
-
-// 저장된 곳에서 필요한 애를 찾기만 하는 코드
-// const getLimit = (product_id) => limits.filter((e) => e.id === product_id)[0];
+import { HO_URL } from "../../../Constants";
 
 function SubscribeItems(props) {
-  // const [warning, setWarning] = useState(false);
-  // const [pillData, setPillData] = useState(true);
-  // const [price, setPrice] = useState([]);
+  //각 제품의 아이디와 경고창의 시작점이 되는 개수
+  const obj = [
+    { id: 2, value: 3 },
+    { id: 3, value: 2 },
+    { id: 4, value: 4 },
+    { id: 5, value: 2 },
+    { id: 6, value: 2 },
+    { id: 7, value: 4 },
+  ];
 
-  // 판단만 하는 코드
-  // const limit = getLimit(props.pill.product_id).value;
-  // if (num > limit) {
-  //   setWarning(!warning);
-  // }
-  // if (props.pill.product_id === 2 && props.pill.quantity >= 3) {
-  //   setWarning(true);
-  // } else if (props.pill.product_id === 3 && props.pill.quantity >= 2) {
-  //   setWarning(true);
-  // } else if (props.pill.product_id === 4 && props.pill.quantity >= 4) {
-  //   setWarning(true);
-  // } else if (props.pill.product_id === 5 && props.pill.quantity >= 2) {
-  //   setWarning(true);
-  // } else if (props.pill.product_id === 6 && props.pill.quantity >= 2) {
-  //   setWarning(true);
-  // } else if (props.pill.product_id === 7 && props.pill.quantity >= 4) {
-  //   setWarning(true);
-  // }
+  //Get으로 받아오는 정보의 제품 id와 obj의 아이디를 확인하여 value에 접근하기 위한 filter
+  const filterObj = obj.filter((el) => el.id === props.pill.product_id);
+  const [blur, setBlur] = useState(true);
 
-  // console.log("props", props.pill);
+  const blurNMinus = () => {
+    setBlur(!blur);
+    fetch(
+      `${HO_URL}/order/cart/remove/${props.pill.product_id}`
+    ).then((props) => props.getData(props.pill.product_id));
+  };
+
   return (
     <Body>
-      <Wrappers>
+      <Wrappers blur={blur}>
         {props.pill && (
           <>
             <InputWrapper>
-              <Input />
+              <Input blur={blur} onClick={blurNMinus} />
             </InputWrapper>
             <ImgWrapper>
               <SuppleImg src={props.pill.image} />
@@ -84,18 +61,20 @@ function SubscribeItems(props) {
           </>
         )}
       </Wrappers>
-      {props.warning ? (
-        ""
-      ) : (
+      {props.pill.quantity >= filterObj[0].value ? (
         <DivHiddenWarning>
           <RedWarning>
             ※ 보건복지부의 영양성분 섭취기준을 초과할 수 있으니 주의하세요
           </RedWarning>
         </DivHiddenWarning>
+      ) : (
+        ""
       )}
     </Body>
   );
 }
+const blackCheck = "https://pilly.kr/images/icons/icon-checkbox-dark-on@3x.png";
+const emptyCheck = "https://pilly.kr/images/icons/icon-checkbox-off@2x.png";
 
 export default SubscribeItems;
 
@@ -110,6 +89,7 @@ const Wrappers = styled.div`
   display: flex;
   flex-direction: row;
   position: relative;
+  opacity: ${(props) => (props.blur ? 1 : 0.4)};
 `;
 
 const InputWrapper = styled.div`
@@ -117,9 +97,14 @@ const InputWrapper = styled.div`
   padding: 31px 0;
 `;
 
-const Input = styled.input`
+const Input = styled.img`
+  background-image: ${(props) =>
+    props.blur ? `url(${blackCheck})` : `url(${emptyCheck})`};
+  background-size: 100%;
+
   width: 24px;
   height: 24px;
+  border-radius: 5px;
 `;
 
 const ImgWrapper = styled.div`
