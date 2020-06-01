@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import NavBar from "../../Component/NavBar/NavBar";
 
 export default function ShoppingCart(props) {
-  const cookieId = localStorage.getItem("token");
+  const tokenId = localStorage.getItem("token");
 
   const [allData, setNewSupple] = useState({
     supplement: [],
@@ -26,13 +26,11 @@ export default function ShoppingCart(props) {
     disposable: [],
   });
 
-  const [warning, setWarning] = useState(true);
-
   useEffect(() => {
     fetch(`${HO_URL}/order/cart`, {
       method: "GET",
       headers: {
-        Authorization: cookieId,
+        Authorization: tokenId,
       },
     })
       .then((res) => res.json())
@@ -46,13 +44,14 @@ export default function ShoppingCart(props) {
             disposable: res.disposable_total_price[0],
           })
       );
-  }, [cookieId]);
+  }, [tokenId]);
+  console.log("data", allData);
   const getData = () => {
     console.log("getData executed");
     fetch(`${HO_URL}/order/cart`, {
       method: "GET",
       headers: {
-        Authorization: cookieId,
+        Authorization: tokenId,
       },
     })
       .then((res) => res.json())
@@ -66,35 +65,11 @@ export default function ShoppingCart(props) {
       );
   };
 
-  const updatePost = () => {
-    fetch(`${HO_URL}/order/cart`, {
-      method: "POST",
-      headers: {
-        Authorization: cookieId,
-      },
-      body: JSON.stringify({ product_id: 2 }),
-    }).then(() => getData());
-  };
-
   const plusTheNumber = (num) => {
-    if (num === 2 && supplement.quantity >= 3) {
-      setWarning(false);
-    } else if (num === 3 && supplement.quantity >= 2) {
-      setWarning(false);
-    } else if (num === 4 && supplement.quantity >= 4) {
-      setWarning(false);
-    } else if (num === 5 && supplement.quantity >= 2) {
-      setWarning(false);
-    } else if (num === 6 && supplement.quantity >= 2) {
-      setWarning(false);
-    } else if (num === 7 && supplement.quantity >= 4) {
-      setWarning(false);
-    }
-
     fetch(`${HO_URL}/order/cart`, {
       method: "POST",
       headers: {
-        Authorization: cookieId,
+        Authorization: tokenId,
       },
       body: JSON.stringify({
         product_id: num,
@@ -105,7 +80,7 @@ export default function ShoppingCart(props) {
   const minusTheNumber = (num) => {
     fetch(`${HO_URL}/order/cart/remove/${num}`, {
       headers: {
-        Authorization: cookieId,
+        Authorization: tokenId,
       },
     }).then(() => getData());
   };
@@ -113,7 +88,7 @@ export default function ShoppingCart(props) {
   const removeEverything = () => {
     fetch(`${HO_URL}/order/cart/remove`, {
       headers: {
-        Authorization: cookieId,
+        Authorization: tokenId,
       },
     }).then(() => getData());
   };
@@ -155,10 +130,8 @@ export default function ShoppingCart(props) {
                 supplement={supplement}
                 plusTheNumber={(num) => plusTheNumber(num)}
                 minusTheNumber={(num) => minusTheNumber(num)}
-                warning={warning}
+                getData={getData}
               />
-
-              {/* <SubscribeItems /> */}
             </InnerElements>
             <CartMiddle
               supplement={supplement}

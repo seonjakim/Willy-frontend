@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { TheTitle, Point, PointUpdate } from "./MyPoint";
 import PointMallDetail from "./PointMallDetail";
+import { HO_URL } from "../../../Constants";
 
 function PointMall() {
   const [data, setData] = useState([]);
   const [show, hide] = useState(false);
   const [index, setIndex] = useState(1);
-  const Hee_API_URL = "http://10.58.5.47:8000";
 
   useEffect(() => {
-    fetch(`${Hee_API_URL}/user/gift`)
+    fetch(`${HO_URL}/user/gift`)
       .then((res) => res.json())
       .then((res) => setData(res.point_products));
   }, []);

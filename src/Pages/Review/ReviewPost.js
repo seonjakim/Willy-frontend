@@ -12,7 +12,7 @@ function ReviewPost(props) {
     fetch(`${HO_URL}/product/review/${props.match.params.id}`)
       .then((res) => res.json())
       .then((res) => {
-        setReviews(res.reviews);
+        setReviews(res.review);
         setSide(res.side_products);
       });
   }, [props.match.params.id]);

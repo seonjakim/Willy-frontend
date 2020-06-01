@@ -9,7 +9,7 @@ import ProductView from "./Pages/ProductView/ProductView";
 import Review from "./Pages/Review/Review";
 import SignIn from "./Pages/SignIn/SignIn";
 import SignUp from "./Pages/SignUp/SignUp";
-import MyPilly from "./Pages/MyPilly/MyPilly";
+import MyPillyShort from "./Pages/MyPilly/MyPillyShort";
 import PointMallDetail from "./Pages/MyPilly/Components/PointMallDetail";
 import Story from "./Pages/Story/Story";
 import ProductLists1 from "./Pages/ProductView/ProductLists1";
@@ -29,7 +29,7 @@ class Routes extends React.Component {
           <Route exact path="/end" component={SurveyEnd} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/mypilly" component={MyPilly} />
+          <Route exact path="/mypilly" component={MyPillyShort} />
           <Route exact path="/mypilly/:id" component={PointMallDetail} />
           <Route exact path="/result" component={Result} />
           <Route exact path="/product" component={ProductView} />
