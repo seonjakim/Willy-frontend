@@ -6,8 +6,10 @@ function SurveyEnd({ history }) {
     animateCircle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const [num, setNum] = useState(0);
 
+  // 로딩 원 그리기
   const animateCircle = () => {
     const ctx = document.querySelector(".canvas").getContext("2d");
     ctx.lineWidth = 4;
@@ -48,10 +50,6 @@ function SurveyEnd({ history }) {
             <span>잠시만 기다려 주십시오.</span>
           </p>
         </Description>
-        {/* <ButtonStart onClick={handleClickPlus}>시작하기</ButtonStart>
-        <Warning>
-          ※ 질병의 진단 및 치료는 전문적인 의료기관을 이용하세요.
-        </Warning> */}
       </EndIntro>
     </SurveyEndWrapper>
   );
@@ -127,27 +125,4 @@ const Description = styled.div`
       color: #848484;
     }
   }
-`;
-
-const ButtonStart = styled.button`
-  display: inline-block;
-  margin-top: 120px;
-  padding: 0 36px;
-  width: 418px;
-  height: 50px;
-  line-height: 50px;
-  background-color: #333;
-  border: none;
-  border-radius: 25px;
-  vertical-align: middle;
-  text-align: center;
-  font-weight: 700;
-  color: #fff;
-`;
-
-const Warning = styled.p`
-  margin-top: 28px;
-  font-size: 13px;
-  line-height: 24px;
-  color: #848484;
 `;
