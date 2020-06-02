@@ -12,13 +12,6 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
   const [checkboxClicked, setCheckboxClicked] = useState([]);
   const [textInput, setTextInput] = useState("");
   const [name, setName] = useState("");
-  let box = "";
-
-  // console.log("click..", click);
-  // console.log("Fm..", surveyForm);
-  // console.log("text..", textInput);
-  // console.log("radio..", radioClicked);
-  // console.log("check..", checkboxClicked);
 
   const {
     id,
@@ -32,22 +25,19 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
 
   const answer_list = surveyForm.answer_list;
 
+  let box = "";
   const setAnswer = () => {
     if (radioClicked) {
-      // console.log(radioClicked);
-      // console.log(answer_list[radioClicked - 1].id);
       box = "radio";
+
       return [answer_list[radioClicked - 1].id];
     } else if (textInput) {
       box = "textbox";
+
       return [textInput];
     } else if (checkboxClicked.length > 0) {
-      // console.log(
-      //   checkboxClicked
-      //     .map((check, idx) => (check ? answer_list[idx].id : undefined))
-      //     .filter((e) => e !== undefined)
-      // );
       box = "checkbox";
+
       return checkboxClicked
         .map((check, idx) => (check ? answer_list[idx].id : undefined))
         .filter((e) => e !== undefined);
@@ -59,7 +49,7 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
   console.log("personID from Form..", person_id);
   console.log("box", box);
 
-  //유저 인풋 -> api 바디에 포함
+  // 유저 인풋 -> api 바디에 포함
   let userInput = {
     question: id ? id : "0",
     answer: setAnswer() || [0],
@@ -67,11 +57,12 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
     box: box,
   };
 
-  //SurveyForm Fetch
+  // SurveyForm Fetch
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.post(`${HO_URL}/survey`, userInput);
       console.log("response!", response.data.survey);
+
       if (response.data.message && response.data.message === "finish") {
         //마지막 설문시
         //click 마지막 == .length
@@ -84,6 +75,7 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
       }
     };
     fetchData();
+
     return () => {
       setRadioClicked(null); // 다음 설문 이동 시(count 증가) 버튼 클릭 초기화
       setCheckboxClicked([]); // ""
@@ -92,7 +84,7 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleGetSurvey, click]);
 
-  //체크박스 초기화
+  // 체크박스 초기화
   useEffect(() => {
     const initializeContent = () => {
       if (answer_list.map((e) => e.box).includes("checkbox")) {
@@ -128,7 +120,7 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
 
   return (
     <SurveyFormWrapper>
-      <Num>질문 {click + 1}</Num>{" "}
+      <Num>질문 {click + 1}</Num>
       {detail_question ? (
         <>
           <Space>|</Space>
