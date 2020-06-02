@@ -104,15 +104,13 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
 
   const handleCheckboxClick = (index, limit) => {
     const clickedNum = checkboxClicked.filter((check) => check === true).length;
-    console.log("num..", clickedNum, "limit", Number(limit));
+
     setCheckboxClicked(
       checkboxClicked.map((checkbox, idx) => {
         if (idx === index) {
           return !checkbox;
-        } else {
-          if (clickedNum < Number(limit)) {
-            return checkbox;
-          }
+        } else if (clickedNum < Number(limit)) {
+          return checkbox;
         }
       })
     );
