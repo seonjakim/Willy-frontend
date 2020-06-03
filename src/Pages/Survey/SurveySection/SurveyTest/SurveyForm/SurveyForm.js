@@ -119,13 +119,11 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
   return (
     <SurveyFormWrapper>
       <Num>질문 {click + 1}</Num>
-      {detail_question ? (
+      {detail_question && (
         <>
           <Space>|</Space>
           <Num>{detail_question}</Num>
         </>
-      ) : (
-        ""
       )}
       <Title>{question.startsWith("님") ? name + question : question}</Title>
       <Image img={image_url} />
@@ -139,7 +137,7 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
               checkboxClicked && checkboxClicked[index] === true ? index + 1 : 0
             }
           >
-            {e.box !== "textbox" ? (
+            {e.box !== "textbox" && (
               <Label
                 onClick={() => {
                   e.box === "radio"
@@ -150,10 +148,8 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
                 {e.box === "radio" ? <Radio /> : <Checkbox />}
                 {e.answer}
               </Label>
-            ) : (
-              ""
             )}
-            {e.box !== "radio" && e.box !== "checkbox" ? (
+            {e.box !== "radio" && e.box !== "checkbox" && (
               <InputContent
                 type={
                   answer_list[0].placeholder === "이름" ||
@@ -169,8 +165,6 @@ function SurveyForm({ click, surveyForm, handleGetSurvey, handleClickFinish }) {
                   setTextInput(e.target.value);
                 }}
               />
-            ) : (
-              ""
             )}
           </AnswerList>
         ))}
