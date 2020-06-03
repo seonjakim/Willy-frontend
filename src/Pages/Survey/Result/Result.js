@@ -15,21 +15,19 @@ import NavBar from "../../../Component/NavBar/NavBar";
 function Result(props) {
   const [click, setClick] = useState(false);
 
-  console.log(props);
-
   let { person_id, products, handleGetResult } = props;
   console.log("person_id,,", person_id);
   console.log("products", products);
 
   useEffect(() => {
     if (person_id === 0) person_id = localStorage.getItem("person_id");
+
     try {
       const fetchData = async () => {
         const response = await axios.post(`${HO_URL}/survey/result`, {
           person_id,
         });
-        console.log("res..", response);
-        console.log("pa", response.data.survey_result);
+
         handleGetResult(response.data.survey_result);
       };
       fetchData();
@@ -47,7 +45,6 @@ function Result(props) {
         <UserInfo setClick={setClick} />
         <Summary click={click} setClick={setClick} />
         <Recommendations />
-        {/* <ButtonCart /> */}
         <ButtonCart products={products} history={props.history} />
       </ResultWrapper>
     </>
