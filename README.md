@@ -25,7 +25,7 @@ Pilly 맞춤영양제 [필리 공식 홈페이지](https://pilly.kr/) clone proj
 - 원형 로딩바 (with canvas)
 - 예외 처리 Toast 모달 (with react-toastify)
 - 제품 카테고리 및 상세페이지
-- 유저 리뷰 페이지 (with pagenation)
+- 유저 리뷰 페이지 (with pagination)
 - 회원별 장바구니 등록 및 목록 가져오기
 - 마이 페이지
 - 백엔드 API 이용
