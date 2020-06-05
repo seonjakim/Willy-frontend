@@ -1,6 +1,6 @@
 ## Wecode 7기 2차 프로젝트 Willy Front-end Repository
 ### 프로젝트 소개
-Pilly [맞춤영양제 필리 공식 홈페이지](https://pilly.kr/) clone project
+Pilly 맞춤영양제 [필리 공식 홈페이지](https://pilly.kr/) clone project
 
 ### 개발 인원 및 기간
 - 기간 : 2020.05.11 - 2020.05.22 (약 2주)
