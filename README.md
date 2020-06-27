@@ -8,7 +8,7 @@ Pilly 맞춤영양제 [필리 공식 홈페이지](https://pilly.kr/) clone proj
 - 백엔드 [Repository](https://github.com/wecode-bootcamp-korea/Willy-backend)
 
 ### 데모 영상
-- Link : https://www.youtube.com/watch?time_continue=72&v=xRO4EEsUnvc&feature=emb_logo
+- Link : https://www.youtube.com/watch?v=xRO4EEsUnvc
 ---
 ### 기술
 - React.js (Functional Components)
