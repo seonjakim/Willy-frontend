@@ -1,22 +1,31 @@
 ## Wecode 7기 2차 프로젝트 Willy Front-end Repository
+
 ### 프로젝트 소개
+
 Pilly 맞춤영양제 [필리 공식 홈페이지](https://pilly.kr/) clone project
 
 ### 개발 인원 및 기간
+
 - 기간 : 2020.05.11 - 2020.05.22 (약 2주)
 - 개발 인원 : 프론트엔드 [seonjakim](https://github.com/seonjakim), [Chae Lin Son](https://github.com/Soncl97), [HeejunShon](https://github.com/HeejunShon) 백엔드 [loyu78](https://github.com/loyu78), [pyheejin](https://github.com/pyheejin), [ckwlghks12](https://github.com/ckwlghks12)
 - 백엔드 [Repository](https://github.com/wecode-bootcamp-korea/Willy-backend)
 
 ### 데모 영상
-- Link : https://www.youtube.com/watch?v=xRO4EEsUnvc
+
+- Link : https://www.youtube.com/watch?v=2A3CRowoEP4
+
 ---
+
 ### 기술
+
 - React.js (Functional Components)
 - styled-components
 - JavasSript
+- RESTful API
 - HTML, CSS
 
 ### 구현 페이지, 컴포넌트
+
 - 메인 페이지
 - 슬라이더
 - 회원가입 / 로그인
