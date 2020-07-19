@@ -7,7 +7,7 @@ Pilly 맞춤영양제 [필리 공식 홈페이지](https://pilly.kr/) clone proj
 ### 개발 인원 및 기간
 
 - 기간 : 2020.05.11 - 2020.05.22 (약 2주)
-- 개발 인원 : 프론트엔드 [seonjakim](https://github.com/seonjakim), [Chae Lin Son](https://github.com/Soncl97), [HeejunShon](https://github.com/HeejunShon) 백엔드 [loyu78](https://github.com/loyu78), [pyheejin](https://github.com/pyheejin), [ckwlghks12](https://github.com/ckwlghks12)
+- 개발 인원 : 프론트엔드 [김선자](https://github.com/seonjakim), [손채린](https://github.com/Soncl97), [손희준](https://github.com/HeejunShon) 백엔드 [박석호](https://github.com/loyu78), [정희진](https://github.com/pyheejin), [차지환](https://github.com/ckwlghks12)
 - 백엔드 [Repository](https://github.com/wecode-bootcamp-korea/Willy-backend)
 
 ### 데모 영상
